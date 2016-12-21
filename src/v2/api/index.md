@@ -4,7 +4,7 @@ type: api
 
 ## Configuración Global
 
-`Vue.config` es un objeto que contiene las configuraciones globales de Vue. Puedes modificar sus propiedades enumeradas a continuación antes de iniciar tu aplicación:
+`Vue.config` es un objeto que contiene las configuraciones globales de Vue. Puede modificar las propiedades enumeradas a continuación antes de iniciar su aplicación:
 
 ### silent
 
@@ -40,11 +40,11 @@ type: api
   // Profile.options._my_option = 2
   ```
 
-  Define estrategias de combinación personalizadas para las opciones.
+  Define estrategias de fusión personalizadas para las opciones.
 
-  La estrategia de combinación recibe el valor de esa opción definida en las instancias padre e hijo como primer y segundo argumentos, respectivamente. La instancia Vue de contexto se pasa como tercer argumento.
+  La estrategia de fusión recibe el valor de esa opción definida en las instancias padre e hijo como primer y segundo argumento, respectivamente. La instancia Vue de contexto se pasa como tercer argumento.
 
-- **Ver también:** [Estrategias de Combinación Personalizadas](../guide/mixins.html#Estrategias-de-Combinación-Personalizadas)
+- **Ver también:** [Estrategias de Fusión Personalizadas](../guide/mixins.html#Estrategias-de-Fusión-Personalizadas)
 
 ### devtools
 
@@ -55,27 +55,27 @@ type: api
 - **Uso:**
 
   ``` js
-  // asegurate de configurarlo de forma sincronizada inmediatamente después de cargar Vue
+  // asegúrese de configurarlo de forma sincronizada inmediatamente después de cargar Vue
   Vue.config.devtools = true
   ```
 
-  Configura si deseas permitir inspección [vue-devtools](https://github.com/vuejs/vue-devtools). El valor por defecto de esta opcion es `true` en compilaciones de desarrollo y `false` en compilaciones de producción. Puedes configurarlo a `true` para habilitar inspección en compilaciones de producción.
+  Configure el permiso de inspección de [vue-devtools](https://github.com/vuejs/vue-devtools). El valor por defecto de esta opcion es `true` en compilaciones de desarrollo y `false` en compilaciones de producción. Puede configurarlo a `true` para habilitar inspección en compilaciones de producción.
 
 ### errorHandler
 
 - **Tipo:** `Function`
 
-- **Por defecto:** Lanza un error en vez
+- **Por defecto:** Lanza un error al instante
 
 - **Uso:**
 
   ``` js
   Vue.config.errorHandler = function (err, vm) {
-    // manejar error
+    // maneje error
   }
   ```
 
-  Asigna un manejador para errores no detectados durante render y watchers del componente. El manejador es llamado con el error y la instancia Vue.
+  Asigne un manejador para errores no detectados durante renderizado y watchers del componente. El manejador es llamado con el error y la instancia Vue.
 
   > [Sentry](https://sentry.io), un servicio de seguimiento de errores, proporciona [integración oficial](https://sentry.io/for/vue/) utilizando esta opción.
 
@@ -93,7 +93,7 @@ type: api
   ]
   ```
 
-  Haz que Vue ignore elementos personalizados definidos fuera de Vue (e.g., utilizando los APIs de Web Components). De lo contrario, lanzará una advertencia sobre un `Unknown custom element`, suponiendo se haya olvidado registrar un componente global o haya escrito mal un nombre de componente.
+  Hace que Vue ignore elementos personalizados definidos fuera de Vue (p. ej., utilizando las APIs de Web Components). De lo contrario, lanzará una advertencia sobre un _`Unknown custom element`_ (_Elemento personalizado desconocido_), asumiendo que ha olvidado registrar un componente global o que ha escrito mal un nombre.
 
 ### keyCodes
 
