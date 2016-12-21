@@ -549,7 +549,7 @@ is just syntactic sugar for:
 When used with a component, this simplifies to:
 
 ``` html
-<input v-bind:value="something" v-on:input="something = arguments[0]">
+<custom-input v-bind:value="something" v-on:input="something = arguments[0]"></custom-input>
 ```
 
 So for a component to work with `v-model`, it must:
@@ -1015,7 +1015,7 @@ Vue.component(
 )
 ```
 
-<p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, it's unfortunately not possible and probably never will be, as its creator has [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." If this is a feature that's important to you, we recommend using Webpack instead.</p>
+<p class="tip">If you're a <strong>Browserify</strong> user that would like to use async components, its creator has unfortunately [made it clear](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) that async loading "is not something that Browserify will ever support." Officially, at least. The Browserify community has found [some workarounds](https://github.com/vuejs/vuejs.org/issues/620), which may be helpful for existing and complex applications. For all other scenarios, we recommend simply using Webpack for built-in, first-class async support.</p>
 
 ### Component Naming Conventions
 

@@ -97,7 +97,7 @@ type: api
 
 ### keyCodes
 
-- **Tipo:** `{ [key: string]: number }`
+- **Tipo:** `{ [key: string]: number | Array<number> }`
 
 - **Por defecto:** `{}`
 
@@ -107,7 +107,8 @@ type: api
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
-    mediaPlayPause: 179
+    mediaPlayPause: 179,
+    up: [38, 87]
   }
   ```
   
@@ -965,8 +966,8 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
       var body   = this.$slots.default
       var footer = this.$slots.footer
       return createElement('div', [
-        createElement('header', header)
-        createElement('main', body)
+        createElement('header', header),
+        createElement('main', body),
         createElement('footer', footer)
       ])
     }
@@ -1518,6 +1519,9 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
   <!-- shorthand -->
   <img :src="imageSrc">
+  
+  <!-- with inline string concatenation -->
+  <img :src="'/path/to/images/' + fileName">
 
   <!-- class binding -->
   <div :class="{ red: isRed }"></div>
@@ -1570,7 +1574,7 @@ All lifecycle hooks automatically have their `this` context bound to the instanc
 
 - **Usage:**
 
-  Create a two-way binding on a form input element or a component. For detailed usage, see guide section linked below.
+  Create a two-way binding on a form input element or a component. For detailed usage and other notes, see the Guide section linked below.
 
 - **See also:**
   - [Form Input Bindings](../guide/forms.html)
