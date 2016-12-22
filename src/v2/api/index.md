@@ -59,7 +59,7 @@ type: api
   Vue.config.devtools = true
   ```
 
-  Configura el permiso de inspección de [vue-devtools](https://github.com/vuejs/vue-devtools). El valor por defecto de esta opcion es `true` en compilaciones de desarrollo y `false` en compilaciones de producción. Puede configurarlo a `true` para habilitar la inspección en compilaciones de producción.
+  Configura el permiso de inspección de [vue-devtools](https://github.com/vuejs/vue-devtools). El valor por defecto de esta opción es `true` en compilaciones de desarrollo y `false` en compilaciones de producción. Puede configurarlo a `true` para habilitar la inspección en compilaciones de producción.
 
 ### errorHandler
 
@@ -93,7 +93,7 @@ type: api
   ]
   ```
 
-  Hace que Vue ignore elementos personalizados definidos fuera de Vue (p. ej., utilizando las APIs de Web Components). De lo contrario, lanzará una advertencia sobre un _`Unknown custom element`_ (_Elemento personalizado desconocido_), asumiendo que ha olvidado registrar un componente global o que ha escrito mal un nombre.
+  Hace que Vue ignore elementos personalizados definidos fuera de Vue (p. ej., utilizando las APIs de Web Components). De lo contrario, lanzará una advertencia _`Unknown custom element`_ (_Elemento personalizado desconocido_), asumiendo que ha olvidado registrar un componente global o que ha escrito mal un nombre.
 
 ### keyCodes
 
