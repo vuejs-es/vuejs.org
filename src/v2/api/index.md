@@ -59,7 +59,7 @@ type: api
   Vue.config.devtools = true
   ```
 
-  Configure el permiso de inspección de [vue-devtools](https://github.com/vuejs/vue-devtools). El valor por defecto de esta opcion es `true` en compilaciones de desarrollo y `false` en compilaciones de producción. Puede configurarlo a `true` para habilitar inspección en compilaciones de producción.
+  Configura el permiso de inspección de [vue-devtools](https://github.com/vuejs/vue-devtools). El valor por defecto de esta opcion es `true` en compilaciones de desarrollo y `false` en compilaciones de producción. Puede configurarlo a `true` para habilitar la inspección en compilaciones de producción.
 
 ### errorHandler
 
@@ -71,11 +71,11 @@ type: api
 
   ``` js
   Vue.config.errorHandler = function (err, vm) {
-    // maneje error
+    // manejar error
   }
   ```
 
-  Asigne un manejador para errores no detectados durante renderizado y watchers del componente. El manejador es llamado con el error y la instancia Vue.
+  Asigna un manejador para errores no detectados durante el renderizado y la observación del componente. El manejador es llamado con el error y la instancia Vue.
 
   > [Sentry](https://sentry.io), un servicio de seguimiento de errores, proporciona [integración oficial](https://sentry.io/for/vue/) utilizando esta opción.
 
