@@ -4,7 +4,7 @@ type: examples
 order: 10
 ---
 
-> Éste es un clon de HackerNews construido en base a la API oficial de HackerNews hecha en Firebase, Vue 2.0 + vue-router + vuex, con renderizado en el lado del servidor.
+> Este es un clon de HackerNews construido en base a la API oficial de HackerNews hecha en Firebase, Vue 2.0 + vue-router + vuex, con renderizado en el lado del servidor.
 
 {% raw %}
 <div style="max-width:600px">
