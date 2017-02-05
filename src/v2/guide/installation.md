@@ -37,7 +37,7 @@ También se encuentra disponible en [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_vers
 
 ## NPM
 
-NPM es el método de instalación recomendado cuando se construyen aplicaciones de gran escala con Vue. Se complementa de buena manera con empaquetadores de módulos como [Webpack](http://webpack.github.io/) o [Browserify](http://browserify.org/). Vue también provee herramientas complementarias para la creación de [Componentes de un solo archivo](single-file-components.html).
+NPM es el método de instalación recomendado cuando se construyen aplicaciones de gran escala con Vue. Se integra bien con empaquetadores de módulos como [Webpack](http://webpack.github.io/) o [Browserify](http://browserify.org/). Vue también provee herramientas complementarias para la creación de [Componentes de un solo archivo](single-file-components.html).
 
 ``` bash
 # última versión estable
@@ -47,11 +47,11 @@ $ npm install vue
 
 Hay dos versiones disponibles, la independiente y la _runtime-only_. La diferencia es que la primera incluye un **compilador de plantillas** y la última no.
 
-El compilador de plantillas es responsable de compilar plantillas de Vue en funciones de renderizado de Javascript puro. Si desea usar la opción `template`, entonces necesita el compilador.
+El compilador de plantillas es responsable de compilar plantillas de Vue en funciones de renderizado de JavaScript puro. Si desea usar la opción `template`, entonces necesita el compilador.
 
 - La versión independiente incluye el compilador y soporta la opción `template`. **También depende de la presencia de APIs del navegador, por lo que no puede usarlo para renderizado del lado servidor.**
 
-- La versión _runtime-only_ no incluye el compilador de plantillas y no soporta la opción `template`. solo puede usar la opción `render` cuando se está usando esta versión, pero funciona con componentes de un solo archivo, porque las plantillas de los componentes de un solo archivo son pre-compiladas en funciones `render` durante la etapa de construcción. La versión _runtime-only_ es aproximadamente 30% más liviana que la versión independiente, ocupando solo {{ro_gz_size}}kb min+gzip.
+- La versión _runtime-only_ no incluye el compilador de plantillas y no soporta la opción `template`. Solo puede usar la opción `render` cuando se está usando esta versión, pero funciona con componentes de un solo archivo, porque las plantillas de los componentes de un solo archivo son pre-compiladas en funciones `render` durante la etapa de construcción. La versión _runtime-only_ es aproximadamente 30% más liviana que la versión independiente, ocupando solo {{ro_gz_size}}kb min+gzip.
 
 Por defecto, el paquete NPM exporta la versión **runtime-only**. Para usar la versión independiente, añada el siguiente alias en su archivo de configuración de Webpack:
 
@@ -81,7 +81,7 @@ Por otro lado, la versión _runtime-only_ es completamente compatible con CSP. C
 
 ## CLI
 
-Vue.js provee una [CLI oficial](https://github.com/vuejs/vue-cli) para estructurar rápidamente aplicaciones ambiciosas de una sola página. Provee configuraciones _todo-en-uno_ para un flujo de trabajo frontend moderno. Solo toma unos minutos estar preparado para el desarrollo con: recarga en caliente, _lint-on-save_ y versiones listas para producción:
+Vue.js provee una [CLI oficial](https://github.com/vuejs/vue-cli) para estructurar rápidamente Aplicaciones de una Sola Página (SPA por sus siglas en inglés). Provee configuraciones _todo-en-uno_ para un flujo de trabajo frontend moderno. Solo toma unos minutos estar preparado para el desarrollo con: recarga en caliente, _lint-on-save_ y versiones listas para producción:
 
 ``` bash
 # Instale vue-cli
