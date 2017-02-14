@@ -15,7 +15,7 @@ order: 10
 {% endraw %}
 
 > [Live Demo](https://vue-hn.now.sh/)
-> Nota: El demo puede tardar un poco en cargar si nadie ha accedido en un cierto periodo de tiempo.
+> Nota: La demo puede tardar un poco en cargar si nadie ha accedido en un cierto periodo de tiempo.
 >
 > [[Fuente](https://github.com/vuejs/vue-hackernews-2.0)]
 
@@ -25,8 +25,8 @@ order: 10
   - Vue + vue-router + vuex trabajando en conjunto
   - Extracción previa de datos en el lado del servidor
   - Client-side state & DOM hydration
-- Componentes de Vue en archivos individuales
-  - Recarga en caliente en desarrollo
+- Componentes de un solo archivo
+  - Recarga automática durante la etapa de desarrollo
   - Extracción de CSS para producción
 - Actualizacion en tiempo real de la lista con animaciones FLIP
 
