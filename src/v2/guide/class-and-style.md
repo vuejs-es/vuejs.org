@@ -16,7 +16,7 @@ Podemos pasar un objeto a `v-bind:class` para intercambiar dinámicamente las cl
 <div v-bind:class="{ active: isActive }"></div>
 ```
 
-La anterior sintaxis ilustra que la presencia de la clase `active` será determinada por el [valor de verdad](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) de la propiedad `isActive`.
+La anterior sintaxis ilustra que la presencia de la clase `active` será determinada por el [thrutiness](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) de la propiedad `isActive`.
 
 Puede intercambiar múltiples clases si tiene más campos en el objeto. Adicionalmente, la directiva `v-bind:class` puede coexistir con el atributo común `class`. De modo que en la siguiente plantilla:
 
