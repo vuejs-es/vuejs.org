@@ -108,7 +108,7 @@ computed: {
 
 En comparación, una invocación a un método **siempre** ejecutará la función cuando un re-render ocurra.
 
-Por qué necesitamos cacheo? Imagine que tenemos una costosa propiedad calculada **A**, la cual requiere iterar sobre una enorme colección mientras realiza muchos cálculos. Luego podríamos tener otras propiedades calculadas que a su vez dependen de **A**. Sin caché, estaríamos ejecutando el getter de **A** muchas veces más de las necesarias! En casos donde no requiera caché, use un método.
+Por qué necesitamos cacheo? Imagine que tenemos una costosa propiedad calculada **A**, la cual requiere iterar sobre un enorme array mientras realiza muchos cálculos. Luego podríamos tener otras propiedades calculadas que a su vez dependen de **A**. Sin caché, estaríamos ejecutando el getter de **A** muchas veces más de las necesarias! En casos donde no requiera caché, use un método.
 
 ### Propiedad Calculada versus Watcher
 
