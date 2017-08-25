@@ -77,7 +77,7 @@ Puede abrir la consola y jugar con el ejemplo usted mismo. El valor de `vm.rever
 
 Puede enlazar datos a propiedades calculadas en las plantillas justo como una propiedad normal. Vue es consciente que `vm.reversedMessage` depende de `vm.message`, así que actualizará cualquier enlace que dependa de `vm.reversedMessage` siempre que `vm.message` cambie. Y la mejor parte es que hemos creado esta relación de dependencia de forma declarativa: la función getter calculada es pura y no tiene efectos secundarios, lo cual la hace muy fácil de probar y analizar.
 
-### Cacheo Calculado vs Métodos
+### Cacheo Calculado versus Métodos
 
 Puede haberse dado cuenta que podemos obtener el mismo resultado invocando un método en la expresión:
 
@@ -94,7 +94,7 @@ methods: {
 }
 ```
 
-En vez de una propiedad calculada, podemos definir la misma función como un método. Para el resultado final, las dos formas son sin duda exactamente iguales. Sin embargo, la diferencia es que **las propiedades calculadas son cacheadas con base en sus dependencias.** Una propiedad calculada sólo será re-evaluada cuando alguna de sus dependencias haya cambiado. Esto quiere decir que mientras `message` no cambie, accesos múltiples a la propiedad calculada `reversedMessage` va a retornar inmediatamente el resultado calculado anteriormente sin tener que evaluar la función de nuevo.
+En vez de una propiedad calculada, podemos definir la misma función como un método. Para el resultado final, las dos formas son sin duda exactamente iguales. Sin embargo, la diferencia es que **las propiedades calculadas son cacheadas en base en sus dependencias.** Una propiedad calculada sólo será re-evaluada cuando alguna de sus dependencias haya cambiado. Esto quiere decir que mientras `message` no cambie, accesos múltiples a la propiedad calculada `reversedMessage` va a retornar inmediatamente el resultado calculado anteriormente sin tener que evaluar la función de nuevo.
 
 Esto también quiere decir que la siguiente propiedad calculada nunca será actualizada, por que `Date.now()` no es una dependencia reactiva.
 
@@ -108,11 +108,11 @@ computed: {
 
 En comparación, una invocación a un método **siempre** ejecutará la función cuando un re-render ocurra.
 
-Por qué necesitamos cacheo? Imagine que tenemos una costosa propiedad calculada **A**, la cual requiere iterar sobre un enorme Arreglo mientras realiza muchos cálculos. Luego podríamos tener otras propiedades calculadas que a su vez dependen de **A**. Sin caché, estaríamos ejecutando el getter de **A** muchas veces más de las necesarias! En casos donde no requiera caché, use un método.
+Por qué necesitamos cacheo? Imagine que tenemos una costosa propiedad calculada **A**, la cual requiere iterar sobre una enorme colección mientras realiza muchos cálculos. Luego podríamos tener otras propiedades calculadas que a su vez dependen de **A**. Sin caché, estaríamos ejecutando el getter de **A** muchas veces más de las necesarias! En casos donde no requiera caché, use un método.
 
 ### Propiedad Calculada versus Watcher
 
-Vue de hecho provee una forma más genérica de observar y reaccionar a cambios de datos en una instancia Vue: **observar propiedades**. Cuando tiene datos que necesitan cambiar con base en otros datos, es tentador usar `watch`, especialmente si viene de un trasfondo de AngularJS. Sin embargo, es a menudo una mejor idea usar una propiedad calculada en vez de un callback `watch` imperativo. Considere el siguiente ejemplo:
+Vue de hecho provee una forma más genérica de observar y reaccionar a cambios de datos en una instancia Vue: **observar propiedades**. Cuando tiene datos que necesitan cambiar en base a otros datos, es tentador usar `watch`, especialmente si viene de un trasfondo de AngularJS. Sin embargo, es a menudo una mejor idea usar una propiedad calculada en vez de un callback `watch` imperativo. Considere el siguiente ejemplo:
 
 ``` html
 <div id="demo">{{ fullName }}</div>
@@ -154,7 +154,7 @@ var vm = new Vue({
 })
 ```
 
-Mucho mejor, no es cierto?
+Mucho mejor, ¿no es cierto?
 
 ### Setter calculado
 
