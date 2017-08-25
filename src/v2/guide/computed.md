@@ -94,7 +94,7 @@ methods: {
 }
 ```
 
-En vez de una propiedad calculada, podemos definir la misma función como un método. Para el resultado final, las dos formas son sin duda exactamente iguales. Sin embargo, la diferencia es que **las propiedades calculadas son cacheadas en base en sus dependencias.** Una propiedad calculada sólo será re-evaluada cuando alguna de sus dependencias haya cambiado. Esto quiere decir que mientras `message` no cambie, accesos múltiples a la propiedad calculada `reversedMessage` va a retornar inmediatamente el resultado calculado anteriormente sin tener que evaluar la función de nuevo.
+En vez de una propiedad calculada, podemos definir la misma función como un método. Para el resultado final, las dos formas son sin duda exactamente iguales. Sin embargo, la diferencia es que **las propiedades calculadas son cacheadas en base a sus dependencias.** Una propiedad calculada sólo será re-evaluada cuando alguna de sus dependencias haya cambiado. Esto quiere decir que mientras `message` no cambie, accesos múltiples a la propiedad calculada `reversedMessage` va a retornar inmediatamente el resultado calculado anteriormente sin tener que evaluar la función de nuevo.
 
 Esto también quiere decir que la siguiente propiedad calculada nunca será actualizada, por que `Date.now()` no es una dependencia reactiva.
 
