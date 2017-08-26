@@ -80,7 +80,7 @@ Similarmente a `v-else`, un elemento `v-else-if` debe ser usado inmediatamente d
 
 ### Controlando Elementos Re-usables con `key`
 
-Vue intenta renderizar elementos tan eficientemente como le sea posible, a menudo los re-utiliza en vez de renderizarlos de nuevo. Mas allá de ayudar a Vue a ser rápido, esto tiene ventajas muy útiles. Por ejemplo, si permite a los usuarios intercambiar entre diferentes tipos de inicio de sesión:
+Vue intenta renderizar elementos tan eficientemente como le sea posible, a menudo los re-utiliza en vez de renderizarlos de nuevo. Mas allá de ayudar a que Vue sea muy rápido, esto tiene ventajas muy útiles. Por ejemplo, si permite a los usuarios intercambiar entre diferentes tipos de inicio de sesión:
 
 ``` html
 <template v-if="loginType === 'username'">
@@ -139,7 +139,7 @@ Esto no siempre es un comportamiento deseable, así que Vue ofrece una forma que
 </template>
 ```
 
-Ahora ambos campos serán renderizados desde cero cada vez que los intercambies. Véalo por usted mismo:
+Ahora ambos campos serán renderizados desde cero cada vez que los intercambie. Véalo por usted mismo:
 
 {% raw %}
 <div id="key-example" class="demo">
