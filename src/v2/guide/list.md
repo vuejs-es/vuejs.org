@@ -213,7 +213,7 @@ new Vue({ el: '#range' })
 
 ### Componentes y v-for
 
-> Esta sección asume conocimiento en [Componentes] (components.html). Siéntase de libre de saltarla y regresar más adelante.
+> Esta sección asume conocimiento en [Componentes](components.html). Siéntase de libre de saltarla y regresar más adelante.
 
 Puede usar directamente `v-for` en un componente a medida, como en cualquier elemento normal:
 
@@ -233,7 +233,7 @@ Sin embargo, esto no pasa automáticamente datos al componente, ya que los compo
 
 La razón para no inyectar automáticamente `item` en el componente, es por que haría que el componente sea muy acoplado a cómo funciona `v-for`. Siendo explícito sobre de dónde vienen sus datos hace que el componente sea reusable en otras situaciones.
 
-Acá hay un ejemplo completo de una lista de tareas:
+Aquí tenemos un ejemplo completo de una lista de tareas:
 
 ``` html
 <div id="todo-list-example">
@@ -331,11 +331,11 @@ new Vue({
 
 ## key (clave)
 
-Cuando Vue.js está actualizando una lista de elementos renderizados con `v-for`, por defecto usa una estrategia "arreglar en-lugar". Si el orden de los elementos de datos cambia, en vez de mover los elementos DOM para ajustar el orden de los elementos, Vue sencillamente arregla cada elemento en su lugar y se asegura que refleje lo que debe ser renderizado en ése índice particular. Ésto es similar al comportamiento de `track-by="$index"` en Vue 1.x.
+Cuando Vue.js está actualizando una lista de elementos renderizados con `v-for`, por defecto usa una estrategia "in-place patch". Si el orden de los elementos de datos cambia, en vez de mover los elementos DOM para ajustar el orden de los elementos, Vue sencillamente arregla cada elemento en su lugar y se asegura que refleje lo que debe ser renderizado en ése índice particular. Ésto es similar al comportamiento de `track-by="$index"` en Vue 1.x.
 
-Este modo por defecto es eficiente, pero sólo recomendable **cuando su salida de renderizado de la lista no dependa del estado de componentes hijos o estado temporal DOM (p.e. valores de campos de formulario)**.
+Este modo por defecto es eficiente, pero sólo recomendable **cuando el renderizado de la lista no dependa del estado de componentes hijos o estado temporal DOM (p.e. valores de campos de formulario)**.
 
-Para darle a Vue una indicación para que pueda rastrear la identidad de cada nodo, y así re-usar y re-ordenar elementos existentes, necesita poveer un atributo único `key` para cada elemento. Un valor ideal para `key` sería el id único de cada elemento. Este atributo especial es un equivalente similar a `track-by` de la versión 1.x, pero funciona como un atributo, de modo que necesita usar `v-bind` para asignar valores dinámicos (usando una versión corta así):
+Para darle a Vue una indicación para que pueda rastrear la identidad de cada nodo, y así re-usar y re-ordenar elementos existentes, necesita poveer un atributo único `key` para cada elemento. Un valor ideal para `key` sería el id único de cada elemento. Este atributo especial es un equivalente similar a `track-by` de la versión 1.x, pero funciona como un atributo, de modo que necesita usar `v-bind` para asignar valores dinámicos (usando una versión corta aquí):
 
 ``` html
 <div v-for="item in items" :key="item.id">
@@ -382,7 +382,7 @@ Debido a las limitaciones en JavaScript, Vue **no puede** detectar los siguiente
 1. Cuando directamente se cambia un elemento con el índice, p.e. `vm.items[indexOfItem] = newValue`
 2. Cuando se modifica el tamaño del array, p.e. `vm.items.length = newLength`
 
-Para solventar el problema 1, los siguientes arreglos pueden lograr lo mismo que `vm.items[indexOfItem] = newValue`, pero a su vez acgtivan actualizaciones de estado en el sistema reactivo:
+Para solventar el problema 1, los siguientes arreglos pueden lograr lo mismo que `vm.items[indexOfItem] = newValue`, pero a su vez activan actualizaciones de estado en el sistema reactivo:
 
 ``` js
 // Vue.set
