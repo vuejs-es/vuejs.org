@@ -182,15 +182,15 @@ Para solucionar este problema, Vue ofrece **modificadores de eventos** para `v-o
 <!-- use modo de captura cuando esté agregando el listener de evento -->
 <div v-on:click.capture="doThis">...</div>
 
-<!-- sólo active el manejador si event.target es el elemento en sí -->
-<!-- p.e. no no de un elemento hijo -->
+<!-- activa el manejador si event.target es el elemento en sí -->
+<!-- p.e. no de un elemento hijo -->
 <div v-on:click.self="doThat">...</div>
 ```
 
 > Nuevo en 2.1.4
 
 ``` html
-<!-- el evento click será activado al menos una vez -->
+<!-- el evento click será activado una vez como máximo -->
 <a v-on:click.once="doThis"></a>
 ```
 
@@ -259,10 +259,10 @@ Por ejemplo:
 
 ## ¿Por qué Listeners en HTML?
 
-Puede estar preocupado que toda esta estrategia de escucha de eventos rompe las viejas reglas de "separación de intereses". Puede descansar - ya que todas las funciones y expresiones manejadores están estrictamente atadas al ViewModel que controla la vista actual, no causará dificultades en el mantenimiento. De hecho, hay muchos beneficios cuando se usa `v-on`:
+Puede estar preocupado que toda esta estrategia de escucha de eventos rompe las viejas reglas de "separación de intereses". Puede estar tranquilo - ya que todas las funciones y expresiones manejadores están estrictamente atadas al ViewModel que controla la vista actual, no causará dificultades en el mantenimiento. De hecho, hay muchos beneficios cuando se usa `v-on`:
 
 1. Es más fácil de localizar la implementación de la función manejadora dentro de su código JS simplemente posando la vista sobre la plantilla HTML.
 
 2. Como no tiene que asignar manualmente listeners de eventos en JS, su códgo de ViewModel puede ser únicamente lógica y estar libre de DOM. Ésto lo hace más fácil de probar.
 
-3. Cuando un ViewModel es destruído, todos los listeners de eventos son automáticamente eliminados. No tiene que preocuparse de limpiarlo por su cuenta.
+3. Cuando un ViewModel es destruído, todos los listeners de eventos son automáticamente eliminados. No tiene que preocuparse de limpiarlos por su cuenta.
