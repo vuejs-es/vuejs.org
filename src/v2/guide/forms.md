@@ -1,5 +1,5 @@
 ---
-title: Enlace de datos (Binding) en Campos de Formluario
+title: Binding en Campos de Formulario
 type: guide
 order: 10
 ---
@@ -8,9 +8,9 @@ order: 10
 
 Puede usar la directiva `v-model` para crear enlaces (en inglés **Data Bindings**) de datos de doble vía en elementos de ingreso de datos de formulario y áreas de texto. `v-model` automáticamente escoge la forma correcta de actualizar el elemento basado en el tipo de campo. Aunque parezca un poco mágico, `v-model` es esencialmente un sintaxis bonito para actualizar datos cuando el usuario ingresa información, además de algunos cuidados adicionales para casos extremos.
 
-<p class="tip">`v-model` no se preocupa por el valor inicial dado a un input o textarea. Siempre considera a los datos de instancia de Vue como la fuente de verdad.</p>
+<p class="tip">`v-model` no se preocupa por el valor inicial dado a un input o textarea. Siempre considera a los datos de instancia de Vue como la fuente de la verdad.</p>
 
-<p class="tip" id="vmodel-ime-tip">Para lenguajes que requieren un [IME](https://en.wikipedia.org/wiki/Input_method) (Chino, Japonés, Koreano, etc), se dará cuenta que `v-model` no se actualiza dutante la composición IME. Si también desea soportar estas actualizaciones, mejor use el evento `input`.</p>
+<p class="tip" id="vmodel-ime-tip">Para lenguajes que requieren un [IME](https://en.wikipedia.org/wiki/Input_method) (Chino, Japonés, Koreano, etc), se dará cuenta que `v-model` no se actualiza durante la composición IME. Si también desea soportar estas actualizaciones, mejor use el evento `input`.</p>
 
 ### Texto
 
@@ -62,7 +62,7 @@ new Vue({
 
 
 {% raw %}
-<p class="tip">La interpolación en textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>)no funcionará. En cambio use<code>v-model</code>.</p>
+<p class="tip">La interpolación en textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>)no funcionará. En cambio use <code>v-model</code>.</p>
 {% endraw %}
 
 ### Checkbox
@@ -274,13 +274,13 @@ new Vue({
 
 ## Bindings de valor
 
-Para opciones en radios, checkboxes y selects, los valores asignados mediante `v-model` son usualmente strings estáticos (o booleanos para checkbox):
+Para opciones en radios, checkboxes y selects, los valores asignados mediante `v-model` son usualmente cadenas de texto estáticas (o booleanos para checkbox):
 
 ``` html
 <!-- `picked` es un string "a" cuando es seleccionado -->
 <input type="radio" v-model="picked" value="a">
 
-<!-- `toggle` es o verdadero o falso -->
+<!-- `toggle` es verdadero o falso -->
 <input type="checkbox" v-model="toggle">
 
 <!-- `selected` es un string "abc" cuando es seleccionado -->
@@ -289,7 +289,7 @@ Para opciones en radios, checkboxes y selects, los valores asignados mediante `v
 </select>
 ```
 
-Pero a veces queremos asignar el valor a una propiedad dinánimca de la instancia Vue. Podemos usar `v-bind` para lograr esto. Adicionalmente, usar `v-bind` nos permite asignar el valor del input a valores que no sean strings. 
+Pero a veces queremos asignar el valor a una propiedad dinámica de la instancia Vue. Podemos usar `v-bind` para lograr esto. Adicionalmente, usar `v-bind` nos permite asignar el valor del input a valores que no sean strings. 
 
 ### Checkbox
 
@@ -366,6 +366,6 @@ Si quiere que los datos de usuario sean recortados automáticamente, puede agreg
 
 ## `v-model` con Componentes
 
-> Si los componentes de Vue no le son familiares, sólo salte esta sección por ahora.
+> Si los componentes de Vue no le son familiares, puede saltarse esta sección por ahora.
 
 Los tipos de input nativos de HTML no siempre satisfacen sus necesidades. Afortunadamente, los componentes Vue le permiten crear inputs re-usables con comportamiento completamente personalizable. ¡Estos inputs incluso funcionan mejor con `v-model`! Para conocer más, lea sobre [inputs personalizados](components.html#Form-Input-Components-using-Custom-Events) en la guía de componentes.
