@@ -14,7 +14,7 @@ var vm = new Vue({
 })
 ```
 
-Aunqur estrictamente no está asociado con el [patrón MVVM](https://en.wikipedia.org/wiki/Model_View_ViewModel), el diseño de Vue ha sido sin duda inspirado por él, Como convención, a menudo usamos la variable `vm` (versión corta de ViewModel) para referirnos a nuestras instancias Vue.
+Aunque estrictamente no está asociado con el [patrón MVVM](https://en.wikipedia.org/wiki/Model_View_ViewModel), el diseño de Vue ha sido sin duda inspirado por él. Como convención, a menudo usamos la variable `vm` (versión se refiere a ViewModel) para referirnos a nuestras instancias Vue.
 
 Cuando crea una instancia Vue, necesita pasarle un **objeto de opciones** el cual puede contener opciones para datos, plantilla, elemento donde ser montado, métodos, callbacks de ciclo de vida y más. La lista completa de opciones puede ser hallada en la [refefencia de API](../api).
 
@@ -55,7 +55,7 @@ vm.a // -> 3
 
 Debe ser dicho que únicamente dichas propiedades expuestas son **reactivas**. Si agrega una nueva propiedad a la instancia después de haberla creado, no activará actualizaciones de vista. Vamos a discutir el sistema de reactividad en detalle más adelante.
 
-En adición a propiedades de datos, las instancias Vue exponen un número de útiles propiedades de instancia y métodos. Estas propiedades y métodos tienen el prefijo `$` para diferenciarlas de propiedades de `data` expuestas. Por ejemplo:
+En adición a propiedades de datos, las instancias Vue exponen un número de propiedades de instancia y métodos útiles. Estas propiedades y métodos tienen el prefijo `$` para diferenciarlas de propiedades de `data` expuestas. Por ejemplo:
 
 ``` js
 var data = { a: 1 }
@@ -94,10 +94,10 @@ var vm = new Vue({
 // -> "a es: 1"
 ```
 
-Existen también otros hooks que serán llamados a diferentes estadios del ciclo de vida de la instancia, por ejemplo `mounted`, `updated`, y `destroyed`. Todos los hooks son llamados con su contexto `this` apuntando a la instancia Vue que los invoca. Puede estar preguntándose dónde se encuentra el concepto de "controladores" en el mundo Vue y la respuesta es: no hay controladores. Su lógica personalizada para un componente estará repartida entre estos hooks de ciclo de vida.
+Existen también otros hooks que serán llamados en diferentes puntos del ciclo de vida de la instancia, por ejemplo `mounted`, `updated`, y `destroyed`. Todos los hooks son llamados con su contexto `this` apuntando a la instancia Vue que los invoca. Puede estar preguntándose dónde se encuentra el concepto de "controladores" en el mundo Vue y la respuesta es: no hay controladores. Su lógica personalizada para un componente estará repartida entre estos hooks de ciclo de vida.
 
 ## Diagrama de ciclo de vida
 
-El siguiente es un diagrama del ciclo de vida de la instancia. No necesita comprender en su totalidad todo lo que está pasando en este momento, pero este diagrama puede serle útil en el futuro.
+El siguiente es un diagrama del ciclo de vida de la instancia. No necesita comprender ahora mismo en totalidad todo lo que está pasando, pero este diagrama puede serle útil en el futuro.
 
 ![Ciclo de vida](/images/lifecycle.png)
