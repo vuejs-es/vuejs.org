@@ -55,7 +55,7 @@ vm.a // -> 3
 
 Debe ser dicho que únicamente dichas propiedades expuestas son **reactivas**. Si agrega una nueva propiedad a la instancia después de haberla creado, no activará actualizaciones de vista. Vamos a discutir el sistema de reactividad en detalle más adelante.
 
-En adición a propiedades de datos, las instancias Vue exponen un número de propiedades de instancia y métodos útiles. Estas propiedades y métodos tienen el prefijo `$` para diferenciarlas de propiedades de `data` expuestas. Por ejemplo:
+En adición a propiedades de datos, las instancias Vue exponen un número de propiedades de instancia y métodos útiles. Estas propiedades y métodos tienen el prefijo `$` para diferenciarlas de propiedades de `data` expuestos. Por ejemplo:
 
 ``` js
 var data = { a: 1 }
