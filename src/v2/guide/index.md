@@ -221,7 +221,7 @@ var app5 = new Vue({
 
 Note que en el métodos simplemente actualizamos el estado de nuestra aplicación sin tocar el DOM - todas las manipulaciones al DOM son controladas por Vue, y el código que usted escribe se enfoca en la lógica. 
 
-Vue también ofrece la directiva `v-model` que hace que un binding bi-direccional entre un campo de formulario y el estado de la aplicación sea muy sencillo:
+Vue también ofrece la directiva `v-model` que hace que una asignación bi-direccional entre un campo de formulario y el estado de la aplicación sea muy sencilla:
 
 ``` html
 <div id="app-6">
