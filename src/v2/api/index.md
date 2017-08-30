@@ -55,7 +55,7 @@ type: api
 - **Uso:**
 
   ``` js
-  // asegúrese de configurarlo de forma sincronizada inmediatamente después de cargar Vue
+  // asegúrese de configurarlo de forma síncrona inmediatamente después de cargar Vue
   Vue.config.devtools = true
   ```
 
@@ -75,9 +75,9 @@ type: api
   }
   ```
 
-  Asigna un manejador para errores no detectados durante el renderizado y la observación del componente. El manejador es llamado con el error y la instancia Vue.
+  Asigna un manejador para errores no detectados durante el renderizado y la observación del componente. Se llama al manejador con el error y la instancia Vue.
 
-  > [Sentry](https://sentry.io), un servicio de seguimiento de errores, proporciona [integración oficial](https://sentry.io/for/vue/) utilizando esta opción.
+  > Esta opción utiliza [Sentry](https://sentry.io), un servicio de seguimiento de errores que cuenta con [integración oficial](https://sentry.io/for/vue/).
 
 ### ignoredElements
 
@@ -93,7 +93,7 @@ type: api
   ]
   ```
 
-  Hace que Vue ignore elementos personalizados definidos fuera de Vue (p. ej., utilizando las APIs de Web Components). De lo contrario, lanzará una advertencia _`Unknown custom element`_ (_Elemento personalizado desconocido_), asumiendo que ha olvidado registrar un componente global o que ha escrito mal un nombre.
+  Ignora elementos personalizados definidos fuera de Vue (p. ej., si usa las APIs de Web Components). De lo contrario, lanzará una advertencia _`Unknown custom element`_ (_Elemento personalizado desconocido_), asumiendo que ha olvidado registrar un componente global o que ha escrito mal un nombre.
 
 ### keyCodes
 
