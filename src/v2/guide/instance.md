@@ -6,7 +6,7 @@ order: 3
 
 ## Constructor
 
-Cada máquina virtual de Vue es inicializada creando una **instancia Vue raíz** con la función constructora `Vue`:
+Cada vm de Vue es inicializado creando una **instancia Vue raíz** con la función constructora `Vue`:
 
 ``` js
 var vm = new Vue({
