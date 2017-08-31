@@ -178,7 +178,7 @@ En la consola, ingrese `app4.todos.push({ text: 'New item' })`. Debe ver aparece
 
 ## Controlando los Datos ingresados por Usuario
 
-Para permitir a los usuarios interactuar con su aplicación, podemos usar la directiva `v-on` para enlazar listeners de eventos que invocan métodos en nuestra instancia Vue:
+Para permitir a los usuarios interactuar con su aplicación, podemos usar la directiva `v-on` para enlazar _event listeners_ que invocan métodos en nuestra instancia Vue:
 
 ``` html
 <div id="app-5">
