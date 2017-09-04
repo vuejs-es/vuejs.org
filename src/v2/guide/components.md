@@ -51,7 +51,7 @@ new Vue({
 })
 ```
 
-Lo cual renderizará:
+La cual renderizará:
 
 ``` html
 <div id="example">
@@ -73,7 +73,7 @@ new Vue({ el: '#example' })
 
 ### Registro Local
 
-No tiene que registrar globalmente todo componente. Puede hacer que un componente esté disponible únicamente en el ámbito de otro componente/instancia registrándolo con la opción `components` de la instancia: 
+No tiene que registrar globalmente todos los componentes. Puede hacer que un componente esté disponible únicamente en el ámbito de otro componente/instancia registrándolo con la opción `components` de la instancia: 
 
 ``` js
 var Child = {
@@ -132,7 +132,7 @@ Vue.component('my-component', {
 })
 ```
 
-Vue se detendrá y emitirá advertencias en la consola, informado que `data` debe ser una función para instancias de componentes. Es bueno comprender por qué esta regla existe, así que hagamos trampa.
+Vue se detendrá y emitirá advertencias en la consola, informando que `data` debe ser una función para instancias de componentes. Es bueno comprender por qué esta regla existe, así que hagamos trampa.
 
 ``` html
 <div id="example-2">
@@ -148,7 +148,7 @@ var data = { counter: 0 }
 Vue.component('simple-counter', {
   template: '<button v-on:click="counter += 1">{{ counter }}</button>',
   // data es técnicamente una función, de modo que Vue
-  // no se quejará, pero estamos retornando la misma referncia
+  // no se quejará, pero estamos retornando la misma referencia
   // de objeto por cada instancia del componente
   data: function () {
     return data
@@ -190,7 +190,7 @@ data: function () {
 }
 ```
 
-Ahora cada uno de nuestros contadores cuentan con su propio estado interno:
+Ahora cada uno de nuestros contadores cuenta con su propio estado interno:
 
 {% raw %}
 <div id="example-2-5" class="demo">
@@ -215,7 +215,7 @@ new Vue({
 
 ### Componiendo Componentes
 
-Los componentes son para ser usados juntos, de forma más común en relaciones padre-hijo: el componente A puede usar al componente B en su propia plantilla. Ellos inevitablemente necesitarán comunicarse unos con otros: el padre puede necesitar enviar datos hacia el hijo, y el hijo puede necesitar informar al padre de algo que ha sucedido en el hijo. Sin embargo, también es muy importante mantener al padre y al hijo tan desacoplados como sea posible usando interfaces claramente definidas. Esto asegura que el código de cada componente pueda ser escrito y pensado en un aislamiento relativo, así logrando ser más mantenibles y potencialmente más fáciles de usar.
+Los componentes son pensados para ser usados juntos, de forma más común en relaciones padre-hijo: el componente A puede usar al componente B en su propia plantilla. Ellos inevitablemente necesitarán comunicarse el uno con el otro: el padre puede necesitar enviar datos hacia el hijo, y el hijo puede necesitar informar al padre de algo que ha sucedido en el hijo. Sin embargo, también es muy importante mantener al padre y al hijo tan desacoplados como sea posible usando interfaces claramente definidas. Esto asegura que el código de cada componente pueda ser escrito y pensado en un aislamiento relativo, así logrando ser más mantenibles y potencialmente más fáciles de usar.
 
 En Vue.js, la relación de componentes padre-hijo puede ser resumida como **props bajan, eventos suben**. El padre envía datos "hacia abajo" al hijo usando **props**, y el hijo envía mensajes al padre "hacia arriba" usando **eventos**. Veamos como funciona a continuación:
 
@@ -241,7 +241,7 @@ Vue.component('child', {
 })
 ```
 
-Ahora podemos enviar un string sencillo al prop de la siguiente forma:
+Ahora podemos enviar un string sencillo de la siguiente forma:
 
 ``` html
 <child message="hello!"></child>
@@ -381,9 +381,9 @@ Las formas correctas de acercarse a éstos casos son:
 
 ### Validación de Props
 
-Para un componente es posible especificar los requerimientos de los props que serán recibidos. Si un requerimiento no se cumple, Vue emitirá advertencias. Esto es especialmente útil cuando está creando un componente que quiera ser usado por otros.
+Para un componente es posible especificar los requerimientos de los props que serán recibidos. Si un requerimiento no se cumple, Vue emitirá advertencias. Esto es especialmente útil cuando está creando un componente que pueda ser usado por otros.
 
-En vez de definir los props como un arraty de strings, puede usar un objeto con requerimientos de validación:
+En vez de definir los props como un array de strings, puede usar un objeto con requerimientos de validación:
 
 ``` js
 Vue.component('example', {
@@ -592,7 +592,7 @@ Vue.component('currency-input', {
       if (formattedValue !== value) {
         this.$refs.input.value = formattedValue
       }
-      // Emita el valor numérico a travéz del evento input
+      // Emita el valor numérico a través del evento input
       this.$emit('input', Number(formattedValue))
     }
   }
@@ -632,7 +632,7 @@ new Vue({ el: '#currency-input-example' })
 </script>
 {% endraw %}
 
-La anterior implementación es bastante sencilla. Por ejemplo, permite a los usuarios ingresar múltiples puntos e incluso letras - ¡desagradable! De modo que para aquellos que quieran ver un ejemplo nada trivial, aquí hay un filtro de moneda más robusto:
+La anterior implementación es bastante sencilla. Por ejemplo, permite a los usuarios ingresar múltiples puntos e incluso letras - ¡nada deseable! De modo que para aquellos que quieran ver un ejemplo nada trivial, aquí hay un filtro de moneda más robusto:
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
@@ -666,7 +666,7 @@ En casos más complejos, considere usar un [patrón de control de estado](state-
 
 ## Distribución de Contenido con Slots
 
-Cuando use componentes, a menudo es requerido componerlos de la siguiente forma:
+Cuando se usan componentes, a menudo es requerido componerlos de la siguiente forma:
 
 ``` html
 <app>
@@ -675,13 +675,13 @@ Cuando use componentes, a menudo es requerido componerlos de la siguiente forma:
 </app>
 ```
 
-Hay dos cosas que tener en cuenta aquí:
+Hay dos cosas a tener en cuenta aquí:
 
 1. El componente `<app>` no sabe cuál contenido estará presente dentro de su espacio de montaje. Es decidido por quien quiera que sea el componente padre que está usando `<app>`.
 
 2. El componente `<app>` probablemente tiene su propia plantilla.
 
-Para hacer que esta composición funcione, necesitamos una forma de entrelazar el "contenido" del padre con la plantilla del componente. Esto es un proceso llamado **distribución de contenido** (o "transclusión" si está familiarizado con Angular). Vue.js implementa un API de distribución de contenido que se modela a partir del actual [borrador  de especificación de Componentes Web](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), usando el elemento especial `<slot>` como salida de distribución para el contenido original.
+Para hacer que esta composición funcione, necesitamos una forma de entrelazar el "contenido" del padre con la plantilla del componente. Esto es un proceso llamado **distribución de contenido** (o "transclusión" si está familiarizado con Angular). Vue.js implementa un API de distribución de contenido que se modela a partir del actual [borrador de especificación de Componentes Web](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md), usando el elemento especial `<slot>` como salida de distribución para el contenido original.
 
 ### Ámbito de Compilación
 
@@ -724,7 +724,7 @@ Similarmente, contenido distribuído será compilado en el ámbito del padre.
 
 ### Slot Único
 
-El contenido padre será **desechado** a menos que la plantilla del componente hijo contenga al menos un elemento `<outlet>`. Cuando sólo hay un slot sin atributos, el fragmento de contenido entero será insertado en su posición en el DOM, reemplazando dicho slot.
+El contenido padre será **desechado** a menos que la plantilla del componente hijo contenga al menos un elemento `<slot>`. Cuando sólo hay un slot sin atributos, el fragmento de contenido entero será insertado en su posición en el DOM, reemplazando dicho slot.
 
 Cualquier cosa originalmente contenida dentro de etiquetas `<slot>` es considerada **contenido de recuperación**. El contenido de recuperación es compilado en el componente hijo y será mostrado únicamente si el elemento contenedor está vacío y no tiene contenido para ser insertado.
 
@@ -732,7 +732,7 @@ Suponga que tenemos un componente llamado `my-component` con la siguiente planti
 
 ``` html
 <div>
-  <h2>Soy el título hijo</h2>
+  <h2>Soy el título del hijo</h2>
   <slot>
     Ésto será mostrado sólo si no hay contenido
     para distribuir.
@@ -817,7 +817,7 @@ El resultado renderizado será:
 </div>
 ```
 
-El API de distribución de contenido es un mecanismo múy útil cuando se diseá componentes que deben ir juntos.
+El API de distribución de contenido es un mecanismo múy útil cuando se desean componentes que deban ir juntos.
 
 ### Slots de ámbito
 
@@ -900,7 +900,7 @@ var vm = new Vue({
 
 ``` html
 <component v-bind:is="currentView">
-  <!-- ¡el componente cambia siempre que vm.currenView cambie! -->
+  <!-- ¡el componente cambia siempre que vm.currentView cambie! -->
 </component>
 ```
 
@@ -963,7 +963,7 @@ Con sintaxis cortas dedicadas para `v-bind` y `v-on`, las intenciones son claram
 
 ### Referencias a Componentes Hijo
 
-A pesar de la existencia de props y evnetos, algunas veces usted querrá acceder a un componente hijo en JavaScript. Par lograr esto debe asignar un ID de referencia al componente hijo usando `ref`. Por ejemplo: 
+A pesar de la existencia de props y eventos, algunas veces usted querrá acceder a un componente hijo en JavaScript. Para lograr esto debe asignar un ID de referencia al componente hijo usando `ref`. Por ejemplo: 
 
 ``` html
 <div id="parent">
@@ -1062,7 +1062,7 @@ De nuevo, esto _únicamente_ funciona con plantillas string, ya que los elemento
 
 ### Componentes Recursivos
 
-Los componentes puede invocarse a sí mismos recursivamente en su propia plantilla. Sin embargo, sólo puede hacerlo mediante la opción `name`:
+Los componentes pueden invocarse a sí mismos recursivamente en su propia plantilla. Sin embargo, sólo puede hacerlo mediante la opción `name`:
 
 ``` js
 name: 'unique-name-of-my-component'
@@ -1083,7 +1083,7 @@ name: 'stack-overflow',
 template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
-Un componente como el anterior resultará en un error "tamaño máximo de la pila ha sido excedido", de modo que asegúrese que la invocación recursiva es condicional (p.e. usa un `v-if` el cual eventualmente será `false`).
+Un componente como el anterior resultará en un error "tamaño máximo de la pila ha sido excedido", de modo que asegúrese que la invocación recursiva es condicional (p.e. use un `v-if` el cual eventualmente será `false`).
 
 ### Referencias Circulares entre Componentes
 
@@ -1129,7 +1129,7 @@ beforeCreate: function () {
 
 ### Plantillas En Línea
 
-Cuando el atributo especial `inline-template` está presente en un componente hijo, el componente usará su contenido interno como su plantilla, en lugar de tratarlo como contenido distribuído. Esto permite una mayor flexibilidad en la creación de plantillas.
+Cuando el atributo especial `inline-template` está presente en un componente hijo, el componente usará su contenido interno como su plantilla, en lugar de tratarlo como contenido distribuido. Esto permite una mayor flexibilidad en la creación de plantillas.
 
 ``` html
 <my-component inline-template>
@@ -1162,7 +1162,7 @@ Esto puede ser útil para demos con plantillas muy grandes o en aplicaciones ext
 
 ### Componentes Estáticos Rápidos con `v-once`
 
-Renderizar elementos HTML simples es muy rápido en Vue, pero a veces querrá tener un componente que incluya **mucho** contenido estático. En aquellos casos, puede asegurarse que sólo sea evaluado una única vez y luego guardado en caché usando la directiva `v-once` en el elemento raíz, de la siguiente forma:
+Renderizar elementos HTML simples es muy rápido en Vue, pero a veces querrá tener un componente que incluya **mucho** contenido estático. En esos casos, puede asegurarse que sólo sea evaluado una única vez y luego guardado en caché usando la directiva `v-once` en el elemento raíz, de la siguiente forma:
 
 ``` js
 Vue.component('terms-of-service', {
