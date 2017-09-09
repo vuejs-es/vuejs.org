@@ -29,13 +29,13 @@
                 <% var fileName = p.path.replace(/^.+?\/([\w-]+)\.html/, '$1') %>
                 <% if (type === 'guide') { %>
                     <% if (fileName === 'installation') { %>
-                      <li><h3>Essentials</h3></li>
+                      <li><h3>Esencial</h3></li>
                     <% } %>
                     <% if (fileName === 'reactivity') { %>
-                      <li><h3>Advanced</h3></li>
+                      <li><h3>Avanzado</h3></li>
                     <% } %>
                     <% if (fileName === 'migration') { %>
-                      <li><h3>Migrating</h3></li>
+                      <li><h3>Migraciones</h3></li>
                     <% } %>
                     <% if (fileName === 'comparison') { %>
                       <li><h3>Meta</h3></li>
@@ -43,7 +43,7 @@
                 <% } %>
                 <% if (type === 'cookbook') { %>
                     <% if (p.order === 1.1) { %>
-                      <li><h3>Vue Instance</h3></li>
+                      <li><h3>Instancia Vue</h3></li>
                     <% } %>
                     <!-- Move cookbook sections here once they have -->
                     <!-- at least one recipe -->
@@ -53,11 +53,11 @@
                 </li>
             <% }) %>
             <% if (type === 'cookbook') { %>
-                <li><h3>Components</h3></li>
-                <li><h4>Form Inputs</h4></li>
-                <li><h4>3rd-Party Integrations</h4></li>
-                <li><h3>Transitions</h3></li>
-                <li><h3>Directives</h3></li>
+                <li><h3>Componentes</h3></li>
+                <li><h4>Campos de Formulario</h4></li>
+                <li><h4>Integraciones</h4></li>
+                <li><h3>Transiciones</h3></li>
+                <li><h3>Directivas</h3></li>
                 <li><h3>Vue Router</h3></li>
                 <li><h3>Vuex</h3></li>
             <% } %>
