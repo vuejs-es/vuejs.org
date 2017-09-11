@@ -6,7 +6,7 @@ order: 13
 
 ## Introducción
 
-Vue ofrece una variedad de maneras para aplicar efectos de transición siempre que los elementos sean insertados, actualizados o eliminados del DOM. Esto incluye herramientas para:
+Vue ofrece una variedad de maneras para aplicar efectos de transición cuando los elementos son insertados, actualizados o eliminados del DOM. Esto incluye herramientas para:
 
 - aplicar clases para transiciones y animaciones CSS automáticamente
 - integrar librerías externas de animación CSS, por ejemplo Animate.css
@@ -100,7 +100,7 @@ Existen cuatro clases aplicadas para transiciones de entrada/salida.
 4. `v-leave-active`: Estado activo y de finalización para salida. Aplicada cuando la transición de salida es activada, se elimina cuando la animación/transición finaliza.
 
 
-![Transition Diagram](/images/transition.png)
+![Diagrama de Transición](/images/transition.png)
 
 Cada una de estas clases usará un prefijo con el nombre de la transición. Aquí, el prefijo `v-` representa el prefijo por defecto cuando usa un elemento `<transition>` sin nombre. Si usa `<transition name="mi-transicion">` por ejemplo, entonces la clase `v-enter` debe llamarse `mi-transicion-enter`.
 
@@ -317,7 +317,7 @@ new Vue({
 
 ### Clases de Transición Personalizadas
 
-Usted también peude especificar clases de transición personalizadas cuando usa los siguientes atributos:
+Usted también puede especificar clases de transición personalizadas cuando usa los siguientes atributos:
 
 - `enter-class`
 - `enter-active-class`
@@ -326,7 +326,7 @@ Usted también peude especificar clases de transición personalizadas cuando usa
 
 Estas van a sobreescribir los nombres convencionales de las clases. Esto es especialmente útil cuando desea combinar el sistema de transición de Vue con una librería de animaciones CSS existente, como [Animate.css](https://daneden.github.io/animate.css/).
 
-Aquí hay un ejemplo:
+Por ejemplo:
 
 ``` html
 <link href="https://unpkg.com/animate.css@3.5.1/animate.min.css" rel="stylesheet" type="text/css">
@@ -380,7 +380,7 @@ new Vue({
 
 ### Usando Animaciones y Trancisiones Juntas
 
-Vue necesita agregar listeners de eventos para poder saber cuándo una transición ha finalizado. Puede ser mediante `transitionended` o `animationended`, dependiendo del tipo de reglas CSS aplicadas. Si únicamente está usando la una o la otra, Vue detecta automáticamente el tipo correcto.
+Vue necesita agregar *listeners* de eventos para poder saber cuándo una transición ha finalizado. Puede ser mediante `transitionended` o `animationended`, dependiendo del tipo de reglas CSS aplicadas. Si únicamente está usando la una o la otra, Vue detecta automáticamente el tipo correcto.
 
 Sin embargo, en algunos casos usted desea tener ambos tipos en el mismo elemento, por ejemplo tener una animación CSS activada por Vue, junto a un efecto de transición en el *hover*. En estos casos, debe declarar explícitamente el tipo que quiera que Vue use, usando el atributo `type`, con un valor ya sea de `animation` o `transition`.
 
@@ -566,7 +566,7 @@ Si usted quisiera también aplicar una transición en la renderización inicial 
 </transition>
 ```
 
-Por defecto, el usará la transición especificada para entrada y salida. Sin embargo, si lo quisiera, puede también especificar clases CSS personalizadas:
+Por defecto, esto usará la transición especificada para entrada y salida. Sin embargo, si lo quisiera, puede también especificar clases CSS personalizadas:
 
 ``` html
 <transition
@@ -606,7 +606,7 @@ Ya discutiremos las [transiciones entre componentes](#Transiciones-Entre-Compone
 
 Funciona bien, pero hay un inconveniente que debemos tener en cuenta:
 
-<p class="tip">Cuano intercambia elementos que tienen el **mismo nombre de etiqueta**, debe decirle a Vue que ellos son elementos diferentes usando atributos `key` únicos. De otra forma, el compilador de Vue únicamente reemplazará el contenido del elemento para mejorar la eficiencia. Aún cuando sea innecesario, **es considerado buena práctica siempre usar `key` en múltiples elementos dentro de un componente `<transition>`.**</p>
+<p class="tip">Cuando intercambia elementos que tienen el **mismo nombre de etiqueta**, debe decirle a Vue que ellos son elementos diferentes usando atributos `key` únicos. De otra forma, el compilador de Vue únicamente reemplazará el contenido del elemento para mejorar la eficiencia. Aún cuando sea innecesario, **es considerado buena práctica siempre usar `key` en múltiples elementos dentro de un componente `<transition>`.**</p>
 
 
 Por ejemplo:
@@ -632,7 +632,7 @@ En estos casos, puede también usar el atributo `key` para realizar una trancisi
 </transition>
 ```
 
-Es posible realizar una transición entre cualquier número de elementos, ya sea usando muchos `v-if`, o asignando una propiedad dinámina a un elemento. Por ejemplo:
+Es posible realizar una transición entre cualquier número de elementos, ya sea usando muchos `v-if`, o asignando una propiedad dinámica a un elemento. Por ejemplo:
 
 ``` html
 <transition>
@@ -965,7 +965,7 @@ Hasta ahora, hemos logrado realizar transiciones para:
 
 ¿Qué tenemos para el caso en que tengamos una lista completa de elementos que queramos renderizar simultáneamente, por ejemplo con `v-for`? En ese caso, usaremos el componente `<transition-group>`. Pero antes que lo veamos en un ejemplo, hay algunas cosas que es importante conocer sobre éste componente.
 
-- A diferencia de `<transicion>`, renderiza un elemento `<span>` por defecto. Puede cambiar el elemento que es renderizado con el atributo `tag`.
+- A diferencia de `<transition>`, renderiza un elemento `<span>` por defecto. Puede cambiar el elemento que es renderizado con el atributo `tag`.
 - Los elementos contenidos **siempre requieren** tener un atributo único `key`
 
 ### Transiciones de Entrada/Salida en Listas
@@ -1248,9 +1248,9 @@ new Vue({
 </style>
 {% endraw %}
 
-<p class="tip">Algo importante para tener en cuenta es que éstas transiciones FLIP no funcionan con elementos con `display: inline`. Como alternativa, puede usar `display: inline-block` o ubicar los elementos en un contexto flexible.</p>
+<p class="tip">Algo importante para tener en cuenta es que éstas transiciones FLIP no funcionan en elementos con `display: inline`. Como alternativa, puede usar `display: inline-block` o ubicar los elementos en un contexto flexible.</p>
 
-Estas animaciones FLIP no están limitadas a un eje particular. Los elementos en una grilla multidimencional puede realizar transiciones [igual de fácil](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
+Estas animaciones FLIP no están limitadas a un eje particular. Los elementos en una grilla multidimensional pueden realizar transiciones [igual de fácil](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
 
 {% raw %}
 <div id="sudoku-demo" class="demo">
@@ -1515,7 +1515,7 @@ Vue.component('my-special-transition', {
 
 ## Transiciones Dinámicas
 
-Si, ¡incluso las transiciones en Vue son controladas por datos! El ejemplo más básico de una transición dinámica es asignar el atributo `name` a una propiedad dinámica.
+Sí, ¡incluso las transiciones en Vue son controladas por datos! El ejemplo más básico de una transición dinámica es asignar el atributo `name` a una propiedad dinámica.
 
 ```html
 <transition v-bind:name="transitionName">
