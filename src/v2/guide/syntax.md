@@ -1,10 +1,10 @@
 ---
-title: Sitaxis de Plantilla
+title: Sintaxis de Plantilla
 type: guide
 order: 4
 ---
 
-Vue.js usa una sintaxis de plantillas basadas en HTML que le permite asignar declarativamente el DOM renderizado a los datos de la instancia de Vue. Todas las plantillas de Vue.js son HTML válido que puede ser interpretado por navegadores que cumplen las especificaciones, y por intérpretes de HTML.
+Vue.js usa una sintaxis de plantilla basadas en HTML que le permite asignar declarativamente el DOM renderizado a los datos de la instancia de Vue. Todas las plantillas de Vue.js son HTML válido que puede ser interpretado por navegadores que cumplen las especificaciones, y por intérpretes de HTML.
 
 Bajo el capó, Vue compila las plantillas en funciones de renderizado de DOM virtual. Combinado con el sistema de ractividad, Vue es capaz de encontrar inteligentemente la cantidad mínima de componentes que debe renderizar de nuevo y aplicar la mínima cantidad de manipulaciones al DOM cuando el estado de la aplicación cambie.
 
@@ -22,7 +22,7 @@ La forma más básica de asignación de datos es la interpolación de texto usan
 
 La etiqueta mustache será reemplazada con el valor de la propiedad `msg` en el correspondiente objeto de datos. También será actualizada siempre que dicha propiedad cambie de valor.
 
-Usted también puede realizar interpolaciones de única-vez que no se actualizan cuando los datos cambian si usa la [directiva v-once](../api/#v-once), pero tenga en cuenta que esto también afectará otras asignaciones dentro del mismo nodo:
+Usted también puede realizar interpolaciones que no se actualizan cuando los datos cambian si usa la [directiva v-once](../api/#v-once), pero tenga en cuenta que esto también afectará otras asignaciones dentro del mismo nodo:
 
 ``` html
 <span v-once>Esto nunca cambiará: {{ msg }}</span>
@@ -48,7 +48,7 @@ Los corchetes no pueden ser usados dentro de atributos HTML, en su lugar, use un
 <div v-bind:id="dynamicId"></div>
 ```
 
-También funciona para atributos booleanos - el atributo será eliminado si la condición se resuelve en un valor falsy:
+También funciona para atributos *booleanos* - el atributo será eliminado si la condición se resuelve en un valor *falsy*:
 
 ``` html
 <button v-bind:disabled="algunaCondicionDinamica">Button</button>
@@ -68,7 +68,7 @@ Hasta ahora hemos asignado propiedades sencillas en nuestras plantillas. Pero Vu
 <div v-bind:id="'list-' + id"></div>
 ```
 
-Estas expresiones serán evaluadas como JavaScript en el ámbito de datos del propietario de la instancia Vue. Una restricción es que cada asignación puede contener únicamente **una expresión individual**, de modo que el siguiente ejemplo **no** funcionará:
+Estas expresiones serán evaluadas como JavaScript en el ámbito de la instancia Vue. Una restricción es que cada asignación puede contener únicamente **una expresión individual**, de modo que el siguiente ejemplo **no** funcionará:
 
 ``` html
 <!-- esto es una instrucción, no una expresión: -->
@@ -79,7 +79,7 @@ Estas expresiones serán evaluadas como JavaScript en el ámbito de datos del pr
 {{ if (ok) { return message } }}
 ```
 
-<p class="tip">Las expresiones de plantillas son controladas y sólo tienen acceso a una lista curada de expresiones globales como `Math` y `Date`. Usted no debe intentar acceder globales definidas por usuarios en expresiones de plantilla.</p>
+<p class="tip">Las expresiones de plantilla son controladas y sólo tienen acceso a una lista curada de expresiones globales como `Math` y `Date`. Usted no debe intentar acceder globales definidas por usuarios en expresiones de plantilla.</p>
 
 ## Directivas
 
@@ -89,11 +89,11 @@ Las Directivas son atributos especiales con el prefijo `v-`. Los valores de las 
 <p v-if="seen">Now you see me</p>
 ```
 
-Aquí, la directiva `v-if` eliminará/insertará el elemento `<p>` basado en el valor de verdad de la expresión `seen`.
+Aquí, la directiva `v-if` eliminará/insertará el elemento `<p>` basado en el valor de la expresión `seen`.
 
 ### Argumentos
 
-Algunas directivas pueden tomar un "argumento", denotado con el carácter de dos puntos después del nombre de la directiva. Por ejemplo, la directiva `v-bin` es usada para actualizar reactivamente un atributo HTML: 
+Algunas directivas pueden tomar un "argumento", denotado con el carácter de dos puntos después del nombre de la directiva. Por ejemplo, la directiva `v-bind` es usada para actualizar reactivamente un atributo HTML: 
 
 ``` html
 <a v-bind:href="url"></a>
@@ -117,7 +117,7 @@ Los Modificadores son sufijos especiales denotados con un punto, los cuales indi
 <form v-on:submit.prevent="onSubmit"></form>
 ```
 
-Veremos más usos de los modificadores más adelante cuando vemos en detalle a `v-on` y `v-model`.
+Veremos más usos de los modificadores más adelante cuando repasemos con más detalle a `v-on` y `v-model`.
 
 ## Filtros
 
