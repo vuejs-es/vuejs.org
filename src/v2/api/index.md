@@ -555,13 +555,13 @@ type: api
 
 - **Detalles:**
 
-  Provee a la instancia Vue con un elemento existende del DOM para ser montada. Puede ser un string de selector CSS o un elemento HTML.
+  Provee a la instancia Vue con un elemento existente del DOM para ser montada. Puede ser un string de selector CSS o un elemento HTML.
 
   Depués que la instancia sea montada, el elemento resuelto se podrá acceder como `vm.$el`.
 
   Si esta opción está disponible en la instanciación, la instancia inmediatamente iniciará la compilación; de otra forma, el usuario deberá llamar explícitamente a `vm.$mount()` para inicial la compilación manualmente.
 
-  <p class="tip">El elemento elegido únicamente sirve como punto de montura. A contrario de Vue 1.x, el elemento monrado será reemplazado con DOM generado por Vue en todos los casos. De modo que no es recomendable montar la instancia raíz en un `<html>` o un `<body>`.</p>
+  <p class="tip">El elemento elegido únicamente sirve como punto de montura. A contrario de Vue 1.x, el elemento montado será reemplazado con DOM generado por Vue en todos los casos. De modo que no es recomendable montar la instancia raíz en un `<html>` o un `<body>`.</p>
 
 - **Vea También:** [Diagrama de Ciclo de Vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
@@ -587,7 +587,7 @@ type: api
 
   - **Detalles:**
 
-    Una alternativa a las plantillas de string, le permite usar el poder programático completo de JavaScript. La función render recibe un método `createElement` como si primer argumento, usado para crear `VNode`.
+    Una alternativa a las plantillas de string, le permite usar el poder programático completo de JavaScript. La función render recibe un método `createElement` como su primer argumento, usado para crear los `VNode`.
 
     Si el componente es un componente funcional, la función render también recibe un argumento extra `context`, el cual provee acceso a los datos contextuales, ya que los componentes funcionales no poseen instancia.
 
