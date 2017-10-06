@@ -606,7 +606,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Llamado síncronamente justo después que la instacia es inicializada, antes de la observación de datos y la preparación de eventos/observadores.
 
-- **Vea También:** [Diagrama de cilo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
+- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### created
 
@@ -616,7 +616,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Llamado síncronamente después que la instancia es creada. En este punto, la instancia ha finalizado de procesar las opciones, lo que significa que lo siguiente ha sido preparado: observación de datos, propiedades calculadas, métodos, callbacks de observación/eventos. Sin embargo, no se ha iniciado la fase de montaje, y la propiedad `$el` no estará disponible.
 
-- **Vea También:** [Diagrama de cilo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
+- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### beforeMount
 
@@ -628,7 +628,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:** [Diagrama de cilo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
+- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### mounted
 
@@ -640,7 +640,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:** [Diagrama de cilo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
+- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### beforeUpdate
 
@@ -654,7 +654,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:** [Diagrama de cilo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
+- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### updated
 
@@ -668,7 +668,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:** [Diagrama de cilo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
+- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### activated
 
@@ -708,7 +708,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:** [Diagrama de cilo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
+- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### destroyed
 
@@ -716,11 +716,11 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Detalles:**
 
-  Llamado después que una instancia Vue haya sido destruída. Cuando este hook es llamado, todas las directivas de la instancia Vue ya han sido desasignadas, todos los listeners de eventos han sido removidos, y todas las intancias Vue hijas también han sido destruídas.
+  Llamado después que una instancia Vue haya sido destruída. Cuando este hook es llamado, todas las directivas de la instancia Vue ya han sido desasignadas, todos los listeners de eventos han sido removidos, y todas las intancias Vue hijos también han sido destruídas.
 
   **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:** [Diagrama de cilo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
+- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ## Opciones / Recursos
 
@@ -814,7 +814,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Detalles:**
 
-  Permite extender un compomente de forma declarativa (ya sea unas opciones sencillas o un constructor) sin tener que usar `Vue.extend`. Esto se hace principalmente para facilitar la herencia entre componentes de un archivo.
+  Permite extender un componente de forma declarativa (ya sea unas opciones sencillas o un constructor) sin tener que usar `Vue.extend`. Esto se hace principalmente para facilitar la herencia entre componentes de un archivo.
 
   Es similar a `mixins`, la diferencia siendo que que las propias opciones del componente toman una prioridad más alta que las del componente que está siendo extendido.
 
