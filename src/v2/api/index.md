@@ -860,37 +860,37 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Vea También:** [Componentes funcionales](../guide/render-function.html#Componentes-Funcionales)
 
-## Instance Properties
+## Propiedades de Instancia
 
 ### vm.$data
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
-- **Details:**
+- **Detalles:**
 
-  The data object that the Vue instance is observing. The Vue instance proxies access to the properties on its data object.
+  El objeto de datos que es observado por la instancia Vue. La instancia brinda acceso directo a las propiedades en su objeto de datos.
 
-- **Vea También:** [Options - data](#data)
+- **Vea También:** [Opciones - data](#data)
 
 ### vm.$el
 
-- **Type:** `HTMLElement`
+- **Tipo:** `HTMLElement`
 
-- **Read only**
+- **Sólo Lectura**
 
-- **Details:**
+- **Detalles:**
 
-  The root DOM element that the Vue instance is managing.
+  El elemento DOM raíz que es manejado por la instancia Vue.
 
 ### vm.$options
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
-- **Read only**
+- **Sólo Lectura**
 
-- **Details:**
+- **Detalles:**
 
-  The instantiation options used for the current Vue instance. This is useful when you want to include custom properties in the options:
+  Las opciones de instanciación usados para la instancia Vue actual. Es útil cuando se quiere incluir propiedades personalizadas en las opciones:
 
   ``` js
   new Vue({
@@ -903,47 +903,47 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 ### vm.$parent
 
-- **Type:** `Vue instance`
+- **Tipo:** `Vue instance`
 
-- **Read only**
+- **Sólo Lectura**
 
-- **Details:**
+- **Detalles:**
 
-  The parent instance, if the current instance has one.
+  La instancia padre, si la instancia actual posee una.
 
 ### vm.$root
 
-- **Type:** `Vue instance`
+- **Tipo:** `Vue instance`
 
-- **Read only**
+- **Sólo Lectura**
 
-- **Details:**
+- **Detalles:**
 
-  The root Vue instance of the current component tree. If the current instance has no parents this value will be itself.
+  La instancia Vue raíz del árbol de componentes actual. Si la instancia actual no tiene padres, éste valor será ella misma.
 
 ### vm.$children
 
-- **Type:** `Array<Vue instance>`
+- **Tipo:** `Array<Vue instance>`
 
-- **Read only**
+- **Sólo Lectura**
 
-- **Details:**
+- **Detalles:**
 
-  The direct child components of the current instance. **Note there's no order guarantee for `$children`, and it is not reactive.** If you find yourself trying to use `$children` for data binding, consider using an Array and `v-for` to generate child components, and use the Array as the source of truth.
+  Los hijos directos de la instancia actual. **Tenga en cuenta que no hay garantías del orden para `$children`, y no es una propiedad reactiva.** Si necesita usar `$children` para asignación de datos, considere usar un Array y `v-for` para generar componentes hijos, y usar el Array como fuente de verdad.
 
 ### vm.$slots
 
-- **Type:** `{ [name: string]: ?Array<VNode> }`
+- **Tipo:** `{ [name: string]: ?Array<VNode> }`
 
-- **Read only**
+- **Sólo Lectura**
 
-- **Details:**
+- **Detalles:**
 
-  Used to programmatically access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
+  Usado para acceder programáticamente al contenido [distribuído por slots](../guide/components.html#Distribucion-de-Contenido-con-Slots). Cada [slot nombrado](../guide/components.html#Slots-con-Nombre) tiene su correspondiente propiedad (p.e. el contenido de `slot="foo"` estará presente en `vm.$slots.foo`). La propiedad `default` contiene los nodos que no hayan sido incluídos en un slot con nombre.
 
-  Accessing `vm.$slots` is most useful when writing a component with a [render function](../guide/render-function.html).
+  Accediendo a `vm.$slots` es muy útil cuando se escribe un componente con una [función de renderizado](../guide/render-function.html).
 
-- **Example:**
+- **Ejemplo:**
 
   ```html
   <blog-post>
@@ -977,56 +977,56 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   ```
 
 - **Vea También:**
-  - [`<slot>` Component](#slot-1)
-  - [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
-  - [Render Functions: Slots](../guide/render-function.html#Slots)
+  - [Componente `<slot>`](#slot-1)
+  - [Distribución de contenido con Slots](../guide/components.html#Distribucion-de-Contenido-con-Slots)
+  - [Funciones de renderizado: Slots](../guide/render-function.html#Slots)
 
 ### vm.$scopedSlots
 
-> New in 2.1.0
+> Nuevo en 2.1.0
 
-- **Type:** `{ [name: string]: props => VNode | Array<VNode> }`
+- **Tipo:** `{ [name: string]: props => VNode | Array<VNode> }`
 
-- **Read only**
+- **Sólo Lectura**
 
-- **Details:**
+- **Detalles:**
 
-  Used to programmatically access [scoped slots](../guide/components.html#Scoped-Slots). For each slot, including the `default` one, the object contains a corresponding function that returns VNodes.
+  Usado para acceder programáticamente a los [slots de ámbito](../guide/components.html#Slots-de-ambito). Por cada slot, incluyendo el slot `default`, el objeto contiene una función correspondiente que retorna VNodes.
 
-  Accessing `vm.$scopedSlots` is most useful when writing a component with a [render function](../guide/render-function.html).
+  Acceder a `vm.$scopedSlots` es muy útil cuando se escribe un componente con una [función de renderizado](../guide/render-function.html).
 
 - **Vea También:**
   - [`<slot>` Component](#slot-1)
-  - [Scoped Slots](../guide/components.html#Scoped-Slots)
-  - [Render Functions: Slots](../guide/render-function.html#Slots)
+  - [Slots de ámbito](../guide/components.html#Slots-de-ambito)
+  - [Funciones de renderizado: Slots](../guide/render-function.html#Slots)
 
 ### vm.$refs
 
-- **Type:** `Object`
+- **Tipo:** `Object`
 
-- **Read only**
+- **Sólo Lectura**
 
-- **Details:**
+- **Detalles:**
 
-  An object that holds child components that have `ref` registered.
+  Un objeto que contiene los componentes hijos que han registrado `ref`.
 
 - **Vea También:**
-  - [Child Component Refs](../guide/components.html#Child-Component-Refs)
+  - [Referencias a componentes hijo](../guide/components.html#Referencias-a-Componentes-Hijo)
   - [ref](#ref)
 
 ### vm.$isServer
 
-- **Type:** `boolean`
+- **Tipo:** `boolean`
 
-- **Read only**
+- **Sólo Lectura**
 
-- **Details:**
+- **Detalles:**
 
-  Whether the current Vue instance is running on the server.
+  Indica si la instancia Vue actual es ejecutada en servidor.
 
-- **Vea También:** [Server-Side Rendering](../guide/ssr.html)
+- **Vea También:** [Renderizado en servidor](../guide/ssr.html)
 
-## Instance Methods / Data
+## Métodos de Instancia / Datos
 
 <h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
 
@@ -1037,62 +1037,62 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
     - `{boolean} deep`
     - `{boolean} immediate`
 
-- **Returns:** `{Function} unwatch`
+- **Retorna:** `{Function} unwatch`
 
 - **Modo de Uso:**
 
-  Watch an expression or a computed function on the Vue instance for changes. The callback gets called with the new value and the old value. The expression only accepts simple dot-delimited paths. For more complex expression, use a function instead.
+  Observa por cambios en una expresión o una función calculada en la instancia de Vue. El callback es llamado con el nuevo valor y el valor viejo. La expresión solo acepta rutas delimitadas por punto. Para una expresión más compleja, use una función.
 
-<p class="tip">Note: when mutating (rather than replacing) an Object or an Array, the old value will be the same as new value because they reference the same Object/Array. Vue doesn't keep a copy of the pre-mutate value.</p>
+<p class="tip">Cuando esté mutando (en lugar de reemplazar) un Objecto o un Array, el valor viejo será el mismo que el valor nuevo, ya que referencian el mismo Objeto/Array. Vue no mantiene una copia del valor antes de ser mutado.</p>
 
-- **Example:**
+- **Ejemplo:**
 
   ``` js
-  // keypath
+  // ruta clave
   vm.$watch('a.b.c', function (newVal, oldVal) {
-    // do something
+    // haga algo
   })
 
-  // function
+  // función
   vm.$watch(
     function () {
       return this.a + this.b
     },
     function (newVal, oldVal) {
-      // do something
+      // haga algo
     }
   )
   ```
 
-  `vm.$watch` returns an unwatch function that stops firing the callback:
+  `vm.$watch` retorna una función de "dejar de observar" que detiene la activación del callback:
 
   ``` js
   var unwatch = vm.$watch('a', cb)
-  // later, teardown the watcher
+  // después, destruir el observador
   unwatch()
   ```
 
-- **Option: deep**
+- **Opción: deep**
 
-  To also detect nested value changes inside Objects, you need to pass in `deep: true` in the options argument. Note that you don't need to do so to listen for Array mutations.
+  Para detectar también cambios en valores anidados dentro del Objeto, necesita pasar `deep: true` en el argumento de opciones. Tenga en cuenta que no necesita hacer ésto para escuchar mutaciones en Arrays.
 
   ``` js
   vm.$watch('someObject', callback, {
     deep: true
   })
   vm.someObject.nestedValue = 123
-  // callback is fired
+  // callback es activado
   ```
 
-- **Option: immediate**
+- **Opción: immediate**
 
-  Passing in `immediate: true` in the option will trigger the callback immediately with the current value of the expression:
+  Si se pasa `immediate: true` en las opciones, se hará que el callback sea activado de inmediato con el valor actual de la expresión:
 
   ``` js
   vm.$watch('a', callback, {
     immediate: true
   })
-  // callback is fired immediately with current value of `a`
+  // callback es llamado de inmediato con el valor actual de `a`
   ```
 
 <h3 id="vm-set">vm.$set( object, key, value )</h3>
@@ -1102,11 +1102,11 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   - `{string} key`
   - `{any} value`
 
-- **Returns:** the set value.
+- **Retorna:** el valor asignado.
 
 - **Modo de Uso:**
 
-  This is the **alias** of the global `Vue.set`.
+  Éste es el **alias** del `Vue.set` global.
 
 - **Vea También:** [Vue.set](#Vue-set)
 
@@ -1118,7 +1118,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Modo de Uso:**
 
-  This is the **alias** of the global `Vue.delete`.
+  Éste es el **alias** del `Vue.delete` global.
 
 - **Vea También:** [Vue.delete](#Vue-delete)
 
