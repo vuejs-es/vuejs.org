@@ -153,7 +153,7 @@ type: api
   <p>Walter White aka Heisenberg</p>
   ```
 
-- **Ver También:** [Componentes](../guide/components.html)
+- **Ver también:** [Componentes](../guide/components.html)
 
 <h3 id="Vue-nextTick">Vue.nextTick( [callback, context] )</h3>
 
@@ -176,7 +176,7 @@ type: api
 
   > Nuevo en 2.1.0: retorna un *Promise* si no se ha especificado una función *callback* y en el ambiente de ejecución los *Promise* son soportados.
 
-- **Vea También:** [Cola de Actualización Asíncrona](../guide/reactivity.html#Cola-de-Actualización-Asíncrona)
+- **Vea también:** [Cola de Actualización Asíncrona](../guide/reactivity.html#Cola-de-Actualización-Asíncrona)
 
 <h3 id="Vue-set">Vue.set( object, key, value )</h3>
 
@@ -193,7 +193,7 @@ type: api
 
   **Tenga en cuenta que el ojeto no puede ser una instancia Vue, o el objeto de datos raíz de una instancia Vue.**
 
-- **Ver También:** [Reactividad en Profundidad](../guide/reactivity.html)
+- **Ver también:** [Reactividad en Profundidad](../guide/reactivity.html)
 
 <h3 id="Vue-delete">Vue.delete( object, key )</h3>
 
@@ -207,7 +207,7 @@ type: api
 
   **Tenga en cuenta que el ojeto no puede ser una instancia Vue, o el objeto de datos raíz de una instancia Vue.**
 
-- **Ver También:** [Reactividad a Profundidad](../guide/reactivity.html)
+- **Ver también:** [Reactividad a Profundidad](../guide/reactivity.html)
 
 <h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
 
@@ -239,7 +239,7 @@ type: api
   var myDirective = Vue.directive('my-directive')
   ```
 
-- **Vea También:** [Directivas personalizadas](../guide/custom-directive.html)
+- **Vea también:** [Directivas personalizadas](../guide/custom-directive.html)
 
 <h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
 
@@ -283,7 +283,7 @@ type: api
   var MyComponent = Vue.component('my-component')
   ```
 
-- **Vea También:** [Componentes](../guide/components.html)
+- **Vea también:** [Componentes](../guide/components.html)
 
 <h3 id="Vue-use">Vue.use( plugin )</h3>
 
@@ -296,7 +296,7 @@ type: api
 
   Cuando este método es llamado en el mismo plugin múltiples veces, será instalado únicamente una vez.
 
-- **Vea También:** [Plugins](../guide/plugins.html)
+- **Vea también:** [Plugins](../guide/plugins.html)
 
 <h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
 
@@ -307,7 +307,7 @@ type: api
 
   Aplica un mixin globalmente, lo cual afecta cada instancia de Vue creada después de eso. Esto puede ser usado por autores de plugins para injectar comportamiento personalizado a los componentes. **No es recomendado en código de aplicación**.
 
-- **Vea También:** [Mixins Globales](../guide/mixins.html#Mixins-Globales)
+- **Vea también:** [Mixins Globales](../guide/mixins.html#Mixins-Globales)
 
 <h3 id="Vue-compile">Vue.compile( template )</h3>
 
@@ -330,7 +330,7 @@ type: api
   })
   ```
 
-- **Vea También:** [Funciones de Renderizado](../guide/render-function.html)
+- **Vea también:** [Funciones de Renderizado](../guide/render-function.html)
 
 ## Opciones / Datos
 
@@ -376,7 +376,7 @@ type: api
 
   <p class="tip">Tenga en cuenta que __usted no debe usar una función flecha dentro de la propiedad `data`__ (p.e. `data: () => { return { a: this.myProp }}`). La razón es que las funciones flecha asignan el contexto del padre a `this`, de modo que `this` no será la instancia Vue como se esperaría y una expresión como `this.myProp` será indefinido.</p>
 
-- **Vea También:** [Reactividad en profundidad](../guide/reactivity.html)
+- **Vea también:** [Reactividad en profundidad](../guide/reactivity.html)
 
 ### props
 
@@ -412,7 +412,7 @@ type: api
   })
   ```
 
-- **Vea También:** [Props](../guide/components.html#Props)
+- **Vea también:** [Props](../guide/components.html#Props)
 
 ### propsData
 
@@ -478,7 +478,7 @@ type: api
   vm.aDouble // -> 4
   ```
 
-- **Vea También:**
+- **Vea también:**
   - [Propiedades calculadas](../guide/computed.html)
 
 ### methods
@@ -506,7 +506,7 @@ type: api
   vm.a // 2
   ```
 
-- **Vea También:** [Métodos y manejo de eventos](../guide/events.html)
+- **Vea también:** [Métodos y manejo de eventos](../guide/events.html)
 
 ### watch
 
@@ -543,7 +543,7 @@ type: api
 
   <p class="tip">Tenga en cuenta que __no debe usar funciones flecha para definir un observador__ (p.e. `searchQuery: newValue => this.updateAutocomplete(newValue)`). La razón es que las funciones flecha asignan el contexto padre a `this`, de modo que `this` no será la instancia Vue como se esperaría y `this.updateAutocomplete` será indefinido.</p>
 
-- **Vea También:** [Métodos de instancia - vm.$watch](#vm-watch)
+- **Vea también:** [Métodos de instancia - vm.$watch](#vm-watch)
 
 ## Opciones / DOM
 
@@ -563,7 +563,7 @@ type: api
 
   <p class="tip">El elemento elegido únicamente sirve como punto de montura. A contrario de Vue 1.x, el elemento montado será reemplazado con DOM generado por Vue en todos los casos. De modo que no es recomendable montar la instancia raíz en un `<html>` o un `<body>`.</p>
 
-- **Vea También:** [Diagrama de Ciclo de Vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
+- **Vea también:** [Diagrama de Ciclo de Vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### template
 
@@ -577,7 +577,7 @@ type: api
 
   <p class="tip">Desde una perspectiva de seguridad, usted debería usar únicamente plantillas Vue en las que confía. Nunca use contenido generado por el usuario como plantilla.</p>
 
-- **Vea También:**
+- **Vea también:**
   - [Diagrama de Ciclo de Vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
   - [Distribución de contenido](../guide/components.html#Distribucion-de-Contenido-con-Slots)
 
@@ -591,7 +591,7 @@ type: api
 
     Si el componente es un componente funcional, la función render también recibe un argumento extra `context`, el cual provee acceso a los datos contextuales, ya que los componentes funcionales no poseen instancia.
 
-  - **Vea También:**
+  - **Vea también:**
     - [Funciones de renderizado](../guide/render-function)
 
 ## Opciones / Hooks de ciclo de vida
@@ -606,7 +606,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Llamado síncronamente justo después que la instacia es inicializada, antes de la observación de datos y la preparación de eventos/observadores.
 
-- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
+- **Vea también:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### created
 
@@ -616,7 +616,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Llamado síncronamente después que la instancia es creada. En este punto, la instancia ha finalizado de procesar las opciones, lo que significa que lo siguiente ha sido preparado: observación de datos, propiedades calculadas, métodos, callbacks de observación/eventos. Sin embargo, no se ha iniciado la fase de montaje, y la propiedad `$el` no estará disponible.
 
-- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
+- **Vea también:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### beforeMount
 
@@ -628,7 +628,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
+- **Vea también:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### mounted
 
@@ -640,7 +640,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
+- **Vea también:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### beforeUpdate
 
@@ -654,7 +654,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
+- **Vea también:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### updated
 
@@ -668,7 +668,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
+- **Vea también:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### activated
 
@@ -680,7 +680,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:**
+- **Vea también:**
   - [Componentes construídos - keep-alive](#keep-alive)
   - [Componentes dinámicos - keep-alive](../guide/components.html#keep-alive)
 
@@ -694,7 +694,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:**
+- **Vea también:**
   - [Componentes construídos - keep-alive](#keep-alive)
   - [Componentes dinámicos - keep-alive](../guide/components.html#keep-alive)
 
@@ -708,7 +708,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
+- **Vea también:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ### destroyed
 
@@ -720,7 +720,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   **Este hook no es llamado durante renderización en servidor.**
 
-- **Vea También:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
+- **Vea también:** [Diagrama de ciclo de vida](../guide/instance.html#Diagrama-de-ciclo-de-vida)
 
 ## Opciones / Recursos
 
@@ -732,7 +732,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Un objeto de directivas para poner a disposición de la instancia Vue.
 
-- **Vea También:**
+- **Vea también:**
   - [Directivas Personalizadas](../guide/custom-directive.html)
   - [Convenciones para Nombramiento de Recursos](../guide/components.html#Convenciones-para-Nombramiento-de-Componentes)
 
@@ -744,7 +744,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Un objeto de filtros para poner a disposición de la intancia Vue.
 
-- **Vea También:**
+- **Vea también:**
   - [`Vue.filter`](#Vue-filter)
 
 ### components
@@ -755,7 +755,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Un objeto de componentes para poner a dispocisión de la instancia Vue.
 
-- **Vea También:**
+- **Vea también:**
   - [Components](../guide/components.html)
 
 ## Opciones / Misceláneos
@@ -794,7 +794,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   // -> 2
   ```
 
-- **Vea También:** [Mixins](../guide/mixins.html)
+- **Vea también:** [Mixins](../guide/mixins.html)
 
 ### name
 
@@ -858,7 +858,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Causa que un componente no tenga estado (sin `data`) y no tenga instancia (sin contexto `this`). Éste tipo de componente son sencillamente una función `render` que retorna nodos virtuales, haciéndolos mucho más económicos de renderizar.
 
-- **Vea También:** [Componentes funcionales](../guide/render-function.html#Componentes-Funcionales)
+- **Vea también:** [Componentes funcionales](../guide/render-function.html#Componentes-Funcionales)
 
 ## Propiedades de Instancia
 
@@ -870,13 +870,13 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   El objeto de datos que es observado por la instancia Vue. La instancia brinda acceso directo a las propiedades en su objeto de datos.
 
-- **Vea También:** [Opciones - data](#data)
+- **Vea también:** [Opciones - data](#data)
 
 ### vm.$el
 
 - **Tipo:** `HTMLElement`
 
-- **Sólo Lectura**
+- **Sólo lectura**
 
 - **Detalles:**
 
@@ -886,7 +886,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Tipo:** `Object`
 
-- **Sólo Lectura**
+- **Sólo lectura**
 
 - **Detalles:**
 
@@ -905,7 +905,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Tipo:** `Vue instance`
 
-- **Sólo Lectura**
+- **Sólo lectura**
 
 - **Detalles:**
 
@@ -915,7 +915,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Tipo:** `Vue instance`
 
-- **Sólo Lectura**
+- **Sólo lectura**
 
 - **Detalles:**
 
@@ -925,17 +925,17 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Tipo:** `Array<Vue instance>`
 
-- **Sólo Lectura**
+- **Sólo lectura**
 
 - **Detalles:**
 
-  Los hijos directos de la instancia actual. **Tenga en cuenta que no hay garantías del orden para `$children`, y no es una propiedad reactiva.** Si necesita usar `$children` para asignación de datos, considere usar un Array y `v-for` para generar componentes hijos, y usar el Array como fuente de verdad.
+  Los hijos directos de la instancia actual. **Tenga en cuenta que no hay garantías del orden para `$children`, y no es una propiedad reactiva.** Si necesita usar `$children` para asignación de datos, considere usar un Array y `v-for` para generar componentes hijos, y usar el Array como fuente de la verdad.
 
 ### vm.$slots
 
 - **Tipo:** `{ [name: string]: ?Array<VNode> }`
 
-- **Sólo Lectura**
+- **Sólo lectura**
 
 - **Detalles:**
 
@@ -976,7 +976,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   })
   ```
 
-- **Vea También:**
+- **Vea también:**
   - [Componente `<slot>`](#slot-1)
   - [Distribución de contenido con Slots](../guide/components.html#Distribucion-de-Contenido-con-Slots)
   - [Funciones de renderizado: Slots](../guide/render-function.html#Slots)
@@ -987,7 +987,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Tipo:** `{ [name: string]: props => VNode | Array<VNode> }`
 
-- **Sólo Lectura**
+- **Sólo lectura**
 
 - **Detalles:**
 
@@ -995,7 +995,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Acceder a `vm.$scopedSlots` es muy útil cuando se escribe un componente con una [función de renderizado](../guide/render-function.html).
 
-- **Vea También:**
+- **Vea también:**
   - [`<slot>` Component](#slot-1)
   - [Slots de ámbito](../guide/components.html#Slots-de-ambito)
   - [Funciones de renderizado: Slots](../guide/render-function.html#Slots)
@@ -1004,13 +1004,13 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Tipo:** `Object`
 
-- **Sólo Lectura**
+- **Sólo lectura**
 
 - **Detalles:**
 
   Un objeto que contiene los componentes hijos que han registrado `ref`.
 
-- **Vea También:**
+- **Vea también:**
   - [Referencias a componentes hijo](../guide/components.html#Referencias-a-Componentes-Hijo)
   - [ref](#ref)
 
@@ -1018,15 +1018,15 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Tipo:** `boolean`
 
-- **Sólo Lectura**
+- **Sólo lectura**
 
 - **Detalles:**
 
   Indica si la instancia Vue actual es ejecutada en servidor.
 
-- **Vea También:** [Renderizado en servidor](../guide/ssr.html)
+- **Vea también:** [Renderizado en servidor](../guide/ssr.html)
 
-## Métodos de Instancia / Datos
+## Métodos de instancia / Datos
 
 <h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
 
@@ -1041,7 +1041,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Modo de Uso:**
 
-  Observa por cambios en una expresión o una función calculada en la instancia de Vue. El callback es llamado con el nuevo valor y el valor viejo. La expresión solo acepta rutas delimitadas por punto. Para una expresión más compleja, use una función.
+  Observa los cambios de una expresión o una función calculada en la instancia de Vue. El callback es llamado con el nuevo valor y el valor viejo. La expresión solo acepta rutas delimitadas por punto. Para una expresión más compleja, use una función.
 
 <p class="tip">Cuando esté mutando (en lugar de reemplazar) un Objecto o un Array, el valor viejo será el mismo que el valor nuevo, ya que referencian el mismo Objeto/Array. Vue no mantiene una copia del valor antes de ser mutado.</p>
 
@@ -1064,11 +1064,11 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   )
   ```
 
-  `vm.$watch` retorna una función de "dejar de observar" que detiene la activación del callback:
+  `vm.$watch` retorna una función que permite detener la llamada del callback:
 
   ``` js
   var unwatch = vm.$watch('a', cb)
-  // después, destruir el observador
+  // después, destruye el observador
   unwatch()
   ```
 
@@ -1081,12 +1081,12 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
     deep: true
   })
   vm.someObject.nestedValue = 123
-  // callback es activado
+  // callback es llamado
   ```
 
 - **Opción: immediate**
 
-  Si se pasa `immediate: true` en las opciones, se hará que el callback sea activado de inmediato con el valor actual de la expresión:
+  Si se pasa `immediate: true` en las opciones, hará que el callback sea llamado de inmediato con el valor actual de la expresión:
 
   ``` js
   vm.$watch('a', callback, {
@@ -1108,7 +1108,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Éste es el **alias** del `Vue.set` global.
 
-- **Vea También:** [Vue.set](#Vue-set)
+- **Vea también:** [Vue.set](#Vue-set)
 
 <h3 id="vm-delete">vm.$delete( object, key )</h3>
 
@@ -1120,7 +1120,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Éste es el **alias** del `Vue.delete` global.
 
-- **Vea También:** [Vue.delete](#Vue-delete)
+- **Vea también:** [Vue.delete](#Vue-delete)
 
 ## Instance Methods / Events
 
@@ -1214,7 +1214,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   document.getElementById('app').appendChild(component.$el)
   ```
 
-- **Vea También:**
+- **Vea también:**
   - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
   - [Server-Side Rendering](../guide/ssr.html)
 
@@ -1256,7 +1256,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   })
   ```
 
-- **Vea También:**
+- **Vea también:**
   - [Vue.nextTick](#Vue-nextTick)
   - [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
 
@@ -1270,7 +1270,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   <p class="tip">In normal use cases you shouldn't have to call this method yourself. Prefer controlling the lifecycle of child components in a data-driven fashion using `v-if` and `v-for`.</p>
 
-- **Vea También:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
+- **Vea también:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
 ## Directives
 
@@ -1290,7 +1290,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   <span>{{msg}}</span>
   ```
 
-- **Vea También:** [Data Binding Syntax - interpolations](../guide/syntax.html#Text)
+- **Vea también:** [Data Binding Syntax - interpolations](../guide/syntax.html#Text)
 
 ### v-html
 
@@ -1307,7 +1307,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   ```html
   <div v-html="html"></div>
   ```
-- **Vea También:** [Data Binding Syntax - interpolations](../guide/syntax.html#Raw-HTML)
+- **Vea también:** [Data Binding Syntax - interpolations](../guide/syntax.html#Raw-HTML)
 
 ### v-show
 
@@ -1319,7 +1319,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   This directive triggers transitions when its condition changes.
 
-- **Vea También:** [Conditional Rendering - v-show](../guide/conditional.html#v-show)
+- **Vea también:** [Conditional Rendering - v-show](../guide/conditional.html#v-show)
 
 ### v-if
 
@@ -1331,7 +1331,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   This directive triggers transitions when its condition changes.
 
-- **Vea También:** [Conditional Rendering - v-if](../guide/conditional.html)
+- **Vea también:** [Conditional Rendering - v-if](../guide/conditional.html)
 
 ### v-else
 
@@ -1352,7 +1352,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   </div>
   ```
 
-- **Vea También:**
+- **Vea también:**
   - [Conditional Rendering - v-else](../guide/conditional.html#v-else)
 
 ### v-else-if
@@ -1382,7 +1382,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   </div>
   ```
 
-- **Vea También:** [Conditional Rendering - v-else-if](../guide/conditional.html#v-else-if)
+- **Vea también:** [Conditional Rendering - v-else-if](../guide/conditional.html#v-else-if)
 
 ### v-for
 
@@ -1416,7 +1416,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   The detailed usage for `v-for` is explained in the guide section linked below.
 
-- **Vea También:**
+- **Vea también:**
   - [List Rendering](../guide/list.html)
   - [key](../guide/list.html#key)
 
@@ -1487,7 +1487,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   <my-component @click.native="onClick"></my-component>
   ```
 
-- **Vea También:**
+- **Vea también:**
   - [Methods and Event Handling](../guide/events.html)
   - [Components - Custom Events](../guide/components.html#Custom-Events)
 
@@ -1555,7 +1555,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   `.camel` is not needed if you are using string templates, or compiling with `vue-loader`/`vueify`.
 
-- **Vea También:**
+- **Vea también:**
   - [Class and Style Bindings](../guide/class-and-style.html)
   - [Components - Component Props](../guide/components.html#Props)
 
@@ -1578,7 +1578,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Create a two-way binding on a form input element or a component. For detailed usage and other notes, see the Guide section linked below.
 
-- **Vea También:**
+- **Vea también:**
   - [Form Input Bindings](../guide/forms.html)
   - [Components - Form Input Components using Custom Events](../guide/components.html#Form-Input-Components-using-Custom-Events)
 
@@ -1644,7 +1644,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   </ul>
   ```
 
-- **Vea También:**
+- **Vea también:**
   - [Data Binding Syntax - interpolations](../guide/syntax.html#Text)
   - [Components - Cheap Static Components with v-once](../guide/components.html#Cheap-Static-Components-with-v-once)
 
@@ -1699,7 +1699,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   An important note about the ref registration timing: because the refs themselves are created as a result of the render function, you cannot access them on the initial render - they don't exist yet! `$refs` is also non-reactive, therefore you should not attempt to use it in templates for data-binding.
 
-- **Vea También:** [Child Component Refs](../guide/components.html#Child-Component-Refs)
+- **Vea también:** [Child Component Refs](../guide/components.html#Child-Component-Refs)
 
 ### slot
 
@@ -1709,7 +1709,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   For detailed usage, see the guide section linked below.
 
-- **Vea También:** [Named Slots](../guide/components.html#Named-Slots)
+- **Vea también:** [Named Slots](../guide/components.html#Named-Slots)
 
 ## Built-In Components
 
@@ -1732,7 +1732,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   <component :is="$options.components.child"></component>
   ```
 
-- **Vea También:** [Dynamic Components](../guide/components.html#Dynamic-Components)
+- **Vea también:** [Dynamic Components](../guide/components.html#Dynamic-Components)
 
 ### transition
 
@@ -1795,7 +1795,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   }).$mount('#transition-demo')
   ```
 
-- **Vea También:** [Transitions: Entering, Leaving, and Lists](../guide/transitions.html)
+- **Vea también:** [Transitions: Entering, Leaving, and Lists](../guide/transitions.html)
 
 ### transition-group
 
@@ -1823,7 +1823,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   </transition-group>
   ```
 
-- **Vea También:** [Transitions: Entering, Leaving, and Lists](../guide/transitions.html)
+- **Vea también:** [Transitions: Entering, Leaving, and Lists](../guide/transitions.html)
 
 ### keep-alive
 
@@ -1881,7 +1881,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
 
-- **Vea También:** [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
+- **Vea también:** [Dynamic Components - keep-alive](../guide/components.html#keep-alive)
 
 ### slot
 
@@ -1894,7 +1894,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   For detailed usage, see the guide section linked below.
 
-- **Vea También:** [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
+- **Vea también:** [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
 
 ## VNode Interface
 
