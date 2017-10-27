@@ -1122,7 +1122,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Vea también:** [Vue.delete](#Vue-delete)
 
-## Métodos de Instancia / Eventos
+## Métodos de instancia / Eventos
 
 <h3 id="vm-on">vm.$on( event, callback )</h3>
 
@@ -1178,7 +1178,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Activa un evento sobre la instancia actual. Cualquier argumento adicional será pasado a la función callback del listener.
 
-## Métodos de Instancia / Ciclo de vida
+## Métodos de instancia / Ciclo de vida
 
 <h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
 
@@ -1192,7 +1192,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Si una instancia Vue no recibió la opción `el` durante la instanciación, existirá en un estado "no-montado", sin un elemento DOM asociado. `vm.$mount()` puede ser usado para iniciar manualmente el montaje de una instancia Vue no montada.
 
-  Si el argumento `elementOrSelector` no es usado, la plantilla será renderizada como un elemento por fuera del DOM, y se tendrá que usar el API DOM nativo para insertarlo en el documento.
+  Si el argumento `elementOrSelector` no es usado, la plantilla será renderizada como un elemento fuera del DOM, y se tendrá que usar el API DOM nativo para insertarlo en el documento.
 
   El método retorna la instancia misma, de modo que usted podrá encadenar otros métodos de instancia después.
 
