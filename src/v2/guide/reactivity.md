@@ -1,10 +1,10 @@
 ---
-title: Reactividad en profunidad
+title: Reactividad en profundidad
 type: guide
 order: 601
 ---
 
-Ha llegado la hora de profundizar en el asunto! Una de las características que diferencian a Vue es su discreto sistema de reactividad. Los modelos simplemente son objetos de JavaScript. Cuando los modifique, se actualizará la vista. Esto hace que el gestor de estados sea simple e intuitivo, pero también es importante entender como funciona para prevenir algunos errores comunes. En esta sección, vamos a indagar en algunos detalles de bajo nivel del sistema de reactividad de Vue.
+¡Ha llegado la hora de profundizar en el asunto! Una de las características que diferencian a Vue es su discreto sistema de reactividad. Los modelos simplemente son objetos de JavaScript. Cuando los modifique, se actualizará la vista. Esto hace que el gestor de estados sea simple e intuitivo, pero también es importante entender como funciona para prevenir algunos errores comunes. En esta sección, vamos a indagar en algunos detalles de bajo nivel del sistema de reactividad de Vue.
 
 ## Como se siguen los cambios
 
