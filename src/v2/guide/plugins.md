@@ -6,7 +6,7 @@ order: 304
 
 ## Escribiendo un Plugin
 
-Los Plugins usualmente añaden funcionalidades de nivel global a Vue. No hay un alcance estrictamente definido para un Plugin: normalmente hay varios tipos de Plugins que usted puede escribir:
+Los Plugins usualmente añaden funcionalidades de nivel global a Vue. No hay un alcance estrictamente definido para un Plugin: normalmente hay varios tipos de Plugins que puede escribir:
 
 1. Agregar algunos métodos o propiedades globales. Por ejemplo [vue-custom-element](https://github.com/karol-f/vue-custom-element)
 
@@ -18,35 +18,35 @@ Los Plugins usualmente añaden funcionalidades de nivel global a Vue. No hay un 
 
 5. Una biblioteca que proporcione una API propia, mientras que al mismo tiempo introduce una combinación de las anteriores. Por Ejemplo [vue-router](https://github.com/vuejs/vue-router)
 
-Un Plugin Vue.js debería exponer un método `install` (Método de instalación). Se llamará al método con el constructor `Vue` como primer argumento, junto con las posibles opciones:
+Un Plugin Vue.js debería exponer un método `instalar` (Método de instalación). Se llamará al método con el constructor `Vue` como primer argumento, junto con las posibles opciones:
 
 
 ``` js
-MyPlugin.install = function (Vue, options) {
-  // 1. add global method or property
-  Vue.myGlobalMethod = function () {
+MyPlugin.install = función (opciones de Vue) {
+  // 1. agregar método global o de propiedad
+  Vue.myGlobalMethod = función () {
     // something logic ...
   }
 
-  // 2. add a global asset
+  // 2. agregar un activo global
   Vue.directive('my-directive', {
-    bind (el, binding, vnode, oldVnode) {
-      // something logic ...
+    enlazar (el, binding, vnode, oldVnode) {
+      // algo lógico ...
     }
     ...
   })
 
-  // 3. inject some component options
+  // 3. inyectar algunas opciones de componentes
   Vue.mixin({
-    created: function () {
-      // something logic ...
+    created: función () {
+      // algo lógico ...
     }
     ...
   })
 
-  // 4. add an instance method
-  Vue.prototype.$myMethod = function (methodOptions) {
-    // something logic ...
+  // 4. agregar un método de instancia
+  Vue.prototype.$myMethod = función (methodOptions) {
+    // Algo lógico ...
   }
 }
 ```
@@ -60,7 +60,7 @@ Use los Plugins llamando al método global `Vue.use ()`:
 Vue.use(MyPlugin)
 ```
 
-Usted puede si lo desea descartar algunas opciones:
+Puede si lo desea descartar algunas opciones:
 
 ``` js
 Vue.use(MyPlugin, { someOption: true })
@@ -68,14 +68,14 @@ Vue.use(MyPlugin, { someOption: true })
 
 `Vue.use` automáticamente lo previene de usar el mismo Plugin más de una vez, por lo que, al llamar varias veces a un mismo Plugin, este se instalará solo una vez.
 
-Algunos Plugins proporcionados por “Vue.js official plugins” como `vue-router`, citan automáticamente a `Vue.use ()` si `Vue` está disponible como una variable global. Sin embargo, en un entorno de módulo como CommonJS, usted siempre debe citar a `Vue.use ()` explícitamente:
+Algunos Plugins proporcionados por “Vue.js official plugins” como `vue-router`, citan automáticamente a `Vue.use ()` si `Vue` está disponible como una variable global. Sin embargo, en un módulo como CommonJS, usted siempre debe citar a `Vue.use ()` explícitamente:
 
 ``` js
-// When using CommonJS via Browserify or Webpack
+// Cuando usa CommonJS via Browserify o Webpack
 var Vue = require('vue')
 var VueRouter = require('vue-router')
 
-// Don't forget to call this
+// No olvide llamarlo
 Vue.use(VueRouter)
 ```
 
