@@ -4,14 +4,14 @@ type: guide
 order: 301
 ---
 
-## Basics
+## Lo esencial
 
-Mixins are a flexible way to distribute reusable functionalities for Vue components. A mixin object can contain any component options. When a component uses a mixin, all options in the mixin will be "mixed" into the component's own options.
+_Mixins_ son una manera maleable de repartir funcionalidades reutilizables para los componentes Vue. Un objeto _mixin_ puede contener cualquier opción de componente. Cuando un componente usa un mixin, todas las opciones en el Mixin se "mezclarán" en las propias opciones del componente.
 
-Example:
+Ejemplo:
 
 ``` js
-// define a mixin object
+// define un objeto mixin
 var myMixin = {
   created: function () {
     this.hello()
@@ -23,7 +23,7 @@ var myMixin = {
   }
 }
 
-// define a component that uses this mixin
+// define un componente que usa este mixin
 var Component = Vue.extend({
   mixins: [myMixin]
 })
@@ -31,29 +31,31 @@ var Component = Vue.extend({
 var component = new Component() // => "hello from mixin!"
 ```
 
-## Option Merging
+## Opción de fusión
 
-When a mixin and the component itself contain overlapping options, they will be "merged" using appropriate strategies. For example, hook functions with the same name are merged into an array so that all of them will be called. In addition, mixin hooks will be called **before** the component's own hooks:
+Cuando un mixin y el componente en sí tienen opciones superpuestas, se "fusionarán" utilizando las estrategias apropiadas. Por ejemplo, _hook functions_ con el mismo nombre se fusionarán en una matriz para que se invoquen todas. Además, los _mixin hooks_ se ejecutarán **antes** que los propios _hooks_ del componente:
 
 ``` js
 var mixin = {
   created: function () {
-    console.log('mixin hook called')
+    console.log('mixin hook ejecutado')
   }
 }
 
 new Vue({
   mixins: [mixin],
   created: function () {
-    console.log('component hook called')
+    console.log('component hook ejecutado')
   }
 })
 
-// => "mixin hook called"
-// => "component hook called"
+// => "mixin hook ejecutado"
+// => "component hook ejecutado"
 ```
 
-Options that expect object values, for example `methods`, `components` and `directives`, will be merged into the same object. The component's options will take priority when there are conflicting keys in these objects:
+Las opciones que esperan valores de objeto, por ejemplo `métodos`, 
+`componentes` y `directivas`, se fusionarán en un mismo objeto. 
+Las opciones del componente tendrán prioridad cuando haya claves conflictivas en estos objetos:
 
 ``` js
 var mixin = {
@@ -62,7 +64,7 @@ var mixin = {
       console.log('foo')
     },
     conflicting: function () {
-      console.log('from mixin')
+      console.log('desde el mixin')
     }
   }
 }
@@ -74,24 +76,24 @@ var vm = new Vue({
       console.log('bar')
     },
     conflicting: function () {
-      console.log('from self')
+      console.log('desde componente')
     }
   }
 })
 
 vm.foo() // => "foo"
 vm.bar() // => "bar"
-vm.conflicting() // => "from self"
+vm.conflicting() // => "desde componente"
 ```
 
-Note that the same merge strategies are used in `Vue.extend()`.
+Tenga en cuenta que las mismas estrategias de fusión se utilizan en `Vue.extend()`.
 
-## Global Mixin
+## Mixin Global
 
-You can also apply a mixin globally. Use with caution! Once you apply a mixin globally, it will affect **every** Vue instance created afterwards. When used properly, this can be used to inject processing logic for custom options:
+También puede aplicar un _mixin_ globalmente. ¡Úsalo con precaución! Una vez el _mixin_ es aplicado globalmente, afectará a **cada** instancia de Vue creada posteriormente. Cuando es usado correctamente, puede ser aplicado para inyectar lógica de procesamiento de opciones personalizadas:
 
 ``` js
-// inject a handler for `myOption` custom option
+// injecta un manejador para la opción personalizada `myOption`
 Vue.mixin({
   created: function () {
     var myOption = this.$options.myOption
@@ -102,16 +104,16 @@ Vue.mixin({
 })
 
 new Vue({
-  myOption: 'hello!'
+  myOption: 'hola!'
 })
-// => "hello!"
+// => "hola!"
 ```
 
-<p class="tip">Use global mixins sparsely and carefully, because it affects every single Vue instance created, including third party components. In most cases, you should only use it for custom option handling like demonstrated in the example above. It's also a good idea to ship them as [Plugins](plugins.html) to avoid duplicate application.</p>
+<p class="tip">Use los mixins globales de forma escasa y cuidadosa, ya que estos afectan a todas las instancias Vue creadas, incluidos los componentes de terceros. En la mayoría de los casos, solo debe usarlo para el manejo de opciones personalizadas como se demuestra en el ejemplo anterior. También es una buena idea empaquetarlos como [Plugins](plugins.html) para evitar aplicaciones duplicadas.</p>
 
-## Custom Option Merge Strategies
+## Estrategias de fusión de opciones personalizadas
 
-When custom options are merged, they use the default strategy which overwrites the existing value. If you want a custom option to be merged using custom logic, you need to attach a function to `Vue.config.optionMergeStrategies`:
+Cuando se fusionan las opciones personalizadas, utilizan la estrategia predeterminada que sobrescribe el valor existente. Si desea que una opción personalizada se fusione mediante lógica personalizada, debe adjuntar una función a `Vue.config.optionMergeStrategies`:
 
 ``` js
 Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
@@ -119,14 +121,14 @@ Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
 }
 ```
 
-For most object-based options, you can use the same strategy used by `methods`:
+Para la mayoría de opciones basadas en objetos, puede usar la misma estrategia utilizada por `methods`:
 
 ``` js
 var strategies = Vue.config.optionMergeStrategies
 strategies.myOption = strategies.methods
 ```
 
-A more advanced example can be found on [Vuex](https://github.com/vuejs/vuex)'s 1.x merging strategy:
+Un ejemplo más avanzado se puede ver en la estrategia de fusión de [Vuex](https://github.com/vuejs/vuex) 1.x:
 
 ``` js
 const merge = Vue.config.optionMergeStrategies.computed
