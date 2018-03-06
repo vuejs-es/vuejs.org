@@ -18,20 +18,19 @@ Los Plugins usualmente añaden funcionalidades de nivel global a Vue. No hay un 
 
 5. Una biblioteca que proporcione una API propia, mientras que al mismo tiempo introduce una combinación de las anteriores. Por Ejemplo [vue-router](https://github.com/vuejs/vue-router)
 
-Un Plugin Vue.js debería exponer un método `install` (Instalar). Se llamará al método con el constructor `Vue` como primer argumento, junto con las posibles opciones:
-
+Un Plugin Vue.js debería exponer un método `install` (instalar). Se llamará al método con el constructor `Vue` como primer argumento, junto con las posibles opciones:
 
 ``` js
-MyPlugin.install = function (opciones de Vue) {
+MyPlugin.install = function (Vue, options) {
   // 1. agregar método global o de propiedad
   Vue.myGlobalMethod = function () {
-    // something logic ...
+    // alguna logica ...
   }
 
   // 2. agregar un activo global
   Vue.directive('my-directive', {
     enlazar (el, binding, vnode, oldVnode) {
-      // algo lógico ...
+      // alguna logica ...
     }
     ...
   })
@@ -39,28 +38,28 @@ MyPlugin.install = function (opciones de Vue) {
   // 3. inyectar algunas opciones de componente
   Vue.mixin({
     created: function () {
-      // algo lógico ...
+      // alguna logica ...
     }
     ...
   })
 
   // 4. agregar un método de instancia
   Vue.prototype.$myMethod = function (methodOptions) {
-    // Algo lógico ...
+    // alguna logica ...
   }
 }
 ```
 
 ## Usando un Plugin
 
-Use los Plugins llamando al método global `Vue.use ()`:
+Use los Plugins llamando al método global `Vue.use()`:
 
 ``` js
-// calls `MyPlugin.install(Vue)`
+// ejecuta `MyPlugin.install(Vue)`
 Vue.use(MyPlugin)
 ```
 
-Opcionalmente puede declarar algunas opciones:
+Opcionalmente puede declarar opciones:
 
 ``` js
 Vue.use(MyPlugin, { someOption: true })
@@ -68,7 +67,7 @@ Vue.use(MyPlugin, { someOption: true })
 
 `Vue.use` automáticamente lo previene de usar el mismo Plugin más de una vez, por lo que, al usarlo varias veces con el mismo Plugin, este se instalará solo una vez.
 
-Algunos Plugins proporcionados por “Vue.js official plugins” como `vue-router`, ejecutan automáticamente a `Vue.use ()` si `Vue` está disponible como una variable global. Sin embargo, en un módulo como CommonJS, usted siempre debe citar a `Vue.use ()` explícitamente:
+Algunos Plugins proporcionados por “Vue.js official plugins” como `vue-router`, ejecutan automáticamente `Vue.use()` si `Vue` está disponible como una variable global. Sin embargo, en un módulo como CommonJS, siempre debe ejecutar `Vue.use()` explícitamente:
 
 ``` js
 // Cuando use CommonJS via Browserify o Webpack
