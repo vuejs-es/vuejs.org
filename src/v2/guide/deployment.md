@@ -4,21 +4,21 @@ type: guide
 order: 401
 ---
 
-## Turn on Production Mode
+## Activar modo de producción
 
-During development, Vue provides a lot of warnings to help you with common errors and pitfalls. However, these warning strings become useless in production and bloat your app's payload size. In addition, some of these warning checks have small runtime costs that can be avoided in production mode.
+Durante el desarrollo, Vue da muchas advertencias para ayudarle con errores y dificultades que son comunes. Sin embargo, estas advertencias se vuelven inútiles en la producción e incrementan el tamaño de su aplicación. Además, algunas de estas advertencias tienen pequeños costos de tiempo de ejecución que pueden evitarse en el modo de producción.
 
-### Without Build Tools
+### Sin herramientas de compilación
 
-If you are using the full build, i.e. directly including Vue via a script tag without a build tool, make sure to use the minified version (`vue.min.js`) for production. Both versions can be found in the [Installation guide](installation.html#Direct-lt-script-gt-Include).
+Si está utilizando la compilación completa, es decir, que incluye directamente Vue a través de una etiqueta de script sin una herramienta de compilación, asegúrese de usar la versión minified (`vue.min.js`) para la producción. Ambas versiones se pueden encontrar en la [Guía de instalación](installation.html#Direct-lt-script-gt-Include).
 
-### With Build Tools
+### Con herramientas de compilación
 
-When using a build tool like Webpack or Browserify, the production mode will be determined by `process.env.NODE_ENV` inside Vue's source code, and it will be in development mode by default. Both build tools provide ways to overwrite this variable to enable Vue's production mode, and warnings will be stripped by minifiers during the build. All `vue-cli` templates have these pre-configured for you, but it would be beneficial to know how it is done:
+Cuando utilice una herramienta de compilación como Webpack o Browserify, el modo de producción estará definido por `process.env.NODE_ENV` dentro del código fuente de Vue, y estará en modo de desarrollo por defecto. Ambas herramientas de compilación proporcionan formas de sobrescribir esta variable para habilitar el modo de producción de Vue, y los minificadores eliminan las advertencias durante la compilación. Todas las plantillas `vue-cli` contienen estas pre configuraciones para usted, pero sería provechoso saber cómo se hace:
 
-#### Webpack
+#### Webpack (Paquete de navegacion)
 
-Use Webpack's [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) to indicate a production environment, so that warning blocks can be automatically dropped by UglifyJS during minification. Example config:
+Use el paquete (Webpack) [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) /) para indicar un entorno de producción, de modo que los bloques de advertencia se puedan eliminar automáticamente por UglifyJS durante la minificación. Configuración de ejemplo:
 
 ``` js
 var webpack = require('webpack')
@@ -36,17 +36,17 @@ module.exports = {
 }
 ```
 
-#### Browserify
+#### Navegar
 
-- Run your bundling command with the actual `NODE_ENV` environment variable set to `"production"`. This tells `vueify` to avoid including hot-reload and development related code.
+- Ejecute el comando de agrupamiento con la variable de entorno `NODE_ENV` real establecida en `"production"` . Esto le dice a `vueify` que no incluya la recarga en el código relacionado con el desarrollo. 
 
-- Apply a global [envify](https://github.com/hughsk/envify) transform to your bundle. This allows the minifier to strip out all the warnings in Vue's source code wrapped in env variable conditional blocks. For example:
+- Aplique una transformación global [envify](https://github.com/hughsk/envify) a su paquete. Esto permite que el minificador elimine todas las advertencias en el código fuente de Vue rodeado de bloques condicionales de las variables env. Por ejemplo:
 
   ``` bash
   NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
   ```
 
-#### Rollup
+#### Rollup (Enrollar)
 
 Use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
 
@@ -63,24 +63,24 @@ rollup({
 }).then(...)
 ```
 
-## Pre-Compiling Templates
+## Pre-compilación de plantillas
 
-When using in-DOM templates or in-JavaScript template strings, the template-to-render-function compilation is performed on the fly. This is usually fast enough in most cases, but is best avoided if your application is performance-sensitive.
+Cuando se utilizan plantillas in-DOM o cadenas de plantilla en JavaScript, la función de compilación de plantillas a renderizar se realiza sobre la marcha. Esto suele ser lo suficientemente rápido en la mayoría de los casos, pero es mejor evitarlo si su aplicación afecta el rendimiento.
 
-The easiest way to pre-compile templates is using [Single-File Components](single-file-components.html) - the associated build setups automatically performs pre-compilation for you, so the built code contains the already compiled render functions instead of raw template strings.
+La forma más fácil de pre compilar plantillas es [Single-File Components](single-file-components.html) - las configuraciones de construcción asociadas automáticamente realizan la compilación previa para que el código incorporado contenga las funciones de representación ya compiladas en lugar de cadenas de plantilla sin procesar.
 
-If you are using Webpack, and prefer separating JavaScript and template files, you can use [vue-template-loader](https://github.com/ktsn/vue-template-loader), which also transforms the template files into JavaScript render functions during the build step.
+Si usa Webpack es preferible separar los archivos de plantilla y JavaScript, puede usar [vue-template-loader](https://github.com/ktsn/vue-template-loader), que también transforma los archivos de plantilla en funciones de renderizado de JavaScript durante el proceso de compilación.
 
-## Extracting Component CSS
+## Extracción de componentes CSS
 
-When using Single-File Components, the CSS inside components are injected dynamically as `<style>` tags via JavaScript. This has a small runtime cost, and if you are using server-side rendering it will cause a "flash of unstyled content". Extracting the CSS across all components into the same file will avoid these issues, and also result in better CSS minification and caching.
+Cuando se utilizan componentes de un único archivo, los componentes internos de CSS se inyectan dinámicamente como etiquetas `<style>` a través de JavaScript. Esto tiene un pequeño tiempo de ejecución, y si está utilizando la representación del lado del servidor provocará un "destello de contenido sin estilo". La extracción de CSS en todos los componentes del mismo archivo evitará este tipo de problemas y también dará como resultado una mejor minimización y almacenamiento en caché de CSS.
 
-Refer to the respective build tool documentations to see how it's done:
+Consulte los documentos de la herramienta de compilación respectiva para ver cómo se hace:
 
-- [Webpack + vue-loader](https://vue-loader.vuejs.org/en/configurations/extract-css.html) (the `vue-cli` webpack template has this pre-configured)
+- [Webpack + vue-loader](https://vue-loader.vuejs.org/en/configurations/extract-css.html) (la plantilla del paquete web [Webpack] `vue-cli` tiene esto preconfigurado)
 - [Browserify + vueify](https://github.com/vuejs/vueify#css-extraction)
 - [Rollup + rollup-plugin-vue](https://vuejs.github.io/rollup-plugin-vue/#/en/2.3/?id=custom-handler)
 
-## Tracking Runtime Errors
+## Seguimiento de errores de tiempo de ejecución
 
-If a runtime error occurs during a component's render, it will be passed to the global `Vue.config.errorHandler` config function if it has been set. It might be a good idea to leverage this hook together with an error-tracking service like [Sentry](https://sentry.io), which provides [an official integration](https://sentry.io/for/vue/) for Vue.
+Si se produce un error en el tiempo de ejecución durante la renderización de un componente, se pasará a la función de configuración global `Vue.config.errorHandler` si es que asi se ha establecido. Podría ser una buena idea aprovechar este enlace junto con un servicio de seguimiento de errores como [Sentry](https://sentry.io), que proporciona [an official integration](https://sentry.io/for/vue/)para Vue.
