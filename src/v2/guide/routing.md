@@ -4,9 +4,9 @@ type: guide
 order: 501
 ---
 
-## Enrutamiento Oficial
+## Enrutador Oficial
 
-Para la mayoria de las Aplicaciones de una Página, se recomienda utilizar la librería oficial [vue-router](https://github.com/vuejs/vue-router). Para más detalles, consulta la [documentación](https://router.vuejs.org/) de vue-router.
+Para la mayoria de las Aplicaciones de una Sola Página, se recomienda utilizar la librería oficial [vue-router](https://github.com/vuejs/vue-router). Para más detalles, consulte la [documentación](https://router.vuejs.org/) de vue-router.
 
 ## Enrutamiento simple desde zero
 
