@@ -1,16 +1,16 @@
 ---
-title: Pruebas Unitarias
+title: Unit Testing
 type: guide
 order: 403
 ---
 
-## Configuración y Herramientas
+## Setup and Tooling
 
-Cualquier solución compatible con construcción basada en módulos funciona, pero si desea una recomendación en específico prueba el ejecutor de pruebas [Karma](http://karma-runner.github.io). Éste tiene una gran cantidad de plugins, incluido soporte para [Webpack](https://github.com/webpack/karma-webpack) y [Browserify](https://github.com/Nikku/karma-browserify). Para detalles en la configuración por favor revise la documentación respectiva de cada proyecto. Estos ejemplos de configuración para Karma en [Webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) y [Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) le ayudaran a comenzar.
+Anything compatible with a module-based build system will work, but if you're looking for a specific recommendation try the [Karma](http://karma-runner.github.io) test runner. It has a lot of community plugins, including support for [Webpack](https://github.com/webpack/karma-webpack) and [Browserify](https://github.com/Nikku/karma-browserify). For detailed setup please refer to each project's respective documentation. These example Karma configurations for [Webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) and [Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) can help you get started.
 
-## Pruebas Simples
+## Simple Assertions
 
-No es necesario hacer algo en especial para poder probar sus componentes. Exporte las opciones tal cual: 
+You don't have to do anything special in your components to make them testable. Export the raw options:
 
 ``` html
 <template>
@@ -31,36 +31,36 @@ No es necesario hacer algo en especial para poder probar sus componentes. Export
 </script>
 ```
 
-Enseguida importe las opciones del component junto con Vue, y está listo para crear sus pruebas:
+Then import the component options along with Vue, and you can make many common assertions:
 
 ``` js
-// Importe Vue y el componente a probar
+// Import Vue and the component being tested
 import Vue from 'vue'
 import MyComponent from 'path/to/MyComponent.vue'
 
-// Éstas son algunas pruebas con Jasmine 2.0, pero puede usar
-// cualquier ejecutor de pruebas y librería de aserción de su preferencia
+// Here are some Jasmine 2.0 tests, though you can
+// use any test runner / assertion library combo you prefer
 describe('MyComponent', () => {
-  // Inspecciona las opciones del componente
+  // Inspect the raw component options
   it('has a created hook', () => {
     expect(typeof MyComponent.created).toBe('function')
   })
 
-  // Evalua los resultados de las funciones en
-  // las opciones del componente
+  // Evaluate the results of functions in
+  // the raw component options
   it('sets the correct default data', () => {
     expect(typeof MyComponent.data).toBe('function')
     const defaultData = MyComponent.data()
     expect(defaultData.message).toBe('hello!')
   })
 
-  // Inspeccione la instancia del component en mount
+  // Inspect the component instance on mount
   it('correctly sets the message when created', () => {
     const vm = new Vue(MyComponent).$mount()
     expect(vm.message).toBe('bye!')
   })
 
-  // Monta una instancia e inspeccione la salida renderizada
+  // Mount an instance and inspect the render output
   it('renders the correct message', () => {
     const Ctor = Vue.extend(MyComponent)
     const vm = new Ctor().$mount()
@@ -69,9 +69,9 @@ describe('MyComponent', () => {
 })
 ```
 
-## Escribiendo Componentes Fáciles de Probar
+## Writing Testable Components
 
-La salida renderizada de un componente es determinada principlamente por las propiedades que recibe. Si la salida renderizada de un componente depende solamente en sus propias propiedades, éste es bastante sencillo de probar, de la misma manera que lo es el valor regresado de una función pura con diferentes argumentos. Veamos un ejemplo simplificado:
+A component's render output is primarily determined by the props they receive. If a component's render output solely depends on its props it becomes straightforward to test, similar to asserting the return value of a pure function with different arguments. Take a simplified example:
 
 ``` html
 <template>
@@ -85,13 +85,13 @@ La salida renderizada de un componente es determinada principlamente por las pro
 </script>
 ```
 
-Puede probar la salida renderizada con diferentes ''props'' utilizando la opción `propsData`:
+You can assert its render output with different props using the `propsData` option:
 
 ``` js
 import Vue from 'vue'
 import MyComponent from './MyComponent.vue'
 
-// función de asistencia que monta y regresa el texto renderizado
+// helper function that mounts and returns the rendered text
 function getRenderedText (Component, propsData) {
   const Ctor = Vue.extend(Component)
   const vm = new Ctor({ propsData: propsData }).$mount()
@@ -111,17 +111,17 @@ describe('MyComponent', () => {
 })
 ```
 
-## Probando Actualizaciones Asíncronas
+## Asserting Asynchronous Updates
 
-Dado que Vue [realiza actualizaciones al DOM asincronamente](reactivity.html#Async-Update-Queue), pruebas en actualizaciones del DOM causadas por el cambio del estado tendrán que ser hechas en un callback de `Vue.nextTick`:
+Since Vue [performs DOM updates asynchronously](reactivity.html#Async-Update-Queue), assertions on DOM updates resulting from state change will have to be made in a `Vue.nextTick` callback:
 
 ``` js
-// Inspeciona el HTML generado despues de la actualización del estado
+// Inspect the generated HTML after a state update
 it('updates the rendered message when vm.message updates', done => {
   const vm = new Vue(MyComponent).$mount()
   vm.message = 'foo'
 
-  // Espera un "tick" después del cambio del estado antes de a comprobar las actualizaciones a el DOM
+  // wait a "tick" after state change before asserting DOM updates
   Vue.nextTick(() => {
     expect(vm.$el.textContent).toBe('foo')
     done()
@@ -129,4 +129,4 @@ it('updates the rendered message when vm.message updates', done => {
 })
 ```
 
-Estamos planeando en trabajar en una colección de utilidades de prueba comunes que harán más fácil renderizar componentes con diferentes restricciones (p. ej. renderizado superficial que ignora componentes hijos) y comprobar su salida.
+We are planning to work on a collection of common test helpers to make it easier to render components with different constraints (e.g. shallow rendering that ignores child components) and assert their output.
