@@ -13,26 +13,26 @@ Para la mayoria de las Aplicaciones de una Página, se recomienda utilizar la li
 Si solamente necesistas enrutamiento muy sencillo y no deseas incluir una librería de enrutamiento completa, lo puedes hacer de la siguiente manera:
 
 ``` js
-const NoEncontrada = { template: '<p>Página no encontrada</p>' }
-const Inicio = { template: '<p>Página inicio</p>' }
-const Conocenos = { template: '<p>Página conócenos</p>' }
+const NotFound = { template: '<p>Page not found</p>' }
+const Home = { template: '<p>home page</p>' }
+const About = { template: '<p>about page</p>' }
 
-const rutas = {
-  '/': Inicio,
-  '/conocenos': Conocenos
+const routes = {
+  '/': Home,
+  '/about': About
 }
 
 new Vue({
   el: '#app',
   data: {
-    rutaActual: window.location.pathname
+    currentRoute: window.location.pathname
   },
   computed: {
-    ComponenteActual () {
-      return routes[this.rutaActual] || NoEncontrada
+    ViewComponent () {
+      return routes[this.currentRoute] || NotFound
     }
   },
-  render (h) { return h(this.ComponenteActual) }
+  render (h) { return h(this.ViewComponent) }
 })
 ```
 
