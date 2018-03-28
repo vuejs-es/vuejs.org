@@ -10,7 +10,7 @@ Para la mayoria de las Aplicaciones de una Página, se recomienda utilizar la li
 
 ## Enrutamiento simple desde zero
 
-Si solamente necesistas enrutamiento muy sencillo y no deseas incluir una librería de enrutamiento completa, lo puedes hacer de la siguiente manera:
+Si solamente necesita enrutamiento muy sencillo y no desea incluir una librería de enrutamiento completa, lo puede hacer de la siguiente manera:
 
 ``` js
 const NotFound = { template: '<p>Page not found</p>' }
