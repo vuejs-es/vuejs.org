@@ -6,7 +6,7 @@ order: 403
 
 ## Configuración y Herramientas
 
-Cualquier solución compatible con construcción basada en módulos funciona, pero si desea una recomendación en específico prueba el ejecutor de pruebas [Karma](http://karma-runner.github.io). Éste tiene una gran cantidad de plugins, incluido soporte para [Webpack](https://github.com/webpack/karma-webpack) y [Browserify](https://github.com/Nikku/karma-browserify). Para detalles en la configuración por favor revise la documentación respectiva de cada proyecto. Estos ejemplos de configuración para Karma en [Webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) y [Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) le ayudaran a comenzar.
+Cualquier solución compatible con construcción basada en módulos funciona, pero si desea una recomendación en específico pruebe el ejecutor de pruebas [Karma](http://karma-runner.github.io). Éste tiene una gran cantidad de plugins, incluido soporte para [Webpack](https://github.com/webpack/karma-webpack) y [Browserify](https://github.com/Nikku/karma-browserify). Para detalles en la configuración por favor revise la documentación respectiva de cada proyecto. Estos ejemplos de configuración para Karma en [Webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) y [Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) le ayudarán a comenzar.
 
 ## Pruebas Simples
 
@@ -31,7 +31,7 @@ No es necesario hacer algo en especial para poder probar sus componentes. Export
 </script>
 ```
 
-Enseguida importe las opciones del component junto con Vue, y está listo para crear sus pruebas:
+Entonces importe las opciones del component junto con Vue, y está listo para hacer aserciones comunes:
 
 ``` js
 // Importe Vue y el componente a probar
@@ -46,7 +46,7 @@ describe('MyComponent', () => {
     expect(typeof MyComponent.created).toBe('function')
   })
 
-  // Evalua los resultados de las funciones en
+  // Evalue los resultados de las funciones en
   // las opciones del componente
   it('sets the correct default data', () => {
     expect(typeof MyComponent.data).toBe('function')
@@ -54,13 +54,13 @@ describe('MyComponent', () => {
     expect(defaultData.message).toBe('hello!')
   })
 
-  // Inspeccione la instancia del component en mount
+  // Inspeccione la instancia del component después del "mount"
   it('correctly sets the message when created', () => {
     const vm = new Vue(MyComponent).$mount()
     expect(vm.message).toBe('bye!')
   })
 
-  // Monta una instancia e inspeccione la salida renderizada
+  // Monte una instancia e inspeccione la salida renderizada
   it('renders the correct message', () => {
     const Ctor = Vue.extend(MyComponent)
     const vm = new Ctor().$mount()
@@ -71,7 +71,7 @@ describe('MyComponent', () => {
 
 ## Escribiendo Componentes Fáciles de Probar
 
-La salida renderizada de un componente es determinada principlamente por las propiedades que recibe. Si la salida renderizada de un componente depende solamente en sus propias propiedades, éste es bastante sencillo de probar, de la misma manera que lo es el valor regresado de una función pura con diferentes argumentos. Veamos un ejemplo simplificado:
+La salida renderizada de un componente es determinada principlamente por las propiedades que recibe. Si la salida renderizada de un componente depende solamente de sus propiedades, éste es bastante sencillo de probar, de manera similar a lo que sería asertar el valor devuelto de una función pura con diferentes argumentos. Veamos un ejemplo simplificado:
 
 ``` html
 <template>
@@ -85,7 +85,7 @@ La salida renderizada de un componente es determinada principlamente por las pro
 </script>
 ```
 
-Puede probar la salida renderizada con diferentes ''props'' utilizando la opción `propsData`:
+Puede probar la salida renderizada con diferentes _props_ utilizando la opción `propsData`:
 
 ``` js
 import Vue from 'vue'
@@ -113,7 +113,7 @@ describe('MyComponent', () => {
 
 ## Probando Actualizaciones Asíncronas
 
-Dado que Vue [realiza actualizaciones al DOM asincronamente](reactivity.html#Async-Update-Queue), pruebas en actualizaciones del DOM causadas por el cambio del estado tendrán que ser hechas en un callback de `Vue.nextTick`:
+Dado que Vue [realiza actualizaciones del DOM asíncronamente](reactivity.html#Async-Update-Queue), aserciones tras actualizaciones del DOM causadas por el cambio del estado tendrán que ser hechas en un _callback_ de `Vue.nextTick`:
 
 ``` js
 // Inspeciona el HTML generado despues de la actualización del estado
@@ -121,7 +121,7 @@ it('updates the rendered message when vm.message updates', done => {
   const vm = new Vue(MyComponent).$mount()
   vm.message = 'foo'
 
-  // Espera un "tick" después del cambio del estado antes de a comprobar las actualizaciones a el DOM
+  // Espera un "tick" después del cambio del estado antes de asertar las actualizaciones del DOM
   Vue.nextTick(() => {
     expect(vm.$el.textContent).toBe('foo')
     done()
@@ -129,4 +129,4 @@ it('updates the rendered message when vm.message updates', done => {
 })
 ```
 
-Estamos planeando en trabajar en una colección de utilidades de prueba comunes que harán más fácil renderizar componentes con diferentes restricciones (p. ej. renderizado superficial que ignora componentes hijos) y comprobar su salida.
+Estamos planeando en trabajar en una colección de utilidades de prueba comunes que harán más fácil renderizar componentes con diferentes restricciones (p. ej. renderizado superficial que ignora componentes hijos) y asertar su salida.
