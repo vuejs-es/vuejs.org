@@ -41,13 +41,13 @@ import MyComponent from 'path/to/MyComponent.vue'
 // Éstas son algunas pruebas con Jasmine 2.0, pero puede usar
 // cualquier ejecutor de pruebas y librería de aserción de su preferencia
 describe('MyComponent', () => {
-  // Inspecciona las opciones puras del componente
+  // Inspecciona las opciones del componente
   it('has a created hook', () => {
     expect(typeof MyComponent.created).toBe('function')
   })
 
-  // Evalu los resultados de las funciones en
-  // las opciones puras del componente
+  // Evalua los resultados de las funciones en
+  // las opciones del componente
   it('sets the correct default data', () => {
     expect(typeof MyComponent.data).toBe('function')
     const defaultData = MyComponent.data()
