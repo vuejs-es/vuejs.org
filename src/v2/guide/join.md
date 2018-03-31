@@ -44,7 +44,7 @@ Además de responder preguntas y compartir recursos en el foro y el chat, hay ot
 
 ### Traduzca documentación
 
-Vue ya se ha extendido por todo el mundo, incluso con el equipo central que está en al menos media docena de usos horarios. [El foro](https://forum.vuejs.org/) incluye 7 idiomas y subiendo además muchos de nuestros documentos tienen [traducciones mantenidas activamente](https://github.com/vuejs?utf8=%E2%9C%93&query=vuejs.org). Estamos muy orgullosos del alcance internacional de Vue, pero podemos hacerlo aún mejor.
+Vue ya se ha extendido por todo el mundo, incluso con el equipo central que está en al menos media docena de husos horarios. [El foro](https://forum.vuejs.org/) incluye 7 idiomas y subiendo además muchos de nuestros documentos tienen [traducciones mantenidas activamente](https://github.com/vuejs?utf8=%E2%9C%93&query=vuejs.org). Estamos muy orgullosos del alcance internacional de Vue, pero podemos hacerlo aún mejor.
 
 Esperamos que en este momento, esté leyendo esta frase en su idioma preferido. Si no, ¿le gustaría ayudarnos a llegar allí?.
 
