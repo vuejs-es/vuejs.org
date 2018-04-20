@@ -4,17 +4,17 @@ type: guide
 order: 502
 ---
 
-## Official Flux-Like Implementation
+## Implementación oficial similar a Flux
 
-Large applications can often grow in complexity, due to multiple pieces of state scattered across many components and the interactions between them. To solve this problem, Vue offers [vuex](https://github.com/vuejs/vuex): our own Elm-inspired state management library. It even integrates into [vue-devtools](https://github.com/vuejs/vue-devtools), providing zero-setup access to time travel.
+Las aplicaciones de gran tamaño suelen ser cada vez más complejas, debido a la existencia de múltiples estados dispersos en muchos componentes y a las interacciones entre ellos. Para resolver este problema, Vue ofrece [vuex](https://github.com/vuejs/vuex): nuestra propia biblioteca de gestión de estados inspirada en Elm. Incluso se integra en [vue-devtools](https://github.com/vuejs/vue-devtools), proporcionando un acceso de configuración cero al time travel.
 
-### Information for React Developers
+### Informacion para desarrolladores de React
 
-If you're coming from React, you may be wondering how vuex compares to [redux](https://github.com/reactjs/redux), the most popular Flux implementation in that ecosystem. Redux is actually view-layer agnostic, so it can easily be used with Vue via [simple bindings](https://github.com/egoist/revue). Vuex is different in that it _knows_ it's in a Vue app. This allows it to better integrate with Vue, offering a more intuitive API and improved development experience.
+Si vienes de React, te estarás preguntando cómo se compara vuex con [redux](https://github.com/reactjs/redux), la implementación de Flux más popular en ese ecosistema. Redux es realmente agnóstico en cuanto a la capa de visión, por lo que puede utilizarse fácilmente con Vue a través de [enlaces simples](https://github.com/egoist/revue). Vuex es diferente en que sabe que está en una aplicación Vue. Esto le permite integrarse mejor con Vue, ofreciendo una API más intuitiva y una experiencia de desarrollo mejorada.
 
-## Simple State Management from Scratch
+## Administración de estados sencilla desde el principio
 
-It is often overlooked that the source of truth in Vue applications is the raw `data` object - a Vue instance only proxies access to it. Therefore, if you have a piece of state that should be shared by multiple instances, you can share it by identity:
+A menudo se pasa por alto que la fuente de la verdad en las aplicaciones Vue es el objeto `data` en bruto - una instancia Vue sólo permite el acceso a los proxys. Por lo tanto, si tienes una pieza de estado que debería ser compartida por múltiples instancias, puedes compartirla por identidad:
 
 ``` js
 const sourceOfTruth = {}
@@ -28,9 +28,9 @@ const vmB = new Vue({
 })
 ```
 
-Now whenever `sourceOfTruth` is mutated, both `vmA` and `vmB` will update their views automatically. Subcomponents within each of these instances would also have access via `this.$root.$data`. We have a single source of truth now, but debugging would be a nightmare. Any piece of data could be changed by any part of our app at any time, without leaving a trace.
+Ahora, siempre que `sourceOfTruth` esté mutado, tanto `vmA` como `vmB` actualizarán sus vistas automáticamente. Los subcomponentes dentro de cada una de estas instancias también tendrían acceso a través de `this.$root.$data`. Ahora tenemos una sola fuente de verdad, pero depurar sería una pesadilla. Cualquier dato puede ser cambiado por cualquier parte de nuestra aplicación en cualquier momento, sin dejar rastro.
 
-To help solve this problem, we can adopt a **store pattern**:
+Para ayudar a resolver este problema, podemos adoptar un **store pattern**:
 
 ``` js
 var store = {
@@ -49,9 +49,9 @@ var store = {
 }
 ```
 
-Notice all actions that mutate the store's state are put inside the store itself. This type of centralized state management makes it easier to understand what type of mutations could happen and how are they triggered. Now when something goes wrong, we'll also have a log of what happened leading up to the bug.
+Note que todas las acciones que mutan el estado de la store son puestas dentro de la misma store. Este tipo de gestión centralizada del estado facilita la comprensión de qué tipo de mutaciones podrían producirse y cómo se desencadenan. Ahora, cuando algo va mal, también tendremos un registro de lo que ocurrió antes del error.
 
-In addition, each instance/component can still own and manage its own private state:
+Además, cada instancia/componente puede poseer y gestionar su propio estado privado:
 
 ``` js
 var vmA = new Vue({
@@ -71,8 +71,8 @@ var vmB = new Vue({
 
 ![State Management](/images/state.png)
 
-<p class="tip">It's important to note that you should never replace the original state object in your actions - the components and the store need to share reference to the same object in order for mutations to be observed.</p>
+<p class="tip">Es importante tener en cuenta que nunca debe reemplazar el objeto de estado original en sus acciones - los componentes y el store necesitan compartir la referencia al mismo objeto para que se observen las mutaciones.</p>
 
-As we continue developing the convention where components are never allowed to directly mutate state that belongs to a store, but should instead dispatch events that notify the store to perform actions, we eventually arrive at the [Flux](https://facebook.github.io/flux/) architecture. The benefit of this convention is we can record all state mutations happening to the store and implement advanced debugging helpers such as mutation logs, snapshots, and history re-rolls / time travel.
+A medida que continuamos desarrollando la convención es que nunca se permita que los componentes muten directamente el estado que pertenecen a un store, sino que deben enviar eventos que notifiquen al store para realizar acciones, finalmente llegamos a la arquitectura [Flux](https://facebook.github.io/flux/). El beneficio de esta convención es que podemos registrar todas las mutaciones de estado que ocurren en el store e implementar ayudantes de depuración avanzados como registros de mutaciones, instantáneas y re-rolls de historial / time travel.
 
-This brings us full circle back to [vuex](https://github.com/vuejs/vuex), so if you've read this far it's probably time to try it out!
+Esto nos lleva de vuelta a [vuex](https://github.com/vuejs/vuex), así que si has leído hasta aquí, ¡probablemente sea el momento de probarlo!
