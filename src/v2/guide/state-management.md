@@ -73,6 +73,6 @@ var vmB = new Vue({
 
 <p class="tip">Es importante tener en cuenta que nunca debe reemplazar el objeto de estado original en sus acciones - los componentes y el store necesitan compartir la referencia al mismo objeto para que se observen las mutaciones.</p>
 
-A medida que continuamos desarrollando la convención es que nunca se permita que los componentes muten directamente el estado que pertenecen a un store, sino que deben enviar eventos que notifiquen al store para realizar acciones, finalmente llegamos a la arquitectura [Flux](https://facebook.github.io/flux/). El beneficio de esta convención es que podemos registrar todas las mutaciones de estado que ocurren en el store e implementar ayudantes de depuración avanzados como registros de mutaciones, instantáneas y re-rolls de historial / time travel.
+A medida que continuamos desarrollando la convención es que nunca se permita que los componentes muten directamente el estado que pertenecen a un store, sino que deben enviar eventos que notifiquen al store para realizar acciones, finalmente llegamos a la arquitectura [Flux](https://facebook.github.io/flux/). El beneficio de esta convención es que podemos registrar todas las mutaciones de estado que ocurren en el store e implemenentar funciones de depuración avanzada como registros de mutaciones, instantáneas y re-rolls de historial / time travel.
 
 Esto nos lleva de vuelta a [vuex](https://github.com/vuejs/vuex), así que si has leído hasta aquí, ¡probablemente sea el momento de probarlo!
