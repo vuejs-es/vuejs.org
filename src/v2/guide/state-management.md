@@ -6,7 +6,7 @@ order: 502
 
 ## Implementación oficial similar a Flux
 
-Las aplicaciones de gran tamaño suelen ser cada vez más complejas, debido a la existencia de múltiples estados dispersos en muchos componentes y a las interacciones entre ellos. Para resolver este problema, Vue ofrece [vuex](https://github.com/vuejs/vuex): nuestra propia biblioteca de gestión de estados inspirada en Elm. Incluso se integra en [vue-devtools](https://github.com/vuejs/vue-devtools), proporcionando un acceso de configuración cero al time travel.
+Las aplicaciones de gran tamaño suelen ser cada vez más complejas, debido a la existencia de múltiples estados dispersos en muchos componentes y a las interacciones entre ellos. Para resolver este problema, Vue ofrece [vuex](https://github.com/vuejs/vuex): nuestra propia biblioteca de gestión de estados inspirada en Elm. Incluso se integra en [vue-devtools](https://github.com/vuejs/vue-devtools), proporcionando un acceso de configuración cero al _time travel_.
 
 ### Informacion para desarrolladores de React
 
@@ -14,7 +14,7 @@ Si vienes de React, te estarás preguntando cómo se compara vuex con [redux](ht
 
 ## Administración de estados sencilla desde el principio
 
-A menudo se pasa por alto que la fuente de la verdad en las aplicaciones Vue es el objeto `data` en bruto - una instancia Vue sólo permite el acceso a los proxys. Por lo tanto, si tienes una pieza de estado que debería ser compartida por múltiples instancias, puedes compartirla por identidad:
+A menudo se pasa por alto que la fuente de la verdad en las aplicaciones Vue es el objeto `data` en bruto - una instancia Vue simplemente gestiona el acceso al mismo. Por lo tanto, si tienes una pieza de estado que debería ser compartida por múltiples instancias, puedes compartirla por identidad:
 
 ``` js
 const sourceOfTruth = {}
@@ -28,7 +28,7 @@ const vmB = new Vue({
 })
 ```
 
-Ahora, siempre que `sourceOfTruth` esté mutado, tanto `vmA` como `vmB` actualizarán sus vistas automáticamente. Los subcomponentes dentro de cada una de estas instancias también tendrían acceso a través de `this.$root.$data`. Ahora tenemos una sola fuente de verdad, pero depurar sería una pesadilla. Cualquier dato puede ser cambiado por cualquier parte de nuestra aplicación en cualquier momento, sin dejar rastro.
+Ahora, siempre que `sourceOfTruth` es mutado, tanto `vmA` como `vmB` actualizarán sus vistas automáticamente. Los subcomponentes dentro de cada una de estas instancias también tendrían acceso a través de `this.$root.$data`. Ahora tenemos una sola fuente de la verdad, pero depurar sería una pesadilla. Cualquier dato podría ser cambiado por cualquier parte de nuestra aplicación en cualquier momento, sin dejar rastro.
 
 Para ayudar a resolver este problema, podemos adoptar un **store pattern**:
 
@@ -71,8 +71,8 @@ var vmB = new Vue({
 
 ![State Management](/images/state.png)
 
-<p class="tip">Es importante tener en cuenta que nunca debe reemplazar el objeto de estado original en sus acciones - los componentes y el store necesitan compartir la referencia al mismo objeto para que se observen las mutaciones.</p>
+<p class="tip">Es importante tener en cuenta que nunca debe reemplazar el objeto de estado original en sus acciones - los componentes y el _store_ necesitan compartir la referencia al mismo objeto para que se observen las mutaciones.</p>
 
-A medida que continuamos desarrollando la convención es que nunca se permita que los componentes muten directamente el estado que pertenecen a un store, sino que deben enviar eventos que notifiquen al store para realizar acciones, finalmente llegamos a la arquitectura [Flux](https://facebook.github.io/flux/). El beneficio de esta convención es que podemos registrar todas las mutaciones de estado que ocurren en el store e implemenentar funciones de depuración avanzada como registros de mutaciones, instantáneas y re-rolls de historial / time travel.
+A medida que continuamos desarrollando la convención en la que nunca se permite que los componentes muten directamente el estado que pertenece a un _store_, sino que deben enviar eventos que notifiquen al _store_ para realizar acciones, finalmente llegamos a la arquitectura [Flux](https://facebook.github.io/flux/). El beneficio de esta convención es que podemos registrar todas las mutaciones de estado que ocurren en el _store_ e implemenentar funciones de depuración avanzada como registros de mutaciones, instantáneas, acceso al historial / _time travel_.
 
 Esto nos lleva de vuelta a [vuex](https://github.com/vuejs/vuex), así que si has leído hasta aquí, ¡probablemente sea el momento de probarlo!
