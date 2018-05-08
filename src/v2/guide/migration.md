@@ -14,27 +14,27 @@ order: 701
 
 1. Comience ejecutando el [asistente de migración](https://github.com/vuejs/vue-migration-helper) en un proyecto actual. Hemos minimizado y comprimido cuidadosamente un desarrollo de Vue superior en una interfaz de línea de comando simple. Así, cada vez que se reconoce una característica obsoleta, le informa, ofrece sugerencias y proporciona enlaces a más información.
 
-2. Después de eso, navegue por la tabla de contenido de esta página en la barra lateral. Si ve un tema que puede verse afectado, pero que el asistente de migración no captó, compruébelo.
+2. Después de eso, navegue por la tabla de contenido de esta página en la barra lateral. Si ve un tema que puede afectarle, pero que el asistente de migración no captó, compruébelo.
 
 3. Si usted tiene algunos tests, ejecútelos y vea lo que aún falla. Sino tiene test, solo abra la aplicación en su navegador y esté atento a las advertencias o errores mientras navega.
 
-4. Por ahora, su aplicación debería migrarse por completo. Si aún tiene ganas de más, puede leer el resto de esta página [desde el principio](index.html). Muchas partes serán demasiado fáciles, ya que ya está familiarizado con los conceptos básicos.
+4. En este punto, su aplicación debería estar migrada por completo. Si aún tiene ganas de más, puede leer el resto de esta página [desde el principio](index.html). Muchas partes serán demasiado fáciles, ya que ya está familiarizado con los conceptos básicos.
 
-> ¿Cuánto tiempo le llevará migrar un aplicación de Vue 1.x a 2.0?
+> ¿Cuánto tiempo le llevará migrar una aplicación de Vue 1.x a 2.0?
 
 Depende de algunos factores:
 
 - El tamaño de su aplicación (en las aplicaciones pequeñas y medianas probablemente será menos de un día)
 
-- Cuantas veces se distraiga y comience a jugar con una nueva función genial.😉 &nbsp;No le juzgamos, ¡a nosotros también nos pasó mientras construíamos 2.0!
+- Cuantas veces se distrae y comienza a jugar con una nueva función genial.😉 &nbsp;No le juzgamos, ¡a nosotros también nos pasó mientras construíamos 2.0!
 
-- Las funciones obsoletas que esté usando. La mayoría se pueden actualizar con Buscar y reemplazar, pero otras pueden tardar unos minutos. Si actualmente no está siguiendo las mejores prácticas, Vue 2.0 también intentará forzarle más a hacerlo. Esto es algo bueno a largo plazo, pero también podría significar un refactor (aunque posiblemente le retrase) significativo.
+- Las funciones obsoletas que esté usando. La mayoría se pueden actualizar con Buscar y Reemplazar, pero otras pueden tardar unos minutos. Si actualmente no está siguiendo las mejores prácticas, Vue 2.0 también intentará forzarle más a hacerlo. Esto es algo bueno a largo plazo, pero también podría significar una actualización (aunque posiblemente le retrase) significativa.
 
 > Si actualiza a Vue 2, ¿también tendrá que actualizar Vuex y Vue Router?
 
 Solo Vue Router 2 es compatible con Vue 2, así que sí, también tendrá que seguir la [ruta de migración de Vue Router](migration-vue-router.html). Afortunadamente, la mayoría de aplicaciones no tienen mucho código de rutas, por lo que probablemente no le tome más de una hora.
 
-En cuanto a Vuex, incluso la versión 0.8 es compatible con Vue 2, por lo que no está obligado a actualizar. La única razón por la que es posible que desee actualizar de inmediato es aprovechar las nuevas funciones de Vuex 2, como los módulos y el boilerplate reducido.
+En cuanto a Vuex, incluso la versión 0.8 es compatible con Vue 2, por lo que no está obligado a actualizar. La única razón por la que es posible que desee actualizar de inmediato es aprovechar las nuevas funciones de Vuex 2, como los módulos y el _boilerplate_ reducido.
 
 ## Templates
 
