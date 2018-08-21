@@ -1290,7 +1290,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   <span>{{msg}}</span>
   ```
 
-- **Vea también:** [Sintáxis Data Binding - interpolaciones](../guide/syntax.html#Text)
+- **Vea también:** [Sintáxis de vinculación de datos - interpolaciones](../guide/syntax.html#Text)
 
 ### v-html
 
@@ -1307,7 +1307,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   ```html
   <div v-html="html"></div>
   ```
-- **Vea también:** [Sintáxis Data Binding - interpolaciones](../guide/syntax.html#Raw-HTML)
+- **Vea también:** [Sintáxis de vinculación de datos - interpolaciones](../guide/syntax.html#Raw-HTML)
 
 ### v-show
 
@@ -1422,7 +1422,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 ### v-on
 
-- **Shorthand:** `@`
+- **Forma abreviada:** `@`
 
 - **Espera:** `Function | Inline Statement`
 
@@ -1453,7 +1453,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   <!-- declaración en línea -->
   <button v-on:click="doThat('hello', $event)"></button>
 
-  <!-- shorthand -->
+  <!-- Forma abreviada -->
   <button @click="doThis"></button>
 
   <!-- detener propagación -->
@@ -1493,7 +1493,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 ### v-bind
 
-- **Shorthand:** `:`
+- **Forma abreviada:** `:`
 
 - **Espera:** `any (with argument) | Object (without argument)`
 
@@ -1509,38 +1509,38 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Cuando se utiliza para enlazar el atributo `class` o` style`, admite tipos de valores adicionales como Array u Objects. Consulte la sección de la guía vinculada a continuación para obtener más detalles.
 
-  Cuando se usa para bindear prop éste debe declararse correctamente en el componente hijo.
+  Cuando se usa para vincular una propiedad éste debe declararse correctamente en el componente hijo.
 
   Cuando se usa sin un argumento, se puede usar para vincular un objeto que contiene pares de nombre-valor de atributo. Tenga en cuenta que en este modo `class` y `style` no son compatibles con Array u Objects.
 
 - **Ejemplo:**
 
   ```html
-  <!-- bindear un atributo -->
+  <!-- vincular un atributo -->
   <img v-bind:src="imageSrc">
 
-  <!-- shorthand -->
+  <!-- Forma abreviada -->
   <img :src="imageSrc">
 
   <!-- concatenar cadenas de texto en una línea -->
   <img :src="'/path/to/images/' + fileName">
 
-  <!-- bindear clases -->
+  <!-- vincular clases -->
   <div :class="{ red: isRed }"></div>
   <div :class="[classA, classB]"></div>
   <div :class="[classA, { classB: isB, classC: isC }]">
 
-  <!-- bindear estilos -->
+  <!-- Vincular estilos -->
   <div :style="{ fontSize: size + 'px' }"></div>
   <div :style="[styleObjectA, styleObjectB]"></div>
 
-  <!-- bindear un objeto con atributos -->
+  <!-- Vincular un objeto con atributos -->
   <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
 
-  <!--Bindear un atributo del DOM con un modificador prop -->
+  <!--Vincular un atributo del DOM con un modificador prop -->
   <div v-bind:text-content.prop="text"></div>
 
-  <!-- prop binding. "prop" debe declararse en my-component. -->
+  <!-- Vincular una propiedad. "prop" debe declararse en my-component. -->
   <my-component :prop="someThing"></my-component>
 
   <!-- XLink -->
@@ -1556,8 +1556,8 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   `.camel` no es necesario si está utilizando templates con cadenas de texto o compilando con `vue-loader`/`vueify`.
 
 - **Vea también:**
-  - [Class and Style Bindings](../guide/class-and-style.html)
-  - [Componentes - Componente Props](../guide/components.html#Props)
+  - [Vinculación de clases y estilos](../guide/class-and-style.html)
+  - [Componentes - Componente de propiedades](../guide/components.html#Props)
 
 ### v-model
 
