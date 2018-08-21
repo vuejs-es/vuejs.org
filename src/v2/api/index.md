@@ -1280,7 +1280,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Detalles:**
 
-  Actualiza los elementos `textContent`. Si necesita actualizar la parte de `textContent`, debe usar `{% raw %}{{ Mustache }}{% endraw %}` interpolaciones.
+  Actualiza los elementos `textContent`. Si necesita actualizar la parte de `textContent`, debe usar interpolaciones `{% raw %}{{ Mustache }}{% endraw %}`.
 
 - **Ejemplo:**
 
@@ -1290,7 +1290,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   <span>{{msg}}</span>
   ```
 
-- **Vea también:** [Sintáxis de vinculación de datos - interpolaciones](../guide/syntax.html#Text)
+- **Vea también:** [Sintaxis de vinculación de datos - interpolaciones](../guide/syntax.html#Text)
 
 ### v-html
 
@@ -1307,7 +1307,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   ```html
   <div v-html="html"></div>
   ```
-- **Vea también:** [Sintáxis de vinculación de datos - interpolaciones](../guide/syntax.html#Raw-HTML)
+- **Vea también:** [Sintaxis de vinculación de datos - interpolaciones](../guide/syntax.html#Raw-HTML)
 
 ### v-show
 
@@ -1588,7 +1588,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Modo de Uso:**
 
-  Omita la compilación de este elemento y todos sus hijos. Puede usar esto para mostrar etiquetas de mustache sin formato. Omitir un gran número de nodos sin directivas puede acelerar la compilación.
+  Omite la compilación de este elemento y todos sus hijos. Puede usar lo para mostrar etiquetas de mustache sin formato. Omitir un gran número de nodos sin directivas puede acelerar la compilación.
 
 - **Ejemplo:**
 
@@ -1626,7 +1626,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Detalles:**
 
-  Renderice el elemento y componente ** una vez ** solamente. En las repeticiones posteriores, el elemento/componente y todos sus elementos secundarios se tratarán como contenido estático y se omitirán. Esto se puede usar para optimizar el rendimiento de la actualización.
+  Renderice el elemento y componente **una vez** solamente. En las repeticiones posteriores, el elemento/componente y todos sus elementos secundarios se tratarán como contenido estático y se omitirán. Esto se puede usar para optimizar el rendimiento de la actualización.
 
   ```html
   <!-- elemento único -->
