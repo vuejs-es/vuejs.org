@@ -966,6 +966,7 @@ Hasta ahora, hemos logrado realizar transiciones para:
 ¿Qué tenemos para el caso en que tengamos una lista completa de elementos que queramos renderizar simultáneamente, por ejemplo con `v-for`? En ese caso, usaremos el componente `<transition-group>`. Pero antes que lo veamos en un ejemplo, hay algunas cosas que es importante conocer sobre éste componente.
 
 - A diferencia de `<transition>`, renderiza un elemento `<span>` por defecto. Puede cambiar el elemento que es renderizado con el atributo `tag`.
+- Los [modos de transición](#Modos-de-Transición) no están disponibles, porque ya no se está alternando dentro de elementos mutuamente exclusivos.
 - Los elementos contenidos **siempre requieren** tener un atributo único `key`
 
 ### Transiciones de Entrada/Salida en Listas
