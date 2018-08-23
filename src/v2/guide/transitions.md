@@ -452,7 +452,7 @@ methods: {
 
 Estos hooks pueden ser usados junto a transiciones/animaciones CSS o por cuenta propia.
 
-<p class="tip">Cuando use transiciones JavaScript, **los callbacks `done` son requeridos para los hooks `enter` y `leave`**. De otra forma, serán llamados síncronamente y la transición finalizará imediatamente.</p>
+<p class="tip">Cuando use transiciones JavaScript, **los callbacks `done` son requeridos para los hooks `enter` y `leave`**. De otra forma, los hooks serán llamados síncronamente y la transición finalizará imediatamente.</p>
 
 <p class="tip">También es buena idea añadir explícitamente `v-bind:css="false"` para las transiciones JavaScript, de modo que Vue pueda obviar la detección de CSS. Esto también previene que algunas reglas CSS accidentalmente interfieran en la transición.</p>
 
