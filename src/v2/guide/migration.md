@@ -6,7 +6,7 @@ order: 701
 
 ## Preguntas frecuentes
 
-> Woah - ¡esta página es súper larga! ¿Eso significa que la versión 2.0 es completamente diferente y tendrá que aprender los conceptos básicos una y otra vez? ¿la migración será prácticamente imposible?
+> Woah - ¡esta página es súper larga! ¿Eso significa que la versión 2.0 es completamente diferente y tendré que aprender los conceptos básicos una y otra vez? ¿la migración será prácticamente imposible?
 
 ¡Me alegra que lo pregunte! La respuesta es no. Alrededor del 90% de la API es la misma y los conceptos básicos no han cambiado. Es largo porque nos gusta ofrecer explicaciones muy detalladas e incluir muchos ejemplos. Quédese tranquilo, __¡esto no es algo que tenga que leer de arriba abajo!__
 
@@ -38,16 +38,15 @@ En cuanto a Vuex, incluso la versión 0.8 es compatible con Vue 2, por lo que no
 
 ## Templates
 
-### Fragment Instances <sup>removed</sup>
+### Instancias fragmentadas <sup>removed</sup>
 
-Every component must have exactly one root element. Fragment instances are no longer allowed. If you have a template like this:
+Todo componente debe tener exactamente un elemento padre. Las instancias fragmentadas ya no son permitidas. Si usted tiene un template como este:
 
 ``` html
 <p>foo</p>
 <p>bar</p>
 ```
-
-It's recommended to wrap the entire contents in a new element, like this:
+Es recomendado envolver el contenido completo en un nuevo elemento, como se muestra a continuación:
 
 ``` html
 <div>
@@ -58,38 +57,38 @@ It's recommended to wrap the entire contents in a new element, like this:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run your end-to-end test suite or app after upgrading and look for <strong>console warnings</strong> about multiple root elements in a template.</p>
+  <h4>Camino a la actualización</h4>
+  <p>Ejecute su entorno de pruebas end-to-end, o su aplicación, después de actualizar y busque <strong>advertencias en la terminal</strong> que se refieran a múltiples elementos padre en un template <em>"multiple root elements in a template"</em>.</p>
 </div>
 {% endraw %}
 
-## Lifecycle Hooks
+## Hooks de ciclo de vida
 
-### `beforeCompile` <sup>removed</sup>
+### `beforeCompile` <sup>eliminado</sup>
 
-Use the `created` hook instead.
+Use en su lugar el hook `created`.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>Camino a la actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su proyecto para encontrar todos las ocurrencias de este hook.</p>
 </div>
 {% endraw %}
 
-### `compiled` <sup>replaced</sup>
+### `compiled` <sup>reemplazado</sup>
 
-Use the new `mounted` hook instead.
+Use el nuevo hook `mounted` en su lugar.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>Camino a la actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su proyecto para encontrar todos las ocurrencias de este hook.</p>
 </div>
 {% endraw %}
 
-### `attached` <sup>removed</sup>
+### `attached` <sup>eliminado</sup>
 
-Use a custom in-DOM check in other hooks. For example, to replace:
+Utilize una verificación <em>in-DOM</em> personalizada en otros hooks. Por ejemplo, reemplace: 
 
 ``` js
 attached: function () {
@@ -97,7 +96,7 @@ attached: function () {
 }
 ```
 
-You could use:
+Por:
 
 ``` js
 mounted: function () {
@@ -109,14 +108,14 @@ mounted: function () {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>Camino a la actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su proyecto para encontrar todos las ocurrencias de este hook.</p>
 </div>
 {% endraw %}
 
-### `detached` <sup>removed</sup>
+### `detached` <sup>eliminado</sup>
 
-Use a custom in-DOM check in other hooks. For example, to replace:
+Utilize una verificación <em>in-DOM</em> personalizada en otros hooks. Por ejemplo, reemplace: 
 
 ``` js
 detached: function () {
@@ -124,7 +123,7 @@ detached: function () {
 }
 ```
 
-You could use:
+Por:
 
 ``` js
 destroyed: function () {
@@ -136,25 +135,25 @@ destroyed: function () {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>Camino a la actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su proyecto para encontrar todos las ocurrencias de este hook.</p>
 </div>
 {% endraw %}
 
-### `init` <sup>renamed</sup>
+### `init` <sup>renombrado</sup>
 
-Use the new `beforeCreate` hook instead, which is essentially the same thing. It was renamed for consistency with other lifecycle methods.
+Use el nuevo hook `beforeCreate` en su lugar, son esencialmente lo mismo. Fue renombrado por consistencia con otros métodos del ciclo de vida.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>Camino a la actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su proyecto para encontrar todos las ocurrencias de este hook.</p>
 </div>
 {% endraw %}
 
-### `ready` <sup>replaced</sup>
+### `ready` <sup>reemplazado</sup>
 
-Use the new `mounted` hook instead. It should be noted though that with `mounted`, there's no guarantee to be in-document. For that, also include `Vue.nextTick`/`vm.$nextTick`. For example:
+Use el nuevo hook `mounted` en su lugar. Debe notarse que con `mounted` no hay garantía de que `this.$el` está en el documento, de ser necesario incluya también `Vue.nextTick`/`vm.$nextTick`. Por ejemplo:
 
 ``` js
 mounted: function () {
@@ -166,55 +165,57 @@ mounted: function () {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find all examples of this hook.</p>
+  <h4>Camino a la actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su proyecto para encontrar todos las ocurrencias de este hook.</p>
 </div>
 {% endraw %}
 
 ## `v-for`
 
-### `v-for` Argument Order for Arrays <sup>changed</sup>
+### `v-for` Orden de los argumentos<sup>cambiado</sup>
 
-When including an `index`, the argument order for arrays used to be `(index, value)`. It is now `(value, index)` to be more consistent with JavaScript's native array methods such as `forEach` and `map`.
-
-{% raw %}
-<div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete argument order. Note that if you name your index arguments something unusual like <code>position</code> or <code>num</code>, the helper will not flag them.</p>
-</div>
-{% endraw %}
-
-### `v-for` Argument Order for Objects <sup>changed</sup>
-
-When including a `key`, the argument order for objects used to be `(key, value)`. It is now `(value, key)` to be more consistent with common object iterators such as lodash's.
+Cuando se incluía un `index`, el orden de los argumentos en el arreglo solía ser `(index, value)`. Ahora es `(value, index)` para mayor consistencia con los métodos nativos de `Array` de Javascript como `forEach` y `map`.
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the obsolete argument order. Note that if you name your key arguments something like <code>name</code> or <code>property</code>, the helper will not flag them.</p>
+  <h4>Camino a la actualización</h4>
+  <p>Ejecute el<a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su proyecto para encontrar ocurrencias de un orden obsoleto de los argumentos. Note que si usted nombraba sus argumentos de manera inusual como <code>position</code> o <code>num</code> el asistente de migración no los podrá detectar.</p>
 </div>
 {% endraw %}
 
-### `$index` and `$key` <sup>removed</sup>
+### `v-for` Orden de los argumentos para objetos <sup>cambiado</sup>
 
-The implicitly assigned `$index` and `$key` variables have been removed in favor of explicitly defining them in `v-for`. This makes the code easier to read for developers less experienced with Vue and also results in much clearer behavior when dealing with nested loops.
+Cuando se incluía una `key`, el orden de los argumentos para los objetos solía ser `(key, value)`. Ahora es `(value, key)` para mayor consistencia con iteradores de objetos comunes como <em>lodash's</em>
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of these removed variables. If you miss any, you should also see <strong>console errors</strong> such as: <code>Uncaught ReferenceError: $index is not defined</code></p>
+  <h4>Camino a la actualización</h4>
+  <p>Ejecute el<a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su proyecto para encontrar ocurrencias de un orden obsoleto de los argumentos. Note que si usted nombraba sus argumentos de manera inusual como <code>name</code> o <code>property</code> el asistente de migración no los podrá detectar.</p>
 </div>
 {% endraw %}
 
-### `track-by` <sup>replaced</sup>
+### `$index` y `$key` <sup>eliminados</sup>
 
-`track-by` has been replaced with `key`, which works like any other attribute: without the `v-bind:` or `:` prefix, it is treated as a literal string. In most cases, you'd want to use a dynamic binding which expects a full expression instead of a key. For example, in place of:
+Las variables implícitas `$index` y `$key` fueron eliminadas en favor de definirlas explícitamente en `v-for`. Esto mejora la legibilidad del código para los desarrolladores menos experimentados con Vue y además resulta en un comportamiento mucho más claro cuando se lidia con ciclos anidados.
+
+{% raw %}
+<div class="upgrade-path">
+  <h4>Camino a la actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su proyecto para encontrar ocurrencias de estas variables eliminadas. Si no encuentra alguna, también debería revisar otros <strong>errores de consola</strong> como: <code>Uncaught ReferenceError: $index is not defined</code></p>
+</div>
+{% endraw %}
+
+### `track-by` <sup>reemplazado</sup>
+
+`track-by` fue reemplazado por `key`, que funciona como cualquier otro atributo: sin el prefijo `v-bind` o  `:` es tratado como un `string` literal. En la mayoría de los casos, se querrá enlazar dinámicamente una expresión en la propiedad `key`, por lo que se usará `v-bind` o `:`
+
+Por ejemplo, en lugar de:
 
 ``` html
 <div v-for="item in items" track-by="id">
 ```
 
-You would now write:
+Ahora debería escribir:
 
 ``` html
 <div v-for="item in items" v-bind:key="item.id">
@@ -222,8 +223,8 @@ You would now write:
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of <code>track-by</code>.</p>
+  <h4>Camino a la actualización</h4>
+  <p>Ejecute el <a href="https://github.com/vuejs/vue-migration-helper">asistente de migración</a> en su proyecto para encontrar ocurrencias de <code>track-by</code>.</p>
 </div>
 {% endraw %}
 
@@ -644,7 +645,7 @@ Since `v-ref` is no longer a directive, but a special attribute, it can also be 
 <p v-for="item in items" v-bind:ref="'item' + item.id"></p>
 ```
 
-Previously, `v-el`/`v-ref` combined with `v-for` would produce an array of elements/components, because there was no way to give each item a unique name. You can still achieve this behavior by given each item the same `ref`:
+Previously, `v-el`/`v-ref` combined with `v-for` would produce an array of elements/components, because there was no way to give each item a unique name. You can still achieve this behavior by giving each item the same `ref`:
 
 ``` html
 <p v-for="item in items" ref="items"></p>
@@ -786,7 +787,7 @@ Vue.config.keyCodes.f1 = 112
 
 `$dispatch` and `$broadcast` have been removed in favor of more explicitly cross-component communication and more maintainable state management solutions, such as [Vuex](https://github.com/vuejs/vuex).
 
-The problem is event flows that depend on a component's tree structure can be hard to reason about and very brittle when the tree becomes large. It doesn't scale well and we don't want to set you up for pain later. `$dispatch` and `$broadcast` also do not solve communication between sibling components.
+The problem is event flows that depend on a component's tree structure can be hard to reason about and are very brittle when the tree becomes large. They don't scale well and only set you up for pain later. `$dispatch` and `$broadcast` also do not solve communication between sibling components.
 
 One of the most common uses for these methods is to communicate between a parent and its direct children. In these cases, you can actually [listen to an `$emit` from a child with `v-on`](components.html#Form-Input-Components-using-Custom-Events). This allows you to keep the convenience of events with added explicitness.
 
