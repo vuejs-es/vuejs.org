@@ -1417,7 +1417,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   El uso detallado de `v-for` se explica en la sección de guía vinculada a continuación.
 
 - **Vea también:**
-  - [List Rendering](../guide/list.html)
+  - [Renderización de Listas](../guide/list.html)
   - [key](../guide/list.html#key)
 
 ### v-on
@@ -1497,21 +1497,21 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Espera:** `any (with argument) | Object (without argument)`
 
-- **Argumento:** `attrOrProp (optional)`
+- **Argumento:** `attrOrProp (opcional)`
 
 - **Modificadores:**
-  - `.prop` - Enlaza una propiedad en el DOM en lugar de un atributo. ([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
+  - `.prop` - Enlaza una propiedad en el DOM en lugar de un atributo. ([¿Cuál es la diferencia?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
   - `.camel` - transforma el nombre del atributo kebab-case en camelCase. (soportado desde 2.1.0)
 
 - **Modo de Uso:**
 
   Vincula dinámicamente uno o más atributos, o un componente prop a una expresión.
 
-  Cuando se utiliza para enlazar el atributo `class` o` style`, admite tipos de valores adicionales como Array u Objects. Consulte la sección de la guía vinculada a continuación para obtener más detalles.
+  Cuando se utiliza para enlazar el atributo `class` o` style`, admite tipos de valores adicionales como Array u Objetos. Consulte la sección de la guía vinculada a continuación para obtener más detalles.
 
   Cuando se usa para vincular una propiedad éste debe declararse correctamente en el componente hijo.
 
-  Cuando se usa sin un argumento, se puede usar para vincular un objeto que contiene pares de nombre-valor de atributo. Tenga en cuenta que en este modo `class` y `style` no son compatibles con Array u Objects.
+  Cuando se usa sin un argumento, se puede usar para vincular un objeto que contiene pares de nombre-valor de atributo. Tenga en cuenta que en este modo `class` y `style` no son compatibles con Array u Objetos.
 
 - **Ejemplo:**
 
@@ -1572,7 +1572,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 - **Modificadores:**
   - [`.lazy`](../guide/forms.html#lazy) - escucha los eventos `change` en lugar de` input`
   - [`.number`](../guide/forms.html#number) - cambia un input de texto a números
-  - [`.trim`](../guide/forms.html#trim) - trim input
+  - [`.trim`](../guide/forms.html#trim) - elimina los espacios en blanco dentro de un input
 
 - **Modo de Uso:**
 
@@ -1618,7 +1618,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   </div>
   ```
 
-  El `<div>` no estará visible hasta que la compilación haya finalizado
+  El `<div>` no estará visible hasta que la compilación haya finalizado.
 
 ### v-once
 
