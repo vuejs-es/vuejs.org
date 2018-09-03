@@ -1319,7 +1319,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Esta directiva desencadena transiciones cuando su condición cambia.
 
-- **Vea también:** [Rendering condicional - v-show](../guide/conditional.html#v-show)
+- **Vea también:** [Renderización condicional - v-show](../guide/conditional.html#v-show)
 
 ### v-if
 
@@ -1331,7 +1331,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Esta directiva desencadena transiciones cuando su condición cambia.
 
-- **Vea también:** [Rendering condicional - v-if](../guide/conditional.html)
+- **Vea también:** [Renderización condicional - v-if](../guide/conditional.html)
 
 ### v-else
 
@@ -1353,7 +1353,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   ```
 
 - **Vea también:**
-  - [Rendering condicional - v-else](../guide/conditional.html#v-else)
+  - [Renderización condicional - v-else](../guide/conditional.html#v-else)
 
 ### v-else-if
 
@@ -1382,7 +1382,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   </div>
   ```
 
-- **Vea también:** [Rendering condicional - v-else-if](../guide/conditional.html#v-else-if)
+- **Vea también:** [Renderización condicional - v-else-if](../guide/conditional.html#v-else-if)
 
 ### v-for
 
