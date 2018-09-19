@@ -1440,7 +1440,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Adjunta un detector de eventos al elemento. El tipo de evento se denota por el argumento. La expresión puede ser un nombre de método o una instrucción en línea, o simplemente se omite cuando hay modificadores presentes.
 
-  Cuando se usa en un elemento normal, solo escucha **eventos DOM nativos**. Cuando se utiliza en un componente de elemento personalizado, también escucha **eventos personalizados** emitidos en ese componente secundario.
+  Cuando se usa en un elemento normal, solo escucha **eventos DOM nativos**. Cuando se utiliza en un componente de elemento personalizado, también escucha **eventos personalizados** emitidos en ese componente.
 
   Al escuchar eventos de DOM nativos, el método recibe el evento nativo como único argumento. Si usa la instrucción en línea, la instrucción tiene acceso a la propiedad especial `$event`: `v-on: click="handle('ok', $event)"`.
 
@@ -1475,7 +1475,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   <input @keyup.13="onEnter">
   ```
 
-  Escuchar eventos personalizados en un componente secundario (se llama al controlador cuando se emite "my-event" en el hijo):
+  Escuchar eventos personalizados en un componente (se llama al controlador cuando se emite "my-event" en el hijo):
 
   ```html
   <my-component @my-event="handleThis"></my-component>
@@ -1507,7 +1507,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Vincula dinámicamente uno o más atributos, o un componente prop a una expresión.
 
-  Cuando se utiliza para enlazar el atributo `class` o` style`, admite tipos de valores adicionales como Array u Objetos. Consulte la sección de la guía vinculada a continuación para obtener más detalles.
+  Cuando se utiliza para enlazar el atributo `class` o `style`, admite tipos de valores adicionales como Array u Objetos. Consulte la sección de la guía vinculada a continuación para obtener más detalles.
 
   Cuando se usa para vincular una propiedad éste debe declararse correctamente en el componente hijo.
 
@@ -1537,7 +1537,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   <!-- Vincular un objeto con atributos -->
   <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
 
-  <!--Vincular un atributo del DOM con un modificador prop -->
+  <!-- Vincular un atributo del DOM con un modificador prop -->
   <div v-bind:text-content.prop="text"></div>
 
   <!-- Vincular una propiedad. "prop" debe declararse en my-component. -->
@@ -1547,7 +1547,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   <svg><a :xlink:special="foo"></a></svg>
   ```
 
-  El modificador `.camel` permite 'camelizar' un nombre de atributo` v-bind` cuando se usan plantillas in-DOM, p. el atributo SVG `viewBox`:
+  El modificador `.camel` permite 'camelizar' un nombre de atributo` v-bind` cuando se usan plantillas in-DOM, por ejemplo, el atributo SVG `viewBox`:
 
   ``` html
   <svg :view-box.camel="viewBox"></svg>
@@ -1685,7 +1685,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Espera:** `string`
 
-  `ref` se usa para registrar un referencia a un elemento o un componente secundario. La referencia se registrará en el objeto `$refs` del componente principal. Si se usa en un elemento DOM simple, la referencia será ese elemento; si se usa en un componente secundario, la referencia será instancia del componente:
+  `ref` se usa para registrar un referencia a un elemento o un componente hijo. La referencia se registrará en el objeto `$refs` del componente padre. Si se usa en un elemento DOM simple, la referencia será ese elemento; si se usa en un componente hijo, la referencia será instancia del componente:
 
   ``` html
   <!-- vm.$refs.p será el nodo DOM -->
@@ -1705,7 +1705,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Espera:** `string`
 
-  Se usa en contenido insertado en componentes secundarios para indicar a qué `slot` nombrado pertenece el contenido.
+  Se usa en contenido insertado en componentes hijos para indicar a qué `slot` nombrado pertenece el contenido.
 
   Para un uso detallado, consulte la sección de guía vinculada a continuación.
 
