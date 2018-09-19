@@ -1474,7 +1474,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   <!-- modificador de key usando keyCode -->
   <input @keyup.13="onEnter">
   ```
-  
+
   Escuchar eventos personalizados en un componente (se llama al controlador cuando se emite "my-event" en el hijo):
 
   ```html
@@ -1657,7 +1657,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   El atributo especial `key` se usa principalmente como una pista para el algoritmo DOM virtual de Vue para identificar los VNodes cuando se difiere la nueva lista de nodos contra la lista anterior. Sin `keys`, Vue usa un algoritmo que minimiza el movimiento de los elementos e intenta  corregir/reutilizar elementos del mismo tipo tanto como sea posible. Con las `keys`, reordenará los elementos según el cambio de orden de las `keys`, y los elementos con `keys` que ya no estén presentes siempre serán eliminados/destruidos.
 
-  Los hijos del mismo padre común deben tener **keys únicas**. Las `key` duplicadas causarán errores de representación.
+  Los hijos del mismo padre común deben tener **keys únicas**. Las `keys` duplicadas causarán errores de representación.
 
   El caso de uso más común se combina con `v-for`:
 
