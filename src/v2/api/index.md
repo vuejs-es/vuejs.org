@@ -1474,7 +1474,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   <!-- modificador de key usando keyCode -->
   <input @keyup.13="onEnter">
   ```
-
+  
   Escuchar eventos personalizados en un componente (se llama al controlador cuando se emite "my-event" en el hijo):
 
   ```html
@@ -1538,6 +1538,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
 
   <!-- Vincular un atributo del DOM con un modificador prop -->
+
   <div v-bind:text-content.prop="text"></div>
 
   <!-- Vincular una propiedad. "prop" debe declararse en my-component. -->
