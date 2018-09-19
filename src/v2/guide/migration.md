@@ -6,7 +6,7 @@ order: 701
 
 ## Preguntas frecuentes
 
-> Woah - ¡esta página es súper larga! ¿Eso significa que la versión 2.0 es completamente diferente y tendrá que aprender los conceptos básicos una y otra vez? ¿la migración será prácticamente imposible?
+> Woah - ¡esta página es súper larga! ¿Eso significa que la versión 2.0 es completamente diferente y tendré que aprender los conceptos básicos una y otra vez y la migración será prácticamente imposible?
 
 ¡Me alegra que lo pregunte! La respuesta es no. Alrededor del 90% de la API es la misma y los conceptos básicos no han cambiado. Es largo porque nos gusta ofrecer explicaciones muy detalladas e incluir muchos ejemplos. Quédese tranquilo, __¡esto no es algo que tenga que leer de arriba abajo!__
 
@@ -20,7 +20,7 @@ order: 701
 
 4. En este punto, su aplicación debería estar migrada por completo. Si aún tiene ganas de más, puede leer el resto de esta página [desde el principio](index.html). Muchas partes serán demasiado fáciles, ya que ya está familiarizado con los conceptos básicos.
 
-> ¿Cuánto tiempo le llevará migrar una aplicación de Vue 1.x a 2.0?
+> ¿Cuánto tiempo me llevará migrar una aplicación de Vue 1.x a 2.0?
 
 Depende de algunos factores:
 
@@ -30,7 +30,7 @@ Depende de algunos factores:
 
 - Las funciones obsoletas que esté usando. La mayoría se pueden actualizar con Buscar y Reemplazar, pero otras pueden tardar unos minutos. Si actualmente no está siguiendo las mejores prácticas, Vue 2.0 también intentará forzarle más a hacerlo. Esto es algo bueno a largo plazo, pero también podría significar una actualización (aunque posiblemente le retrase) significativa.
 
-> Si actualiza a Vue 2, ¿también tendrá que actualizar Vuex y Vue Router?
+> Si actualizo a Vue 2, ¿también tendré que actualizar Vuex y Vue Router?
 
 Solo Vue Router 2 es compatible con Vue 2, así que sí, también tendrá que seguir la [ruta de migración de Vue Router](migration-vue-router.html). Afortunadamente, la mayoría de aplicaciones no tienen mucho código de rutas, por lo que probablemente no le tome más de una hora.
 
