@@ -1440,7 +1440,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Adjunta un detector de eventos al elemento. El tipo de evento se denota por el argumento. La expresión puede ser un nombre de método o una instrucción en línea, o simplemente se omite cuando hay modificadores presentes.
 
-  Cuando se usa en un elemento normal, solo escucha **eventos DOM nativos**. Cuando se utiliza en un componente de elemento personalizado, también escucha **eventos personalizados** emitidos en ese componente secundario.
+  Cuando se usa en un elemento normal, solo escucha **eventos DOM nativos**. Cuando se utiliza en un componente de elemento personalizado, también escucha **eventos personalizados** emitidos en ese componente.
 
   Al escuchar eventos de DOM nativos, el método recibe el evento nativo como único argumento. Si usa la instrucción en línea, la instrucción tiene acceso a la propiedad especial `$event`: `v-on: click="handle('ok', $event)"`.
 
@@ -1475,7 +1475,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   <input @keyup.13="onEnter">
   ```
 
-  Escuchar eventos personalizados en un componente secundario (se llama al controlador cuando se emite "my-event" en el hijo):
+  Escuchar eventos personalizados en un componente (se llama al controlador cuando se emite "my-event" en el hijo):
 
   ```html
   <my-component @my-event="handleThis"></my-component>
@@ -1507,7 +1507,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   Vincula dinámicamente uno o más atributos, o un componente prop a una expresión.
 
-  Cuando se utiliza para enlazar el atributo `class` o` style`, admite tipos de valores adicionales como Array u Objetos. Consulte la sección de la guía vinculada a continuación para obtener más detalles.
+  Cuando se utiliza para enlazar el atributo `class` o `style`, admite tipos de valores adicionales como Array u Objetos. Consulte la sección de la guía vinculada a continuación para obtener más detalles.
 
   Cuando se usa para vincular una propiedad éste debe declararse correctamente en el componente hijo.
 
@@ -1537,7 +1537,8 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   <!-- Vincular un objeto con atributos -->
   <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
 
-  <!--Vincular un atributo del DOM con un modificador prop -->
+  <!-- Vincular un atributo del DOM con un modificador prop -->
+
   <div v-bind:text-content.prop="text"></div>
 
   <!-- Vincular una propiedad. "prop" debe declararse en my-component. -->
@@ -1547,7 +1548,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   <svg><a :xlink:special="foo"></a></svg>
   ```
 
-  El modificador `.camel` permite 'camelizar' un nombre de atributo` v-bind` cuando se usan plantillas in-DOM, p. el atributo SVG `viewBox`:
+  El modificador `.camel` permite 'camelizar' un nombre de atributo` v-bind` cuando se usan plantillas in-DOM, por ejemplo, el atributo SVG `viewBox`:
 
   ``` html
   <svg :view-box.camel="viewBox"></svg>
@@ -1648,17 +1649,17 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   - [Sintaxis de enlace de datos: interpolaciones](../guide/syntax.html#Text)
   - [Componentes - Componentes estáticos con v-once](../guide/components.html#Cheap-Static-Components-with-v-once)
 
-## Special Attributes
+## Atributos especiales
 
 ### key
 
 - **Espera:** `string`
 
-  The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify VNodes when diffing the new list of nodes against the old list. Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
+  El atributo especial `key` se usa principalmente como una pista para el algoritmo DOM virtual de Vue para identificar los VNodes cuando se difiere la nueva lista de nodos contra la lista anterior. Sin `keys`, Vue usa un algoritmo que minimiza el movimiento de los elementos e intenta  corregir/reutilizar elementos del mismo tipo tanto como sea posible. Con las `keys`, reordenará los elementos según el cambio de orden de las `keys`, y los elementos con `keys` que ya no estén presentes siempre serán eliminados/destruidos.
 
-  Children of the same common parent must have **unique keys**. Duplicate keys will cause render errors.
+  Los hijos del mismo padre común deben tener **keys únicas**. Las `keys` duplicadas causarán errores de representación.
 
-  The most common use case is combined with `v-for`:
+  El caso de uso más común se combina con `v-for`:
 
   ``` html
   <ul>
@@ -1666,12 +1667,12 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   </ul>
   ```
 
-  It can also be used to force replacement of an element/component instead of reusing it. This can be useful when you want to:
+  También se puede usar para forzar el reemplazo de un elemento/componente en lugar de reutilizarlo. Esto puede ser útil cuando desee:
 
-  - Properly trigger lifecycle hooks of a component
-  - Trigger transitions
+  - Activar correctamente los hooks del ciclo de vida de un componente.
+  - Activar transiciones.
 
-  For example:
+  Por ejemplo:
 
   ``` html
   <transition>
@@ -1679,37 +1680,37 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   </transition>
   ```
 
-  When `text` changes, the `<span>` will always be replaced instead of patched, so a transition will be triggered.
+  Cuando `text` cambia, el `<span>` siempre será remplazado en lugar de parcheado por lo que se activará una transición.
 
 ### ref
 
 - **Espera:** `string`
 
-  `ref` is used to register a reference to an element or a child component. The reference will be registered under the parent component's `$refs` object. If used on a plain DOM element, the reference will be that element; if used on a child component, the reference will be component instance:
+  `ref` se usa para registrar un referencia a un elemento o un componente hijo. La referencia se registrará en el objeto `$refs` del componente padre. Si se usa en un elemento DOM simple, la referencia será ese elemento; si se usa en un componente hijo, la referencia será instancia del componente:
 
   ``` html
-  <!-- vm.$refs.p will be the DOM node -->
-  <p ref="p">hello</p>
+  <!-- vm.$refs.p será el nodo DOM -->
+  <p ref="p">hola</p>
 
-  <!-- vm.$refs.child will be the child comp instance -->
+  <!-- vm.$refs.child será la instancia del comp hijo -->
   <child-comp ref="child"></child-comp>
   ```
 
-  When used on elements/components with `v-for`, the registered reference will be an Array containing DOM nodes or component instances.
+  Cuando se usa en elementos/componentes con `v-for`, la referencia registrada será una matriz que contenga nodos DOM o instancias de componentes.
 
-  An important note about the ref registration timing: because the refs themselves are created as a result of the render function, you cannot access them on the initial render - they don't exist yet! `$refs` is also non-reactive, therefore you should not attempt to use it in templates for data-binding.
+  Una nota importante sobre el tiempo de registro de `ref`: dado que los `refs` mismos se crean como resultado de la función de renderizado, no se puede acceder a ellos en el procesamiento inicial, ¡aún no existen! `$refs` tampoco es reactivo, por lo tanto, no debe intentar usarlo en plantillas para la vinculación de datos.
 
-- **Vea también:** [Child Component Refs](../guide/components.html#Child-Component-Refs)
+- **Vea también:** [Referencias a Componentes Hijos](../guide/components.html#Child-Component-Refs)
 
 ### slot
 
 - **Espera:** `string`
 
-  Used on content inserted into child components to indicate which named slot the content belongs to.
+  Se usa en contenido insertado en componentes hijos para indicar a qué `slot` nombrado pertenece el contenido.
 
-  For detailed usage, see the guide section linked below.
+  Para un uso detallado, consulte la sección de guía vinculada a continuación.
 
-- **Vea también:** [Named Slots](../guide/components.html#Named-Slots)
+- **Vea también:** [Nombrando Slots](../guide/components.html#Named-Slots)
 
 ## Built-In Components
 
