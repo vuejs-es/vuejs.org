@@ -1741,8 +1741,8 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
   - `name` - string, Se utiliza para generar automáticamente nombres de clases CSS de transición. Por ejemplo `name: 'fade'`se expandirá automáticamente a `.fade-enter`, `.fade-enter-active`, etc. De forma preterminada `"v"`.
   - `appear` - boolean, Se utiliza para aplicar la transición en la representación inicial. De forma predeterminada `false`.
   - `css` - boolean, Se utiliza para aplicar clases de transición CSS. De forma predeterminada a `true`. Si se configura en `false`, solo desencadenará desencadenadores registrados en JavaScript mediante eventos de componentes.
-  - `type` - string,Especifica los tipos de eventos de transición a la espera de la especificación del tiempo final de transición. Los valores disponibles son `"transition"` y`"animation"`. De forma predeterminada, se detectará automáticamente el tipo que tenga una duración más larga.
-  - `mode` - string, Contorla la secuencia de temporización de las transiciones de salida/entrada. Los modos disponibles son`"out-in"` y `"in-out"`; de forma predeterminada, al mismo tiempo.
+  - `type` - string, Especifica los tipos de eventos de transición a la espera de la especificación del tiempo final de transición. Los valores disponibles son `"transition"` y `"animation"`. De forma predeterminada, se detectará automáticamente el tipo que tenga una duración más larga.
+  - `mode` - string, Controla la secuencia de temporización de las transiciones de salida/entrada. Los modos disponibles son `"out-in"` y `"in-out"`; de forma predeterminada simultaneamente.
   - `enter-class` - string
   - `leave-class` - string
   - `enter-active-class` - string
@@ -1763,7 +1763,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Modo de Uso:**
 
-  `<transition>` sirven como efectos de transición a elemento / componente único. El elemento `<transition>` no genera un DOM adicional, ni se muestra en la jerarquía de componentes inspeccionados. Simplemente aplica el comportamiento de transición al contenido en el interior.
+  `<transition>` sirven como efectos de transición para un **único** elemento/componente. El elemento `<transition>` no genera un DOM adicional, ni se muestra en la jerarquía de componentes inspeccionados. Simplemente aplica el comportamiento de transición al contenido en el interior.
 
   ```html
   <!-- elemento simple -->
@@ -1803,18 +1803,18 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 - **Props:**
   - `tag` - string, estándar para `span`.
   - `move-class` - Reemplaza la clase CSS aplicada durante la transición en movimiento.
-  - Expone las mismas propiedades que `<transition>` expecto `mode`.
+  - Expone las mismas propiedades que `<transition>` excepto `mode`.
 
 - **Eventos:**
   - expone los mismos eventos que `<transition>`.
 
 - **Modo de Uso:**
 
-  `<transition-group>` sirve para efectos de transición para **múltiples** elementos/componentes. El elemento `<transition-group>` miestra un elemento DOM real.Por defecto muestra un `<span>`, ay puede configurar qué elemento se debe representar a través del atributo `tag`.
+  `<transition-group>` sirve para efectos de transición para **múltiples** elementos/componentes. El elemento `<transition-group>` miestra un elemento DOM real. Por defecto muestra un `<span>`, y puede cambiar el elemento a través del atributo `tag`.
 
-  Tenga en cuenta que cada hijo en un  `<transition-group>` debe tener  **uniquely keyed** para que las animaciones funcionen correctamente.
+  Tenga en cuenta que cada hijo en un `<transition-group>` debe tener **llaves únicas** para que las animaciones funcionen correctamente.
 
-  `<transition-group>` admite transiciones en movimiento a través de CSS. Cuando la posición de un elemento hijo en la pantalla ha cambiado después de una actualización, se aplicará la clase CSS en movimiento (se genera automáticamente a partir del atributo `name` o se configura con el atributo `move-class`). Si la propiedad CSS `transform` es "transition-able" cuando se aplica una clase en movimiento, el elemento se animará suavemente a su destino usando la [técnica FLIP](https://aerotwist.com/blog/flip-your-animations/).
+  `<transition-group>` admite transiciones en movimiento a través de CSS. Cuando la posición de un elemento hijo en la pantalla ha cambiado después de una actualización, se aplicará la clase CSS en movimiento (se genera automáticamente a partir del atributo `name` o se configura con el atributo `move-class`). Si la propiedad CSS `transform` es "transicion-able" cuando se aplica una clase en movimiento, el elemento se animará suavemente a su destino usando la [técnica FLIP](https://aerotwist.com/blog/flip-your-animations/).
 
   ```html
   <transition-group tag="ul" name="slide">
@@ -1834,11 +1834,11 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
 - **Modo de Uso:**
 
-  Cuando se envuelve el alrededor de un componente dinámico, `<keep-alive>` almacena en caché las instancias del componente inactivo sin destruirlas. Similar a `<transition>`, `<keep-alive>` es un componente abstracto: no representa un elemento del DOM en sí, y no se muestra en la cadena principal del componente.
+  Cuando se envuelve alrededor de un componente dinámico, `<keep-alive>` almacena en caché las instancias del componente inactivo sin destruirlas. Similar a `<transition>`, `<keep-alive>` es un componente abstracto: no representa un elemento del DOM en sí, y no se muestra en la cadena principal del componente.
 
   Cuando un componente se conmuta dentro de `<keep-alive>`, sus hooks de ciclo de vida `activated` y `deactivated` se invocarán en consecuencia.
 
-  Se utiliza principalmente para preservar el estado del componente o evitar la representación.
+  Se utiliza principalmente para preservar el estado del componente o evitar la re-renderización.
 
   ```html
   <!-- básico -->
@@ -1846,7 +1846,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- múltiples conficionales con hijos -->
+  <!-- múltiples condicionales con hijos -->
   <keep-alive>
     <comp-a v-if="a > 1"></comp-a>
     <comp-b v-else></comp-b>
@@ -1877,7 +1877,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
     <component :is="view"></component>
   </keep-alive>
   ```
-  La coincidencia se verifica primero en la propia opción `name` del componente, luego en su nombre de registro local ( la clave en la opción `components` del componente padre) si la opción `name` no está disponible. Los componentes anónimos no se pueden comparar.
+  La coincidencia se verifica primero en la propia opción `name` del componente, luego en su nombre de registro local (la clave en la opción `components` del componente padre) si la opción `name` no está disponible. Los componentes anónimos no se pueden comparar.
 
   <p class="tip">`<keep-alive>` no funciona con componentes funcionales porque no tienen instancias para almacenar en caché.</p>
 
@@ -1892,7 +1892,7 @@ Todos los hooks de ciclo de vida tienen la instancia asignada automáticamente a
 
   `<slot>` sirve como una ubicación de distribución de contenido en plantillas de componentes. El elemento `<slot>` será reemplazado por el contenido.
 
-  Para un uso detallado, consulte la sección relacionada de la guía a continuación.
+  Para un uso detallado, consulte la sección de la guía enlacada a continuación.
 
 - **Vea también:** [Distribución de contenido con slots](../guide/components.html#Content-Distribution-with-Slots)
 
