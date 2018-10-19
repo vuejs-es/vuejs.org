@@ -1,5 +1,5 @@
 ---
-title: Manejo de Eventos
+title: Controlando eventos
 type: guide
 order: 9
 ---
@@ -25,7 +25,7 @@ var example1 = new Vue({
 })
 ```
 
-Resulta en:
+Resultado:
 
 {% raw %}
 <div id="example-1" class="demo">
@@ -42,7 +42,7 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-## Métodos Manejadores de Eventos
+## Controladores de eventos
 
 La lógica para muchos manejadores de eventos usualmente será más compleja que el ejemplo, de modo que mantener código JavaScript en el atributo `v-on` sencillamente no es buena idea. Por eso `v-on` puede también aceptar el nombre de un método que quiera llamar.
 
@@ -76,7 +76,7 @@ var example2 = new Vue({
 example2.greet() // -> 'Hello Vue.js!'
 ```
 
-Resultado:
+Result:
 
 {% raw %}
 <div id="example-2" class="demo">
@@ -91,14 +91,16 @@ var example2 = new Vue({
   methods: {
     greet: function (event) {
       alert('Hello ' + this.name + '!')
-      alert(event.target.tagName)
+      if (event) {
+        alert(event.target.tagName)
+      }
     }
   }
 })
 </script>
 {% endraw %}
 
-## Métodos en Manejadores en línea
+## Métodos en controladores en línea
 
 En vez de asignar directamente a un nombre de un método, podemos también usar métodos en una expresión JavaScript en línea: 
 
@@ -108,6 +110,7 @@ En vez de asignar directamente a un nombre de un método, podemos también usar 
   <button v-on:click="say('what')">Say what</button>
 </div>
 ```
+
 ``` js
 new Vue({
   el: '#example-3',
@@ -140,7 +143,9 @@ new Vue({
 Algunas veces necesitamos también acceder al evento DOM original en la expresión de manejador en línea. Puede pasarlo al método usando la variable especial `$event`:
 
 ``` html
-<button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+<button v-on:click="warn('Form cannot be submitted yet.', $event)">
+  Submit
+</button>
 ```
 
 ``` js
@@ -154,9 +159,9 @@ methods: {
 }
 ```
 
-## Modificadores de Eventos
+## Modificadores de eventos
 
-Es una necesidad muy común llamar a `event.preventDefault()` o `event.stopPropagation()` en manejadores de eventos. Aunque podemos hacer esto fácilmente dentro de los métodos, sería mejor si los métodos se encargaran únicamente de lógica de datos en vez de tratar con detalles de eventos DOM.
+Es una necesidad muy común llamar a `event.preventDefault()` o `event.stopPropagation()` en controladores de eventos. Aunque podemos hacer esto fácilmente dentro de los métodos, sería mejor si los métodos se encargaran únicamente de la lógica de datos en vez de tratar con detalles de eventos DOM.
 
 Para solucionar este problema, Vue ofrece **modificadores de eventos** para `v-on`. Recuerde que los modificadores son sufijos de directiva denotados con un punto.
 
@@ -187,7 +192,9 @@ Para solucionar este problema, Vue ofrece **modificadores de eventos** para `v-o
 <div v-on:click.self="doThat">...</div>
 ```
 
-> Nuevo en 2.1.4
+<p class="tip">El orden importa cuando se usan modificadores porque el código relevante es generado en el mismo orden. Por eso usar `@click.prevent.self` prevendrá **all clicks** mientras `@click.self.prevent` prevendrá sólo los clicks del elemento en cuestión.</p>
+
+> Nuevo en 2.1.4+
 
 ``` html
 <!-- el evento click será activado una vez como máximo -->
@@ -196,7 +203,7 @@ Para solucionar este problema, Vue ofrece **modificadores de eventos** para `v-o
 
 A diferencia de otros modificadores, los cuales son exclusivos a eventos nativos de DOM, el modificador `.once` puede ser usado también en [eventos de componente](components.html#Using-v-on-with-Custom-Events). Si no ha leído sobre componentes aún, no se preocupe por esto todavía.
 
-## Modificadores de Tecla
+### Modificadores de tecla
 
 Cuando se escuchan eventos de teclado, a menudo necesitamos verificar códigos de tecla comunes. Vue nos permite añadir modificadores de tecla para `v-on` cuando se escucha por eventos de tecla:
 
@@ -234,7 +241,21 @@ También puede [definir alias de modificadores de tecla personalizados](../api/#
 Vue.config.keyCodes.f1 = 112
 ```
 
-## Teclas de Modificadores
+### Modificadores de tecla automáticos
+
+> Nuevo en 2.5.0+
+
+Puede usar directamente cualquier nombre de tecla expuesto via [`KeyboardEvent.key`](https://developer.mozilla.org/es/docs/Web/API/KeyboardEvent/key/Key_Values) como modificadores convirtiendolos a kebab-case:
+
+``` html
+<input @keyup.page-down="onPageDown">
+```
+
+En el ejemplo anterior, el controlador sólo será llamdo si `$event.key === 'PageDown'`.
+
+<p class="tip">Algunas teclas (`.esc` y todas las flechas) tienen valores inconsistentes en IE9, sus alias por defecto deben ser preferidos si necesita soportar IE9.</p>
+
+## Modificadores de tecla de sistema
 
 > Nuevo en 2.1.0
 
@@ -256,6 +277,32 @@ Por ejemplo:
 <!-- Ctrl + Click -->
 <div @click.ctrl="doSomething">Do something</div>
 ```
+
+<p class="tip">Note que modificadores de tecla son diferentes de las teclas regulares y usados con eventos `keyup`, tienen que ser presionados cuando el evento es emitido. En otras palabras, `keyup.ctrl` solo se accionará si si soltó una tecla mientras pulsaba `ctrl`. No se accionará pulsando sólo el boton `ctrl`.</p>
+
+### Modificador `.exact` 
+
+> Nuevo en 2.5.0
+
+El modificador `.exact` debe ser usado sólo en combinación con otros modificadores de sistema para indicar que la combinación exacta de modificadores debe ser pulsada para activar el controlador.
+
+``` html
+<!-- se activará aunque Alt o Shift sean pulsados -->
+<button @click.ctrl="onClick">A</button>
+
+<!-- se activará solo cuando Ctrl sea pulsado -->
+<button @click.ctrl.exact="onCtrlClick">A</button>
+```
+
+### Modificadores de botón de ratón
+
+> Nuevo en 2.2.0+
+
+- `.left`
+- `.right`
+- `.middle`
+
+Estos modificadores restringen el controlador a eventos accionados por un botón de ratón específico.
 
 ## ¿Por qué Listeners en HTML?
 

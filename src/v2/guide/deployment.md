@@ -14,7 +14,7 @@ Si está utilizando la compilación completa, es decir, que incluye directamente
 
 ### Con herramientas de compilación
 
-Cuando utilice una herramienta de compilación como Webpack o Browserify, el modo de producción estará definido por `process.env.NODE_ENV` dentro del código fuente de Vue, y estará en modo de desarrollo por defecto. Ambas herramientas de compilación proporcionan formas de sobrescribir esta variable para habilitar el modo de producción de Vue, y las advertencias serán eliminadas por los minificadores durante la compilación. Todas las plantillas `vue-cli` contienen estas pre configuraciones para usted, pero sería provechoso saber cómo se hace:
+Cuando utilice una herramienta de compilación como Webpack o Browserify, el modo de producción estará definido por `process.env.NODE_ENV` dentro del código fuente de Vue, y estará en modo de desarrollo por defecto. Ambas herramientas de compilación proporcionan formas de sobrescribir esta variable para habilitar el modo de producción de Vue, y las advertencias serán eliminadas por los minificadores durante la compilación. Todas las plantillas `vue-cli` contienen estas preconfiguraciones para usted, pero sería provechoso saber cómo se hace:
 
 #### Webpack
 
@@ -46,9 +46,25 @@ module.exports = {
   NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
   ```
 
+- Or, using [envify](https://github.com/hughsk/envify) with Gulp:
+
+  ``` js
+ //usa el módulo personalizado envify para determinar variables de entorno
+  var envify = require('envify/custom')
+
+  browserify(browserifyOptions)
+    .transform(vueify),
+    .transform(
+      // Requerido para procesar los archivos de node_modules
+      { global: true },
+      envify({ NODE_ENV: 'production' })
+    )
+    .bundle()
+  ```
+
 #### Rollup
 
-Use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
+Usa [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
 
 ``` js
 const replace = require('rollup-plugin-replace')

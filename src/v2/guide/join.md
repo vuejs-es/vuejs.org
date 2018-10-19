@@ -48,4 +48,4 @@ Vue ya se ha extendido por todo el mundo, incluso con el equipo central que est�
 
 Esperamos que en este momento, esté leyendo esta frase en su idioma preferido. Si no, ¿le gustaría ayudarnos a llegar allí?.
 
-Si es así, siéntase libre para hacer fork del repositorio de [esta documentación](https://github.com/vuejs/vuejs.org/) o de cualquier otra documentación mantenida oficialmente, luego comience a traducir. Una vez que haya avanzado, abra un issue o solicite un _pull request_ en el repositorio principal y haremos una llamada para que más colaboradores le ayuden.
+Si es así, siéntase libre para hacer fork del repositorio de [esta documentación](https://github.com/vuejs/vuejs.org/) o de cualquier otra documentación mantenida oficialmente y comience a traducir. Una vez que haya avanzado, abra un issue o solicite un _pull request_ en el repositorio principal y haremos una llamada para que más colaboradores le ayuden.

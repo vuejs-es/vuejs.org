@@ -1,5 +1,5 @@
 ---
-title: Sintaxis de Plantilla
+title: Sintaxis de plantilla
 type: guide
 order: 4
 ---
@@ -118,49 +118,6 @@ Los Modificadores son sufijos especiales denotados con un punto, los cuales indi
 ```
 
 Veremos más usos de los modificadores más adelante cuando repasemos con más detalle a `v-on` y `v-model`.
-
-## Filtros
-
-Vue.js le permite definir filtros que pueden ser usados para aplicar formatos de texto comunes. Los filtros pueden ser usados en dos lugares: **interpolaciones de corchete y expresiones `v-bind`**. Los filtros deben ser adicionados al final de una expresión JavaScript, denotados con el caracter barra vertical "|": 
-
-``` html
-<!-- en corchetes -->
-{{ message | capitalize }}
-
-<!-- en v-bind -->
-<div v-bind:id="rawId | formatId"></div>
-```
-
-<p class="tip">Los filtros de Vue 2.x únicamente pueden ser usados dentro de interpolaciones de corchete y expresiones `v-bind` (ésto último soportado desde 2.1.0), ya que los filtros son principalmente diseñados para transformaciones de texto. Para transformaciones de datos más completos en otras directivas, usted debe usar [propiedades calculadas](computed.html).</p>
-
-Las funciones filtro siempre reciben el valor de la expresión como primer argumento.
-
-``` js
-new Vue({
-  // ...
-  filters: {
-    capitalize: function (value) {
-      if (!value) return ''
-      value = value.toString()
-      return value.charAt(0).toUpperCase() + value.slice(1)
-    }
-  }
-})
-```
-
-Los filtros pueden ser encadenados:
-
-``` html
-{{ message | filterA | filterB }}
-```
-
-Los filtros son funciones de JavaScript, de modo que pueden tomar argumentos:
-
-``` html
-{{ message | filterA('arg1', arg2) }}
-```
-
-Aquí, el string plano `'arg1'` será pasado al filtro como el segundo argumento, y el valor de la expresión `arg2` será evaluada y pasada al filtro como el tercer argumento.
 
 ## Versiones Cortas
 

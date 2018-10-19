@@ -1,14 +1,14 @@
 ---
-title: Binding en Campos de Formulario
+title: Vinculación de datos en campos de formulario
 type: guide
 order: 10
 ---
 
 ## Uso Básico
 
-Puede usar la directiva `v-model` para crear enlaces (en inglés **Data Bindings**) de datos de doble vía en elementos de ingreso de datos de formulario y áreas de texto. `v-model` automáticamente escoge la forma correcta de actualizar el elemento basado en el tipo de campo. Aunque parezca un poco mágico, `v-model` es esencialmente un sintaxis bonito para actualizar datos cuando el usuario ingresa información, además de algunos cuidados adicionales para casos extremos.
+Puede usar la directiva `v-model` para vincular datos en ambas direcciones en elementos de ingreso de datos de formulario y áreas de texto. Automáticamente escogerá la forma correcta de actualizar el elemento basado en el tipo de campo. Aunque parezca un poco mágico, `v-model` es esencialmente una sintaxis bonita para actualizar datos en eventos de entrada, además de algunos cuidados adicionales para casos extremos.
 
-<p class="tip">`v-model` no se preocupa por el valor inicial dado a un input o textarea. Siempre considera a los datos de instancia de Vue como la fuente de la verdad.</p>
+<p class="tip">`v-model` ignorará los atributos iniciales `value`, `checked` ó `selected` que se encuentran en todo formulario. Tratará a la instancia de Vue como la fuente de las verdad. Usted debería declarar el valor inicial en la parte Javascript dentro de la opción `data` de su componente.</p>
 
 <p class="tip" id="vmodel-ime-tip">Para lenguajes que requieren un [IME](https://en.wikipedia.org/wiki/Input_method) (Chino, Japonés, Koreano, etc), se dará cuenta que `v-model` no se actualiza durante la composición IME. Si también desea soportar estas actualizaciones, mejor use el evento `input`.</p>
 
@@ -38,7 +38,7 @@ new Vue({
 
 ``` html
 <span>Multiline message is:</span>
-<p style="white-space: pre">{{ message }}</p>
+<p style="white-space: pre-line;">{{ message }}</p>
 <br>
 <textarea v-model="message" placeholder="add multiple lines"></textarea>
 ```
@@ -46,7 +46,7 @@ new Vue({
 {% raw %}
 <div id="example-textarea" class="demo">
   <span>Multiline message is:</span>
-  <p style="white-space: pre">{{ message }}</p>
+  <p style="white-space: pre-line;">{{ message }}</p>
   <br>
   <textarea v-model="message" placeholder="add multiple lines"></textarea>
 </div>
@@ -60,14 +60,13 @@ new Vue({
 </script>
 {% endraw %}
 
-
 {% raw %}
 <p class="tip">La interpolación en textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>)no funcionará. En cambio use <code>v-model</code>.</p>
 {% endraw %}
 
 ### Checkbox
 
-Un sólo Checkbox, valor booleano:
+Un sólo Checkbox, valor boolean:
 
 ``` html
 <input type="checkbox" id="checkbox" v-model="checked">
@@ -91,19 +90,21 @@ new Vue({
 Múltiples checkboxes, asignados al mismo Array:
 
 ``` html
-<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
-<label for="jack">Jack</label>
-<input type="checkbox" id="john" value="John" v-model="checkedNames">
-<label for="john">John</label>
-<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-<label for="mike">Mike</label>
-<br>
-<span>Checked names: {{ checkedNames }}</span>
+<div id='example-3'>
+  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  <label for="jack">Jack</label>
+  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+  <label for="john">John</label>
+  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  <label for="mike">Mike</label>
+  <br>
+  <span>Checked names: {{ checkedNames }}</span>
+</div>
 ```
 
 ``` js
 new Vue({
-  el: '...',
+  el: '#example-3',
   data: {
     checkedNames: []
   }
@@ -131,8 +132,7 @@ new Vue({
 </script>
 {% endraw %}
 
-### Radios
-
+### Radio
 
 ``` html
 <input type="radio" id="one" value="One" v-model="picked">
@@ -163,21 +163,31 @@ new Vue({
 </script>
 {% endraw %}
 
-### Selects
+### Select
 
 Select único:
 
 ``` html
 <select v-model="selected">
+  <option disabled value="">Please select one</option>
   <option>A</option>
   <option>B</option>
   <option>C</option>
 </select>
 <span>Selected: {{ selected }}</span>
 ```
+``` js
+new Vue({
+  el: '...',
+  data: {
+    selected: ''
+  }
+})
+```
 {% raw %}
 <div id="example-5" class="demo">
   <select v-model="selected">
+    <option disabled value="">Please select one</option>
     <option>A</option>
     <option>B</option>
     <option>C</option>
@@ -188,11 +198,13 @@ Select único:
 new Vue({
   el: '#example-5',
   data: {
-    selected: null
+    selected: ''
   }
 })
 </script>
 {% endraw %}
+
+<p class="tip">Si el valor inicial de su expresión `v-model` no es igual a ninguna de las opciones, el elemento `<select>` el elemento se renderizará en un estado "no seleccionado". En iOS esto causará que el usuario no pueda seleccionar el primer elemento porque iOS no lanza un evento de cambio en este caso. Por ello es recomendado ofrecer una opción __desactivado__ con un valor vacío como se demuestra en el siguiente ejemplo.</p>
 
 Múltiple selects (asignados a un Array):
 
@@ -207,7 +219,7 @@ Múltiple selects (asignados a un Array):
 ```
 {% raw %}
 <div id="example-6" class="demo">
-  <select v-model="selected" multiple style="width: 50px">
+  <select v-model="selected" multiple style="width: 50px;">
     <option>A</option>
     <option>B</option>
     <option>C</option>
@@ -272,7 +284,7 @@ new Vue({
 </script>
 {% endraw %}
 
-## Bindings de valor
+## Vincular valores
 
 Para opciones en radios, checkboxes y selects, los valores asignados mediante `v-model` son usualmente cadenas de texto estáticas (o booleanos para checkbox):
 
@@ -331,15 +343,15 @@ vm.pick === vm.a
 
 ``` js
 // cuando se selecciona:
-typeof vm.selected // -> 'object'
-vm.selected.number // -> 123
+typeof vm.selected // => 'object'
+vm.selected.number // => 123
 ```
 
 ## Modificadores
 
 ### `.lazy`
 
-Por defecto, `v-model` sincroniza el input con los datos después de cada evento `input` (Con la excepción de composición IME como [fué dicho antes](#vmodel-ime-tip)). Puede agregar el atributo `lazy` para que alternativamente, los datos sean sincronizados después del evento `change`:  
+Por defecto, `v-model` sincroniza el input con los datos después de cada evento `input` (Con la excepción de composición IME como [fué dicho antes](#vmodel-ime-tip)). Puede agregar el atributo `lazy` para que alternativamente, los datos sean sincronizados después del evento `change`:
 
 ``` html
 <!-- sincronizado después de "change" en vez de "input" -->
@@ -358,13 +370,13 @@ Esto es a menudo muy útil, ya que incluso con `type="number"`, el valor de los 
 
 ### `.trim`
 
-Si quiere que los datos de usuario sean recortados automáticamente, puede agregar el modificador `trim` a sus inputs manejados por `v-model` para eliminar espacios en blanco antes y después del valor ingresado.
+Si quiere que los datos de usuario sean recortados automáticamente, puede agregar el modificador `trim` a sus inputs manejados por `v-model`: 
 
 ```html
 <input v-model.trim="msg">
 ```
 
-## `v-model` con Componentes
+## `v-model` con componentes
 
 > Si los componentes de Vue no le son familiares, puede saltarse esta sección por ahora.
 

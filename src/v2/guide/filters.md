@@ -7,10 +7,10 @@ order: 305
 Vue.js le permite definir filtros que pueden ser usados para aplicar formatos de texto comunes. Los filtros se pueden utilizar en dos lugares: **en la interpolación con llaves y las expresiones `v-bind`** (estas últimas soportadas en 2.1.0+). Los filtros deben añadirse al final de la expresión JavaScript, señalados con el símbolo "pipe":
 
 ``` html
-<!-- in mustaches -->
+<!-- en llaves -->
 {{ message | capitalize }}
 
-<!-- in v-bind -->
+<!-- en v-bind -->
 <div v-bind:id="rawId | formatId"></div>
 ```
 

@@ -4,7 +4,7 @@ type: guide
 order: 304
 ---
 
-## Escribiendo un Plugin
+## Escribiendo un plugin
 
 Los Plugins usualmente añaden funcionalidades de nivel global a Vue. No hay un alcance estrictamente definido para un Plugin: normalmente hay varios tipos de Plugins que puede escribir:
 
@@ -19,33 +19,32 @@ Los Plugins usualmente añaden funcionalidades de nivel global a Vue. No hay un 
 5. Una biblioteca que proporcione una API propia, mientras que al mismo tiempo introduce una combinación de las anteriores. Por Ejemplo [vue-router](https://github.com/vuejs/vue-router)
 
 Un Plugin Vue.js debería exponer un método `install` (instalar). Se llamará al método con el constructor `Vue` como primer argumento, junto con las posibles opciones:
-
 ``` js
 MyPlugin.install = function (Vue, options) {
-  // 1. agregar método global o de propiedad
+  // 1. add global method or property
   Vue.myGlobalMethod = function () {
-    // alguna logica ...
+    // something logic ...
   }
 
-  // 2. agregar un activo global
+  // 2. add a global asset
   Vue.directive('my-directive', {
-    enlazar (el, binding, vnode, oldVnode) {
-      // alguna logica ...
+    bind (el, binding, vnode, oldVnode) {
+      // something logic ...
     }
     ...
   })
 
-  // 3. inyectar algunas opciones de componente
+  // 3. inject some component options
   Vue.mixin({
     created: function () {
-      // alguna logica ...
+      // something logic ...
     }
     ...
   })
 
-  // 4. agregar un método de instancia
+  // 4. add an instance method
   Vue.prototype.$myMethod = function (methodOptions) {
-    // alguna logica ...
+    // something logic ...
   }
 }
 ```

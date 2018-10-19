@@ -2,7 +2,7 @@
 title: Introducción
 type: guide
 order: 2
----
+--- 
 
 ## ¿Qué es Vue.js?
 
@@ -10,11 +10,11 @@ Vue (pronunciado viú) es un **framework progresivo** para construir interfaces 
 
 Si usted es un desarrollador front-end experimentado y quiere saber cómo Vue se compara con otras librerías/frameworks, revise [Comparación con otros Frameworks](comparison.html).
 
-## Empezando
+## Introducción
 
 <p class="tip">La guía oficial asume un conocimiento nivel intermedio de HTML, CSS y JavaScript. Si es completamente nuevo en el desarrollo front-end, probalemente no es buena idea saltar de primera vez a un framework - ¡primero aprenda los conceptos básicos y luego regrese! Conocimientos previos con otros frameworks es útil, pero no requerido.</p>
 
-La manera más sencilla de probar Vue.js es usar el [ejemplo Hola Mundo en JSFiddle](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Siéntase libre de abrirlo en otra pestaña y seguirlo a medida que explicamos algunos ejemplos básicos. O puede simplemente crear un archivo `.html` e incluir Vue con:
+La manera más sencilla de probar Vue.js es usar el [ejemplo Hola Mundo en JSFiddle](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Siéntase libre de abrirlo en otra pestaña y seguirlo a medida que explicamos algunos ejemplos básicos. O puede <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html">crear un archivo<code>index.html</code></a> e incluir Vue con:
 
 ``` html
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -22,15 +22,16 @@ La manera más sencilla de probar Vue.js es usar el [ejemplo Hola Mundo en JSFid
 
 La página de [Instalación](installation.html) ofrece más opciones para instalar Vue. Tenga en cuenta que **no** recomendamos que los principiantes inicien con `vue-cli`, especialmente si no le son familiares las herramientas de compilación basadas en Node.js.
 
-## Renderizado declarativo
+## Declarative Rendering
 
-En el núcleo de Vue.js hay un sistema que nos permite renderizar datos de forma declarativa en el DOM usando una sintaxis de plantilla muy sencilla:
+At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
 
 ``` html
 <div id="app">
   {{ message }}
 </div>
 ```
+
 ``` js
 var app = new Vue({
   el: '#app',
@@ -39,6 +40,7 @@ var app = new Vue({
   }
 })
 ```
+
 {% raw %}
 <div id="app" class="demo">
   {{ message }}
@@ -60,18 +62,21 @@ En adición a la interpolación de texto, podemos asignar atributos de elementos
 ``` html
 <div id="app-2">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds to see my dynamically bound title!
+    Hover your mouse over me for a few seconds
+    to see my dynamically bound title!
   </span>
 </div>
 ```
+
 ``` js
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date()
+    message: 'You loaded this page on ' + new Date().toLocaleString()
   }
 })
 ```
+
 {% raw %}
 <div id="app-2" class="demo">
   <span v-bind:title="message">
@@ -82,7 +87,7 @@ var app2 = new Vue({
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date()
+    message: 'You loaded this page on ' + new Date().toLocaleString()
   }
 })
 </script>
@@ -98,7 +103,7 @@ También es bastante sencillo intercambiar la presencia de un elemento:
 
 ``` html
 <div id="app-3">
-  <p v-if="seen">Now you see me</p>
+  <span v-if="seen">Now you see me</span>
 </div>
 ```
 
@@ -176,7 +181,7 @@ var app4 = new Vue({
 
 En la consola, ingrese `app4.todos.push({ text: 'New item' })`. Debe ver aparecer un nuevo elemento al final de la lista.
 
-## Controlando los Datos ingresados por Usuario
+## Controlando los datos ingresados por usuario
 
 Para permitir a los usuarios interactuar con su aplicación, podemos usar la directiva `v-on` para enlazar _event listeners_ que invocan métodos en nuestra instancia Vue:
 
@@ -186,6 +191,7 @@ Para permitir a los usuarios interactuar con su aplicación, podemos usar la dir
   <button v-on:click="reverseMessage">Reverse Message</button>
 </div>
 ```
+
 ``` js
 var app5 = new Vue({
   el: '#app-5',
@@ -229,6 +235,7 @@ Vue también ofrece la directiva `v-model` que hace que una asignación bi-direc
   <input v-model="message">
 </div>
 ```
+
 ``` js
 var app6 = new Vue({
   el: '#app-6',
@@ -237,6 +244,7 @@ var app6 = new Vue({
   }
 })
 ```
+
 {% raw %}
 <div id="app-6" class="demo">
   <p>{{ message }}</p>
@@ -293,9 +301,17 @@ Ahora podemos pasar la tarea a cada componente repetido usando `v-bind`:
 ``` html
 <div id="app-7">
   <ol>
-    <!-- Ahora le proveemos a cada todo-item el objeto todo -->
-    <!-- que representa, de modo que su contenido sea dinámico -->
-    <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+    <!--
+      Now we provide each todo-item with the todo object
+      it's representing, so that its content can be dynamic.
+      We also need to provide each component with a "key",
+      which will be explained later.
+    -->
+    <todo-item
+      v-for="item in groceryList"
+      v-bind:todo="item"
+      v-bind:key="item.id">
+    </todo-item>
   </ol>
 </div>
 ```
@@ -309,9 +325,9 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { text: 'Vegetables' },
-      { text: 'Cheese' },
-      { text: 'Whatever else humans are supposed to eat' }
+      { id: 0, text: 'Vegetables' },
+      { id: 1, text: 'Cheese' },
+      { id: 2, text: 'Whatever else humans are supposed to eat' }
     ]
   }
 })
@@ -319,7 +335,7 @@ var app7 = new Vue({
 {% raw %}
 <div id="app-7" class="demo">
   <ol>
-    <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+    <todo-item v-for="item in groceryList" v-bind:todo="item" :key="item.id"></todo-item>
   </ol>
 </div>
 <script>
@@ -331,9 +347,9 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { text: 'Vegetables' },
-      { text: 'Cheese' },
-      { text: 'Whatever else humans are supposed to eat' }
+      { id: 0, text: 'Vegetables' },
+      { id: 1, text: 'Cheese' },
+      { id: 2, text: 'Whatever else humans are supposed to eat' }
     ]
   }
 })

@@ -1,14 +1,12 @@
 ---
-title: Renderizado de Listas
+title: List Rendering
 type: guide
 order: 8
 ---
 
-## `v-for`
+## Mapping an Array to Elements with `v-for`
 
-Podemos usar la directiva `v-for` para renderizar una lista de elementos usando un array. La directiva `v-for` requiere de una sintaxis especial de la forma `item in items`, dónde `items` es el array de datos fuente, e `item` es un **alias** para el elemento del array sobre el cuál se está iterando. 
-
-### Uso Básico
+We can use the `v-for` directive to render a list of items based on an array. The `v-for` directive requires a special syntax in the form of `item in items`, where `items` is the source data array and `item` is an **alias** for the array element being iterated on:
 
 ``` html
 <ul id="example-1">
@@ -30,7 +28,7 @@ var example1 = new Vue({
 })
 ```
 
-Resulta en:
+Result:
 
 {% raw %}
 <ul id="example-1" class="demo">
@@ -49,14 +47,14 @@ var example1 = new Vue({
   },
   watch: {
     items: function () {
-      smoothScroll.animateScroll(null, '#example-1')
+      smoothScroll.animateScroll(document.querySelector('#example-1'))
     }
   }
 })
 </script>
 {% endraw %}
 
-Dentro de los bloques `v-for` tenemos acceso completo a las propiedades del ámbito del padre. `v-for` también soporta un segundo argumento opcional para el índice del elemento actual.
+Inside `v-for` blocks we have full access to parent scope properties. `v-for` also supports an optional second argument for the index of the current item.
 
 ``` html
 <ul id="example-2">
@@ -79,7 +77,7 @@ var example2 = new Vue({
 })
 ```
 
-Resulta en:
+Result:
 
 {% raw%}
 <ul id="example-2" class="demo">
@@ -99,38 +97,25 @@ var example2 = new Vue({
   },
   watch: {
     items: function () {
-      smoothScroll.animateScroll(null, '#example-2')
+      smoothScroll.animateScroll(document.querySelector('#example-2'))
     }
   }
 })
 </script>
 {% endraw %}
 
-También puede usar `of` como el delimitador en vez de `in`, de forma que sea similar al sintaxis de JavaScript para iteradores:
+You can also use `of` as the delimiter instead of `in`, so that it is closer to JavaScript's syntax for iterators:
 
 ``` html
 <div v-for="item of items"></div>
 ```
 
-### v-for en template
+## `v-for` with an Object
 
-Similar a usar `v-if` en un `<template>`, también se puede usar la directiva `v-for` para renderizar un bloque de múltiples elementos. Por ejemplo:
-
-``` html
-<ul>
-  <template v-for="item in items">
-    <li>{{ item.msg }}</li>
-    <li class="divider"></li>
-  </template>
-</ul>
-```
-
-### v-for en objetos
-
-También puede usar `v-for` para iterar sobre las propiedades de un objeto.
+You can also use `v-for` to iterate through the properties of an object.
 
 ``` html
-<ul id="repeat-object" class="demo">
+<ul id="v-for-object" class="demo">
   <li v-for="value in object">
     {{ value }}
   </li>
@@ -139,203 +124,104 @@ También puede usar `v-for` para iterar sobre las propiedades de un objeto.
 
 ``` js
 new Vue({
-  el: '#repeat-object',
+  el: '#v-for-object',
   data: {
     object: {
-      FirstName: 'John',
-      LastName: 'Doe',
-      Age: 30
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
     }
   }
 })
 ```
 
-Resulta en:
+Result:
 
 {% raw %}
-<ul id="repeat-object" class="demo">
+<ul id="v-for-object" class="demo">
   <li v-for="value in object">
     {{ value }}
   </li>
 </ul>
 <script>
 new Vue({
-  el: '#repeat-object',
+  el: '#v-for-object',
   data: {
     object: {
-      FirstName: 'John',
-      LastName: 'Doe',
-      Age: 30
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
     }
   }
 })
 </script>
 {% endraw %}
 
-También puede usar un segundo parámetro para la clave:
+You can also provide a second argument for the key:
 
 ``` html
 <div v-for="(value, key) in object">
-  {{ key }} : {{ value }}
+  {{ key }}: {{ value }}
 </div>
 ```
 
-Y otro para el índice
+{% raw %}
+<div id="v-for-object-value-key" class="demo">
+  <div v-for="(value, key) in object">
+    {{ key }}: {{ value }}
+  </div>
+</div>
+<script>
+new Vue({
+  el: '#v-for-object-value-key',
+  data: {
+    object: {
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
+    }
+  }
+})
+</script>
+{% endraw %}
+
+And another for the index:
 
 ``` html
 <div v-for="(value, key, index) in object">
-  {{ index }}. {{ key }} : {{ value }}
+  {{ index }}. {{ key }}: {{ value }}
 </div>
-```
-
-<p class="tip">Cuando itere sobre un objeto, el orden es basado en el orden de enumeración de claves de `Object.keys()`, el cual **no** tiene garantía de ser consistente a través de implementaciones de JavaScript.</p>
-
-### v-for de rango
-
-`v-for` puede también tomar un entero. En este caso se repetirá la plantilla ésa cantidad de veces.
-
-``` html
-<div>
-  <span v-for="n in 10">{{ n }}</span>
-</div>
-```
-
-Resulta en:
-
-{% raw %}
-<div id="range" class="demo">
-  <span v-for="n in 10">{{ n }} </span>
-</div>
-<script>
-new Vue({ el: '#range' })
-</script>
-{% endraw %}
-
-### Componentes y v-for
-
-> Esta sección asume conocimiento en [Componentes](components.html). Siéntase de libre de saltarla y regresar más adelante.
-
-Puede usar directamente `v-for` en un componente a medida, como en cualquier elemento normal:
-
-``` html
-<my-component v-for="item in items"></my-component>
-```
-
-Sin embargo, esto no pasa automáticamente datos al componente, ya que los componentes tienen ámbitos aislados propios. Para poder transferir los datos iterados al componente, debemos usar los props:
-
-``` html
-<my-component
-  v-for="(item, index) in items"
-  v-bind:item="item"
-  v-bind:index="index">
-</my-component>
-```
-
-La razón para no inyectar automáticamente `item` en el componente, es por que haría que el componente sea muy acoplado a cómo funciona `v-for`. Siendo explícito sobre de dónde vienen sus datos hace que el componente sea reusable en otras situaciones.
-
-Aquí tenemos un ejemplo completo de una lista de tareas:
-
-``` html
-<div id="todo-list-example">
-  <input
-    v-model="newTodoText"
-    v-on:keyup.enter="addNewTodo"
-    placeholder="Add a todo"
-  >
-  <ul>
-    <li
-      is="todo-item"
-      v-for="(todo, index) in todos"
-      v-bind:title="todo"
-      v-on:remove="todos.splice(index, 1)"
-    ></li>
-  </ul>
-</div>
-```
-
-``` js
-Vue.component('todo-item', {
-  template: '\
-    <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
-    </li>\
-  ',
-  props: ['title']
-})
-
-new Vue({
-  el: '#todo-list-example',
-  data: {
-    newTodoText: '',
-    todos: [
-      'Do the dishes',
-      'Take out the trash',
-      'Mow the lawn'
-    ]
-  },
-  methods: {
-    addNewTodo: function () {
-      this.todos.push(this.newTodoText)
-      this.newTodoText = ''
-    }
-  }
-})
 ```
 
 {% raw %}
-<div id="todo-list-example" class="demo">
-  <input
-    v-model="newTodoText" v
-    v-on:keyup.enter="addNewTodo"
-    placeholder="Add a todo"
-  >
-  <ul>
-    <li
-      is="todo-item"
-      v-for="(todo, index) in todos"
-      v-bind:title="todo"
-      v-on:remove="todos.splice(index, 1)"
-    ></li>
-  </ul>
+<div id="v-for-object-value-key-index" class="demo">
+  <div v-for="(value, key, index) in object">
+    {{ index }}. {{ key }}: {{ value }}
+  </div>
 </div>
 <script>
-Vue.component('todo-item', {
-  template: '\
-    <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
-    </li>\
-  ',
-  props: ['title']
-})
 new Vue({
-  el: '#todo-list-example',
+  el: '#v-for-object-value-key-index',
   data: {
-    newTodoText: '',
-    todos: [
-      'Do the dishes',
-      'Take out the trash',
-      'Mow the lawn'
-    ]
-  },
-  methods: {
-    addNewTodo: function () {
-      this.todos.push(this.newTodoText)
-      this.newTodoText = ''
+    object: {
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
     }
   }
 })
 </script>
 {% endraw %}
 
-## key (clave)
+<p class="tip">When iterating over an object, the order is based on the key enumeration order of `Object.keys()`, which is **not** guaranteed to be consistent across JavaScript engine implementations.</p>
 
-Cuando Vue.js está actualizando una lista de elementos renderizados con `v-for`, por defecto usa una estrategia "in-place patch". Si el orden de los elementos de datos cambia, en vez de mover los elementos DOM para ajustar el orden de los elementos, Vue sencillamente arregla cada elemento en su lugar y se asegura que refleje lo que debe ser renderizado en ése índice particular. Ésto es similar al comportamiento de `track-by="$index"` en Vue 1.x.
+## `key`
 
-Este modo por defecto es eficiente, pero sólo recomendable **cuando el renderizado de la lista no dependa del estado de componentes hijos o estado temporal DOM (p.e. valores de campos de formulario)**.
+When Vue is updating a list of elements rendered with `v-for`, by default it uses an "in-place patch" strategy. If the order of the data items has changed, instead of moving the DOM elements to match the order of the items, Vue will patch each element in-place and make sure it reflects what should be rendered at that particular index. This is similar to the behavior of `track-by="$index"` in Vue 1.x.
 
-Para darle a Vue una indicación para que pueda rastrear la identidad de cada nodo, y así re-usar y re-ordenar elementos existentes, necesita poveer un atributo único `key` para cada elemento. Un valor ideal para `key` sería el id único de cada elemento. Este atributo especial es un equivalente similar a `track-by` de la versión 1.x, pero funciona como un atributo, de modo que necesita usar `v-bind` para asignar valores dinámicos (usando una versión corta aquí):
+This default mode is efficient, but only suitable **when your list render output does not rely on child component state or temporary DOM state (e.g. form input values)**.
+
+To give Vue a hint so that it can track each node's identity, and thus reuse and reorder existing elements, you need to provide a unique `key` attribute for each item. An ideal value for `key` would be the unique id of each item. This special attribute is a rough equivalent to `track-by` in 1.x, but it works like an attribute, so you need to use `v-bind` to bind it to dynamic values (using shorthand here):
 
 ``` html
 <div v-for="item in items" :key="item.id">
@@ -343,15 +229,15 @@ Para darle a Vue una indicación para que pueda rastrear la identidad de cada no
 </div>
 ```
 
-Es recomendable usar `key` con `v-for` siempre que sea posible, a menos que el contenido DOM iterado sea sencillo, o intencionalmente dependa del funcionamiento por defecto para aprovechar la eficiencia.
+It is recommended to provide a `key` with `v-for` whenever possible, unless the iterated DOM content is simple, or you are intentionally relying on the default behavior for performance gains.
 
-Como es un mecanismo genérico para que Vue identifique nodos, `key` también tiene otros usos que no están específicamente amarrados a `v-for`, como veremos más adelante en la guía.
+Since it's a generic mechanism for Vue to identify nodes, the `key` also has other uses that are not specifically tied to `v-for`, as we will see later in the guide.
 
-## Detección de cambio de array
+## Array Change Detection
 
-### Métodos de mutación
+### Mutation Methods
 
-Vue envuelve los métodos de mutación de un array observado, de modo que dispare actualizaciones de vista. Los métodos de envoltura son:
+Vue wraps an observed array's mutation methods so they will also trigger view updates. The wrapped methods are:
 
 - `push()`
 - `pop()`
@@ -361,11 +247,11 @@ Vue envuelve los métodos de mutación de un array observado, de modo que dispar
 - `sort()`
 - `reverse()`
 
-Puede abrir la consola y jugar con los arrays `items` de los ejemplos anteriores llamando sus métodos de mutación. Por ejemplo: `example1.items.push({ message: 'Baz' })`.
+You can open the console and play with the previous examples' `items` array by calling their mutation methods. For example: `example1.items.push({ message: 'Baz' })`.
 
-### Reemplazando un Array
+### Replacing an Array
 
-Los métodos de mutación, como su nombre lo sugiere, mutan el array original del cuál han sido llamados. En comparación, también hay métodos no-mutadores, p.e. `filter()`, `concat()` y `slice()`, los cuales no cambian el array original pero **siempre retornan un nuevo array**. Cuando trabaje con métodos no mutadores, simplemente puede reemplazar el array viejo con el nuevo:
+Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. `filter()`, `concat()` and `slice()`, which do not mutate the original array but **always return a new array**. When working with non-mutating methods, you can replace the old array with the new one:
 
 ``` js
 example1.items = example1.items.filter(function (item) {
@@ -373,37 +259,95 @@ example1.items = example1.items.filter(function (item) {
 })
 ```
 
-Puede estar inclinado a pensar que esto causará que Vue deseche el DOM existente y re-renderice la lista completa - por suerte, ese no es el caso. Vue implementa heurística inteligente para maximizar el re-uso de elementos DOM, de modo que reemplazar un array con otro que contenga algunos elementos en común es una operación muy eficiente.
+You might think this will cause Vue to throw away the existing DOM and re-render the entire list - luckily, that is not the case. Vue implements some smart heuristics to maximize DOM element reuse, so replacing an array with another array containing overlapping objects is a very efficient operation.
 
-### Problemas
+### Caveats
 
-Debido a las limitaciones en JavaScript, Vue **no puede** detectar los siguientes cambios en un array:
+Due to limitations in JavaScript, Vue **cannot** detect the following changes to an array:
 
-1. Cuando directamente se cambia un elemento con el índice, p.e. `vm.items[indexOfItem] = newValue`
-2. Cuando se modifica el tamaño del array, p.e. `vm.items.length = newLength`
+1. When you directly set an item with the index, e.g. `vm.items[indexOfItem] = newValue`
+2. When you modify the length of the array, e.g. `vm.items.length = newLength`
 
-Para solventar el problema 1, los siguientes arreglos pueden lograr lo mismo que `vm.items[indexOfItem] = newValue`, pero a su vez activan actualizaciones de estado en el sistema reactivo:
+To overcome caveat 1, both of the following will accomplish the same as `vm.items[indexOfItem] = newValue`, but will also trigger state updates in the reactivity system:
 
 ``` js
 // Vue.set
 Vue.set(example1.items, indexOfItem, newValue)
 ```
 ``` js
-// Array.prototype.splice`
+// Array.prototype.splice
 example1.items.splice(indexOfItem, 1, newValue)
 ```
 
-Para circunvenir el problema 2, puede usar `splice`:
+To deal with caveat 2, you can use `splice`:
 
 ``` js
 example1.items.splice(newLength)
 ```
 
-## Mostrando Resultados Filtrados/Ordenados
+## Object Change Detection Caveats
 
-A veces queremos mostrar una versión filtrada u ordenada de un array sin mutarlo o cambiando los datos originales. En este caso, podemos crear una propiedad calculada que retorne el array filtrado u ordenado.
+Again due to limitations of modern JavaScript, **Vue cannot detect property addition or deletion**. For example:
 
-Por ejemplo:
+``` js
+var vm = new Vue({
+  data: {
+    a: 1
+  }
+})
+// `vm.a` is now reactive
+
+vm.b = 2
+// `vm.b` is NOT reactive
+```
+
+Vue does not allow dynamically adding new root-level reactive properties to an already created instance. However, it's possible to add reactive properties to a nested object using the `Vue.set(object, key, value)` method. For example, given:
+
+``` js
+var vm = new Vue({
+  data: {
+    userProfile: {
+      name: 'Anika'
+    }
+  }
+})
+```
+
+You could add a new `age` property to the nested `userProfile` object with:
+
+``` js
+Vue.set(vm.userProfile, 'age', 27)
+```
+
+You can also use the `vm.$set` instance method, which is an alias for the global `Vue.set`:
+
+``` js
+this.$set(this.userProfile, 'age', 27)
+```
+
+Sometimes you may want to assign a number of new properties to an existing object, for example using `Object.assign()` or `_.extend()`. In such cases, you should create a fresh object with properties from both objects. So instead of:
+
+``` js
+Object.assign(this.userProfile, {
+  age: 27,
+  favoriteColor: 'Vue Green'
+})
+```
+
+You would add new, reactive properties with:
+
+``` js
+this.userProfile = Object.assign({}, this.userProfile, {
+  age: 27,
+  favoriteColor: 'Vue Green'
+})
+```
+
+## Displaying Filtered/Sorted Results
+
+Sometimes we want to display a filtered or sorted version of an array without actually mutating or resetting the original data. In this case, you can create a computed property that returns the filtered or sorted array.
+
+For example:
 
 ``` html
 <li v-for="n in evenNumbers">{{ n }}</li>
@@ -422,7 +366,7 @@ computed: {
 }
 ```
 
-Alternativamente, puede sencillamente usar un método si las propiedades calculadas no son la mejor opción (p.e. anidadadas en ciclos `v-for`):
+In situations where computed properties are not feasible (e.g. inside nested `v-for` loops), you can use a method:
 
 ``` html
 <li v-for="n in even(numbers)">{{ n }}</li>
@@ -440,3 +384,212 @@ methods: {
   }
 }
 ```
+
+## `v-for` with a Range
+
+`v-for` can also take an integer. In this case it will repeat the template that many times.
+
+``` html
+<div>
+  <span v-for="n in 10">{{ n }} </span>
+</div>
+```
+
+Result:
+
+{% raw %}
+<div id="range" class="demo">
+  <span v-for="n in 10">{{ n }} </span>
+</div>
+<script>
+  new Vue({ el: '#range' })
+</script>
+{% endraw %}
+
+## `v-for` on a `<template>`
+
+Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For example:
+
+``` html
+<ul>
+  <template v-for="item in items">
+    <li>{{ item.msg }}</li>
+    <li class="divider"></li>
+  </template>
+</ul>
+```
+
+## `v-for` with `v-if`
+
+When they exist on the same node, `v-for` has a higher priority than `v-if`. That means the `v-if` will be run on each iteration of the loop separately. This can be useful when you want to render nodes for only _some_ items, like below:
+
+``` html
+<li v-for="todo in todos" v-if="!todo.isComplete">
+  {{ todo }}
+</li>
+```
+
+The above only renders the todos that are not complete.
+
+If instead, your intent is to conditionally skip execution of the loop, you can place the `v-if` on a wrapper element (or [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)). For example:
+
+``` html
+<ul v-if="todos.length">
+  <li v-for="todo in todos">
+    {{ todo }}
+  </li>
+</ul>
+<p v-else>No todos left!</p>
+```
+
+## `v-for` with a Component
+
+> This section assumes knowledge of [Components](components.html). Feel free to skip it and come back later.
+
+You can directly use `v-for` on a custom component, like any normal element:
+
+``` html
+<my-component v-for="item in items" :key="item.id"></my-component>
+```
+
+> In 2.2.0+, when using `v-for` with a component, a [`key`](list.html#key) is now required.
+
+However, this won't automatically pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, we should also use props:
+
+``` html
+<my-component
+  v-for="(item, index) in items"
+  v-bind:item="item"
+  v-bind:index="index"
+  v-bind:key="item.id"
+></my-component>
+```
+
+The reason for not automatically injecting `item` into the component is because that makes the component tightly coupled to how `v-for` works. Being explicit about where its data comes from makes the component reusable in other situations.
+
+Here's a complete example of a simple todo list:
+
+``` html
+<div id="todo-list-example">
+  <input
+    v-model="newTodoText"
+    v-on:keyup.enter="addNewTodo"
+    placeholder="Add a todo"
+  >
+  <ul>
+    <li
+      is="todo-item"
+      v-for="(todo, index) in todos"
+      v-bind:key="todo.id"
+      v-bind:title="todo.title"
+      v-on:remove="todos.splice(index, 1)"
+    ></li>
+  </ul>
+</div>
+```
+
+<p class="tip">Note the `is="todo-item"` attribute. This is necessary in DOM templates, because only an `<li>` element is valid inside a `<ul>`. It does the same thing as `<todo-item>`, but works around a potential browser parsing error. See [DOM Template Parsing Caveats](components.html#DOM-Template-Parsing-Caveats) to learn more.</p>
+
+``` js
+Vue.component('todo-item', {
+  template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit(\'remove\')">X</button>\
+    </li>\
+  ',
+  props: ['title']
+})
+
+new Vue({
+  el: '#todo-list-example',
+  data: {
+    newTodoText: '',
+    todos: [
+      {
+        id: 1,
+        title: 'Do the dishes',
+      },
+      {
+        id: 2,
+        title: 'Take out the trash',
+      },
+      {
+        id: 3,
+        title: 'Mow the lawn'
+      }
+    ],
+    nextTodoId: 4
+  },
+  methods: {
+    addNewTodo: function () {
+      this.todos.push({
+        id: this.nextTodoId++,
+        title: this.newTodoText
+      })
+      this.newTodoText = ''
+    }
+  }
+})
+```
+
+{% raw %}
+<div id="todo-list-example" class="demo">
+  <input
+    v-model="newTodoText"
+    v-on:keyup.enter="addNewTodo"
+    placeholder="Add a todo"
+  >
+  <ul>
+    <li
+      is="todo-item"
+      v-for="(todo, index) in todos"
+      v-bind:key="todo.id"
+      v-bind:title="todo.title"
+      v-on:remove="todos.splice(index, 1)"
+    ></li>
+  </ul>
+</div>
+<script>
+Vue.component('todo-item', {
+  template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit(\'remove\')">X</button>\
+    </li>\
+  ',
+  props: ['title']
+})
+
+new Vue({
+  el: '#todo-list-example',
+  data: {
+    newTodoText: '',
+    todos: [
+      {
+        id: 1,
+        title: 'Do the dishes',
+      },
+      {
+        id: 2,
+        title: 'Take out the trash',
+      },
+      {
+        id: 3,
+        title: 'Mow the lawn'
+      }
+    ],
+    nextTodoId: 4
+  },
+  methods: {
+    addNewTodo: function () {
+      this.todos.push({
+        id: this.nextTodoId++,
+        title: this.newTodoText
+      })
+      this.newTodoText = ''
+    }
+  }
+})
+</script>
+{% endraw %}

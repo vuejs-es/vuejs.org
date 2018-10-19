@@ -1,14 +1,14 @@
 ---
-title: Pruebas Unitarias
+title: Unit tests
 type: guide
 order: 403
 ---
 
 ## Configuración y Herramientas
 
-Cualquier solución compatible con construcción basada en módulos funciona, pero si desea una recomendación en específico pruebe el ejecutor de pruebas [Karma](http://karma-runner.github.io). Éste tiene una gran cantidad de plugins, incluido soporte para [Webpack](https://github.com/webpack/karma-webpack) y [Browserify](https://github.com/Nikku/karma-browserify). Para detalles en la configuración por favor revise la documentación respectiva de cada proyecto. Estos ejemplos de configuración para Karma en [Webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) y [Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) le ayudarán a comenzar.
+Cualquier solución compatible con construcción basada en módulos funcionará, pero si desea una recomendación específica pruebe el ejecutor de pruebas [Karma](http://karma-runner.github.io). Tiene una gran cantidad de plugins, incluido soporte para [Webpack](https://github.com/webpack/karma-webpack) y [Browserify](https://github.com/Nikku/karma-browserify). Para detalles en la configuración por favor revise la documentación respectiva de cada proyecto. Estos ejemplos de configuración para Karma en [Webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) y [Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) le ayudarán a comenzar.
 
-## Pruebas Simples
+## Tests Simples
 
 No es necesario hacer algo en especial para poder probar sus componentes. Exporte las opciones tal cual: 
 
@@ -31,17 +31,17 @@ No es necesario hacer algo en especial para poder probar sus componentes. Export
 </script>
 ```
 
-Entonces importe las opciones del component junto con Vue, y está listo para hacer aserciones comunes:
+Entonces importe las opciones del component junto con Vue, y está listo para hacer afirmaciones comunes:
 
 ``` js
-// Importe Vue y el componente a probar
+// Importe Vue y el componente a testear
 import Vue from 'vue'
 import MyComponent from 'path/to/MyComponent.vue'
 
-// Éstas son algunas pruebas con Jasmine 2.0, pero puede usar
-// cualquier ejecutor de pruebas y librería de aserción de su preferencia
+// Éstas son algunos tests con Jasmine 2.0, pero puede usar
+// cualquier ejecutor de pruebas y librería de assert de su preferencia
 describe('MyComponent', () => {
-  // Inspecciona las opciones del componente
+  // Inspeccione las opciones del componente
   it('has a created hook', () => {
     expect(typeof MyComponent.created).toBe('function')
   })
@@ -69,9 +69,9 @@ describe('MyComponent', () => {
 })
 ```
 
-## Escribiendo Componentes Fáciles de Probar
+## Escribiendo componentes testeables
 
-La salida renderizada de un componente es determinada principlamente por las propiedades que recibe. Si la salida renderizada de un componente depende solamente de sus propiedades, éste es bastante sencillo de probar, de manera similar a lo que sería asertar el valor devuelto de una función pura con diferentes argumentos. Veamos un ejemplo simplificado:
+La salida renderizada de un componente es determinada principlamente por las propiedades que recibe. Si la salida renderizada de un componente depende solamente de sus propiedades, éste es bastante sencillo de probar, de manera similar a lo que sería comprobar el valor devuelto de una función pura con diferentes argumentos. Veamos un ejemplo simplificado:
 
 ``` html
 <template>
@@ -111,7 +111,7 @@ describe('MyComponent', () => {
 })
 ```
 
-## Probando Actualizaciones Asíncronas
+## Probando actualizaciones asíncronas
 
 Dado que Vue [realiza actualizaciones del DOM asíncronamente](reactivity.html#Async-Update-Queue), aserciones tras actualizaciones del DOM causadas por el cambio del estado tendrán que ser hechas en un _callback_ de `Vue.nextTick`:
 
@@ -129,4 +129,4 @@ it('updates the rendered message when vm.message updates', done => {
 })
 ```
 
-Estamos planeando en trabajar en una colección de utilidades de prueba comunes que harán más fácil renderizar componentes con diferentes restricciones (p. ej. renderizado superficial que ignora componentes hijos) y asertar su salida.
+Estamos planeando en trabajar en una colección de utilidades de tests comunes que harán más fácil renderizar componentes con diferentes restricciones (p. ej. renderizado superficial que ignora componentes hijos) y comprobar su salida.
