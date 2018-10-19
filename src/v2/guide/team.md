@@ -29,7 +29,7 @@ order: 803
           </dd>
         </template>
         <template v-if="profile.github && profile.reposPersonal">
-          <dt>Ecosystem</dt>
+          <dt>Ecosistema</dt>
           <dd>
             <ul>
               <li v-for="repo in profile.reposPersonal">
@@ -41,30 +41,30 @@ order: 803
         <template v-if="profile.work">
           <dt>
             <i class="fa fa-briefcase"></i>
-            <span class="sr-only">Work</span>
+            <span class="sr-only">Trabajo</span>
           </dt>
           <dd v-html="workHtml"></dd>
         </template>
         <span v-if="profile.distanceInKm" class="distance">
           <dt>
             <i class="fa fa-map-marker"></i>
-            <span class="sr-only">Distance</span>
+            <span class="sr-only">Distancia</span>
           </dt>
           <dd>
-            About
+            Sobre
             <span
               v-if="profile.distanceInKm <= 150"
               :title="profile.name + ' is close enough to commute to your location.'"
               class="user-match"
             >{{ textDistance }} away</span>
             <template v-else>{{ textDistance }} away</template>
-            in {{ profile.city }}
+            en {{ profile.city }}
           </dd>
         </span>
         <template v-else-if="profile.city">
           <dt>
             <i class="fa fa-map-marker"></i>
-            <span class="sr-only">City</span>
+            <span class="sr-only">Ciudad</span>
           </dt>
           <dd>
             {{ profile.city }}
@@ -73,7 +73,7 @@ order: 803
         <template v-if="profile.languages">
           <dt>
             <i class="fa fa-globe"></i>
-            <span class="sr-only">Languages</span>
+            <span class="sr-only">Lenguajes</span>
           </dt>
           <dd v-html="languageListHtml" class="language-list"></dd>
         </template>
@@ -109,7 +109,7 @@ order: 803
   <div class="team">
 
     <h2 id="the-core-team">
-      The Core Team
+      Equipo principal
       <button
         v-if="geolocationSupported && !userPosition"
         @click="getUserPosition"
@@ -122,21 +122,21 @@ order: 803
         ></i>
         <template v-else>
           <i class="fa fa-map-marker"></i>
-          <span>find near me</span>
+          <span>encuentra cerca de mí</span>
         </template>
       </button>
     </h2>
 
     <p v-if="errorGettingLocation" class="tip">
-      Failed to get your location.
+      Error al buscar su posición.
     </p>
 
     <p>
-      The development of Vue and its ecosystem is guided by an international team, some of whom have chosen to be featured below.
+      El desarrollo de Vue y su ecosistema es controlado por un equipo internacional. Algunos miembros han decidido aparecer aquí abajo.
     </p>
 
     <p v-if="userPosition" class="success">
-      The core team has been sorted by their distance from you.
+      El equipo principal ha sido ordenado según la distancia a su posición actual.
     </p>
 
     <vuer-profile
@@ -162,21 +162,21 @@ order: 803
         ></i>
         <template v-else>
           <i class="fa fa-map-marker"></i>
-          <span>find near me</span>
+          <span>encuentra cerca de mí</span>
         </template>
       </button>
     </h2>
 
     <p v-if="errorGettingLocation" class="tip">
-      Failed to get your location.
+      Error al buscar su posición.
     </p>
 
     <p>
-      Some members of the Vue community have so enriched it, that they deserve special mention. We've developed a more intimate relationship with these key partners, often coordinating with them on upcoming features and news.
+      Algunos miembros de la comunidad Vue la han enriquecido tanto que merecen una mención especial. Hemos desarrollado una relación mas íntima con estos partners coordinando con ellos muchas veces nuevas funciones y noticias.
     </p>
 
     <p v-if="userPosition" class="success">
-      The community partners have been sorted by their distance from you.
+      Los partners de la comunidad han sido ordenados según la distancia a su posición actual.
     </p>
 
     <vuer-profile

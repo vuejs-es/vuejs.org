@@ -1,13 +1,13 @@
 ---
-title: Server-Side Rendering
+title: Renderizado del lado del servidor
 type: guide
 order: 503
 ---
 
-## The Complete SSR Guide
+## La guía completa de renderizado del lado del servidor
 
-We have created a standalone guide for creating server-rendered Vue applications. This is a very in-depth guide for those who are already familiar with client-side Vue development, server-side Node.js development and webpack. Check it out at [ssr.vuejs.org](https://ssr.vuejs.org/).
+Hemos creado una guía independiente acerca de crear aplicaciones con Vue renderizadas en el lado del servidor. Ésta es una guía muy profunda para aquellos que ya están familiarizados con el desarrollo de aplicaciones del lado del cliente con Vue, Node.js del lado del servidor y webpack. Puede encontrarla en [ssr.vuejs.org](https://ssr.vuejs.org/).
 
 ## Nuxt.js
 
-Properly configuring all the discussed aspects of a production-ready server-rendered app can be a daunting task. Luckily, there is an excellent community project that aims to make all of this easier: [Nuxt.js](https://nuxtjs.org/). Nuxt.js is a higher-level framework built on top of the Vue ecosystem which provides an extremely streamlined development experience for writing universal Vue applications. Better yet, you can even use it as a static site generator (with pages authored as single-file Vue components)! We highly recommend giving it a try.
+Configurar correctamente todos los aspectos discutidos acerca de una aplicación renderizada en el servidor puede ser una tarea monumental. Afortunadamente, existe un proyecto de la comunidad cuyo objetivo es hacer todo esto más fácil: [Nuxt.js](https://nuxtjs.org/). Nuxt.js es un framework de alto nivel construido sobre el ecosistema de Vue el cual provee una experiencia de desarrollo de aplicaciones universales con Vue sumamente optimizada. Mejor aún, ¡puede ser utilizado para generar sitios estáticos (con páginas escritas como componentes Vue de un solo archivo)! Le recomendamos ampliamente que lo pruebe.

@@ -1,12 +1,12 @@
 ---
-title: Custom Directives
+title: Directivas personalizadas
 type: guide
 order: 302
 ---
 
 ## Intro
 
-In addition to the default set of directives shipped in core (`v-model` and `v-show`), Vue also allows you to register your own custom directives. Note that in Vue 2.0, the primary form of code reuse and abstraction is components - however there may be cases where you need some low-level DOM access on plain elements, and this is where custom directives would still be useful. An example would be focusing on an input element, like this one:
+Además del grupo de directivas que viene por defecto en core (`v-model` y `v-show`), Vue también permite registrar sus propias directivas personalizadas. Fíjese que en Vue 2.0, la forma de principal de abstracción y reutilización de código son los elementos - sin embargo habrá casos donde necesite accesso DOM de nivel bajo a elementos comúnes, y es aquí donde las directivas personalizadas siguen siendo útiles. Un ejemplo sería enfocar un elemento de campo, como este:
 
 {% raw %}
 <div id="simplest-directive-example" class="demo">
@@ -24,7 +24,7 @@ new Vue({
 </script>
 {% endraw %}
 
-When the page loads, that element gains focus (note: autofocus doesn't work on mobile Safari). In fact, if you haven't clicked on anything else since visiting this page, the input above should be focused now. Now let's build the directive that accomplishes this:
+Cuando la página carga, el elemento se enfoca (nota: autofocus no funciona en Safari mobile). De hecho, si no clickaste en ningún otro sitio desde que visitaste esta página, el elemento de campo debería estar enfocado. Vamos a construir la directiva que permite esto:
 
 ``` js
 // Register a global custom directive called v-focus
@@ -37,7 +37,7 @@ Vue.directive('focus', {
 })
 ```
 
-If you want to register a directive locally instead, components also accept a `directives` option:
+Si prefiere registrar una directiva localmente, componentes también aceptan una opción `directives`:
 
 ``` js
 directives: {
@@ -50,7 +50,7 @@ directives: {
 }
 ```
 
-Then in a template, you can use the new `v-focus` attribute on any element, like this:
+Ahora en una plantilla, puede usar el nuevo atributo `v-focus` sobre cualquier elemento, como aquí:
 
 ``` html
 <input v-focus>
@@ -58,38 +58,38 @@ Then in a template, you can use the new `v-focus` attribute on any element, like
 
 ## Hook Functions
 
-A directive definition object can provide several hook functions (all optional):
+Un objecto de definición de directiva puede ofrecer varias funciones hook (todas opcionales)
 
-- `bind`: called only once, when the directive is first bound to the element. This is where you can do one-time setup work.
+- `bind`: llamada sólo una vez, cuando la directiva se enlaza por primera vez al elemento. Aquí es donde puede realizar el proceso de inicialización.
 
-- `inserted`: called when the bound element has been inserted into its parent node (this only guarantees parent node presence, not necessarily in-document).
+- `inserted`: llamada cuando el elemente vinculado ha sido añadido al nodo padre (esto solo garantiza la presencia de un nodo padre, no necesariamente in-document)
 
-- `update`: called after the containing component's VNode has updated, __but possibly before its children have updated__. The directive's value may or may not have changed, but you can skip unnecessary updates by comparing the binding's current and old values (see below on hook arguments).
+- `update`: llamada cuando el VNode contenido en el componente ha sido actualizado, __pero posiblemente antes que sus elementos subordinados hayan sido actualizados__. El valor de la directiva puede haber cambiado o no, pero puede saltar actualizaciones innecesarias si compara el valor nuevo con el valor antiguo del enlaze de datos. (Mire abajo en argumentos de hook)
 
-- `componentUpdated`: called after the containing component's VNode __and the VNodes of its children__ have updated.
+- `componentUpdated`: llamada después que el VNode del componente contenido __y los VNodes de sus elementos subordinados__ hayan sido actualizados.
 
-- `unbind`: called only once, when the directive is unbound from the element.
+- `unbind`: llamada sólo una vez, cuando la directiva se desenlaza del elemento.
 
-We'll explore the arguments passed into these hooks (i.e. `el`, `binding`, `vnode`, and `oldVnode`) in the next section.
+Vamos a explorar los argumentos pasados a estos hooks (p.ej. `el`, `binding`, `vnode` y `oldVnode`) en la siguiente sección.  
 
-## Directive Hook Arguments
+## Argumentos para hook de directiva
 
-Directive hooks are passed these arguments:
+A los Hooks de directiva les pasamos los siguientes argumentos: 
 
-- **el**: The element the directive is bound to. This can be used to directly manipulate the DOM.
-- **binding**: An object containing the following properties.
-  - **name**: The name of the directive, without the `v-` prefix.
-  - **value**: The value passed to the directive. For example in `v-my-directive="1 + 1"`, the value would be `2`.
-  - **oldValue**: The previous value, only available in `update` and `componentUpdated`. It is available whether or not the value has changed.
-  - **expression**: The expression of the binding as a string. For example in `v-my-directive="1 + 1"`, the expression would be `"1 + 1"`.
-  - **arg**: The argument passed to the directive, if any. For example in `v-my-directive:foo`, the arg would be `"foo"`.
-  - **modifiers**: An object containing modifiers, if any. For example in `v-my-directive.foo.bar`, the modifiers object would be `{ foo: true, bar: true }`.
-- **vnode**: The virtual node produced by Vue's compiler. See the [VNode API](../api/#VNode-Interface) for full details.
-- **oldVnode**: The previous virtual node, only available in the `update` and `componentUpdated` hooks.
+- **el**: El elemento al cual enlaza la directiva. Esto puede ser utilizado para manipular directamente el DOM.
+- **binding**: Un objeto que contiene las siguientes propiedades:
+  - **name**: El nombre de la directiva sin el prefijo `v-`.
+  - **value**: El valor pasado a la directiva. Por ej. en `v-my-directive="1 + 1"`, el valor será `2`.
+  - **oldValue**: El valor anterior, sólo disponible `update` y `componentUpdated`. Está disponible independientemente de si el valor cambió o no.
+  - **expression**: La expresión del enlaze de datos como un string. Por ej. en `v-my-directive="1 + 1"`, la expresión será `"1 + 1"`.
+  - **arg**: El argumento pasado a la directiva, si existe. Por ej. en `v-my-directive:foo`, el argumento sería `"foo"`.
+  - **modifiers**: Un objecto que contiene modificadores, si existen. Por ej. en `v-my-directive.foo.bar`, los modificadores serian `{ foo: true, bar: true }`.
+- **vnode**: El nodo virtual generado por el compilador de Vue. Vea [VNode API](../api/#VNode-Interface) para más detalles.
+- **oldVnode**: El nodo virtual anterior, sólo disponible en los hooks `update` y `componentUpdated`.
 
-<p class="tip">Apart from `el`, you should treat these arguments as read-only and never modify them. If you need to share information across hooks, it is recommended to do so through element's [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset).</p>
+<p class="tip">Aparte de `el`, debería tratar estos argumentos como sólo-lectura y no modificarlos nunca. Si necesita intercambiar información entre diferentes hooks, es recomendado hacerlo mediante el [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset) del elemento.</p>
 
-An example of a custom directive using some of these properties:
+Un ejemplo de una directiva personalizada usando algunas de estas propiedades:
 
 ``` html
 <div id="hook-arguments-example" v-demo:foo.a.b="message"></div>
@@ -141,9 +141,9 @@ new Vue({
 </script>
 {% endraw %}
 
-## Function Shorthand
+## Atajo función
 
-In many cases, you may want the same behavior on `bind` and `update`, but don't care about the other hooks. For example:
+En muchos casos, querrá el mismo comportamiento con `bind` y `update` sin importarle otros hooks. Por ejemplo:
 
 ``` js
 Vue.directive('color-swatch', function (el, binding) {
@@ -151,9 +151,9 @@ Vue.directive('color-swatch', function (el, binding) {
 })
 ```
 
-## Object Literals
+## Objetos literales
 
-If your directive needs multiple values, you can also pass in a JavaScript object literal. Remember, directives can take any valid JavaScript expression.
+Si su directiva necesita múltiples valores, puede pasar también un objeto literal Javascript. Recuerde, directivas pueden tomar cualquier expresión válida Javascript.
 
 ``` html
 <div v-demo="{ color: 'white', text: 'hello!' }"></div>

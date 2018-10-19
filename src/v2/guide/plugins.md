@@ -4,22 +4,21 @@ type: guide
 order: 304
 ---
 
-## Writing a Plugin
+## Escribiendo un plugin
 
-Plugins usually add global-level functionality to Vue. There is no strictly defined scope for a plugin - there are typically several types of plugins you can write:
+Los Plugins usualmente añaden funcionalidades de nivel global a Vue. No hay un alcance estrictamente definido para un Plugin: normalmente hay varios tipos de Plugins que puede escribir:
 
-1. Add some global methods or properties. e.g. [vue-custom-element](https://github.com/karol-f/vue-custom-element)
+1. Agregar algunos métodos o propiedades globales. Por ejemplo [vue-custom-element](https://github.com/karol-f/vue-custom-element)
 
-2. Add one or more global assets: directives/filters/transitions etc. e.g. [vue-touch](https://github.com/vuejs/vue-touch)
+2. Agregar uno o más recursos globales: directivas/filtros/transiciones, etc. Por ejemplo [vue-touch](https://github.com/vuejs/vue-touch)
 
-3. Add some component options by global mixin. e.g. [vue-router](https://github.com/vuejs/vue-router)
+3. Agregar algunas opciones de componente por mixin global. Por Ejemplo [vue-router](https://github.com/vuejs/vue-router)
 
-4. Add some Vue instance methods by attaching them to Vue.prototype.
+4. Agregar algunos métodos de instancia adjuntándolos a Vue.prototype.
 
-5. A library that provides an API of its own, while at the same time injecting some combination of the above. e.g. [vue-router](https://github.com/vuejs/vue-router)
+5. Una biblioteca que proporcione una API propia, mientras que al mismo tiempo introduce una combinación de las anteriores. Por Ejemplo [vue-router](https://github.com/vuejs/vue-router)
 
-A Vue.js plugin should expose an `install` method. The method will be called with the `Vue` constructor as the first argument, along with possible options:
-
+Un Plugin Vue.js debería exponer un método `install` (instalar). Se llamará al método con el constructor `Vue` como primer argumento, junto con las posibles opciones:
 ``` js
 MyPlugin.install = function (Vue, options) {
   // 1. add global method or property
@@ -50,32 +49,32 @@ MyPlugin.install = function (Vue, options) {
 }
 ```
 
-## Using a Plugin
+## Usando un Plugin
 
-Use plugins by calling the `Vue.use()` global method:
+Use los Plugins llamando al método global `Vue.use()`:
 
 ``` js
-// calls `MyPlugin.install(Vue)`
+// ejecuta `MyPlugin.install(Vue)`
 Vue.use(MyPlugin)
 ```
 
-You can optionally pass in some options:
+Opcionalmente puede declarar opciones:
 
 ``` js
 Vue.use(MyPlugin, { someOption: true })
 ```
 
-`Vue.use` automatically prevents you from using the same plugin more than once, so calling it multiple times on the same plugin will install the plugin only once.
+`Vue.use` automáticamente lo previene de usar el mismo Plugin más de una vez, por lo que, al usarlo varias veces con el mismo Plugin, este se instalará solo una vez.
 
-Some plugins provided by Vue.js official plugins such as `vue-router` automatically calls `Vue.use()` if `Vue` is available as a global variable. However in a module environment such as CommonJS, you always need to call `Vue.use()` explicitly:
+Algunos Plugins proporcionados por “Vue.js official plugins” como `vue-router`, ejecutan automáticamente `Vue.use()` si `Vue` está disponible como una variable global. Sin embargo, en un módulo como CommonJS, siempre debe ejecutar `Vue.use()` explícitamente:
 
 ``` js
-// When using CommonJS via Browserify or Webpack
+// Cuando use CommonJS via Browserify o Webpack
 var Vue = require('vue')
 var VueRouter = require('vue-router')
 
-// Don't forget to call this
+// No olvide llamarlo
 Vue.use(VueRouter)
 ```
 
-Checkout [awesome-vue](https://github.com/vuejs/awesome-vue#components--libraries) for a huge collection of community-contributed plugins and libraries.
+Consulte [awesome-vue](https://github.com/vuejs/awesome-vue#components--libraries) para obtener una gran colección de plugins y librerías proporcionados por la comunidad.
