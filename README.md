@@ -44,9 +44,16 @@ La traducción en coreano es mantenida por [Vue.js Korean User group](https://gi
 
 * Repositorio de la traducción - [/vuejs/cn.vuejs.org](https://github.com/vuejs/cn.vuejs.org)
 
+### Persa (Farsi)
+
+La traducción persa es mantenida por - [VueJS-fa](https://github.com/vuejs-fa).
+
+* Repositorio de la tracucción - [/vuejs-fa/fa.vuejs.org](https://github.com/vuejs-fa/fa.vuejs.org)
+* Colaborador principal - [Pooya Parsa](https://github.com/pi0)
+
 ### Português-Br
 
-La traducción en português-Br es mantenida por [Vuejs-Br](https://github.com/vuejs-br).
+La traducción en portugués-Br es mantenida por [Vuejs-Br](https://github.com/vuejs-br).
 
 * Repositorio de la traducción - [/vuejs-br/br.vuejs.org](https://github.com/vuejs-br/br.vuejs.org)
 
@@ -56,3 +63,10 @@ La traducción en ruso es mantenida por Translation Gang.
 
 * Repositorio de la traducción - [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
 * Colaborador principal - [Grigoriy Beziuk](https://gbezyuk.github.io)
+
+### Vietnamita
+
+La Traducción vietnamita es mantenida por - [Vue.js Vietnam User group.](https://github.com/vuejs-vn/)
+
+* Repositorio de la traducción - [/vuejs-vn/vuejs.org](https://github.com/vuejs-vn/vuejs.org)
+* Colaborador principal - [phanan](https://github.com/phanan)
