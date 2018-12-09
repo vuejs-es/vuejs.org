@@ -38,7 +38,7 @@ new Vue({
 
 ``` html
 <span>Multiline message is:</span>
-<p style="white-space: pre">{{ message }}</p>
+<p style="white-space: pre-line;">{{ message }}</p>
 <br>
 <textarea v-model="message" placeholder="add multiple lines"></textarea>
 ```
@@ -46,7 +46,7 @@ new Vue({
 {% raw %}
 <div id="example-textarea" class="demo">
   <span>Multiline message is:</span>
-  <p style="white-space: pre">{{ message }}</p>
+  <p style="white-space: pre-line;">{{ message }}</p>
   <br>
   <textarea v-model="message" placeholder="add multiple lines"></textarea>
 </div>
@@ -59,7 +59,6 @@ new Vue({
 })
 </script>
 {% endraw %}
-
 
 {% raw %}
 <p class="tip">La interpolación en textareas (<code>&lt;textarea&gt;{{text}}&lt;/textarea&gt;</code>)no funcionará. En cambio use <code>v-model</code>.</p>
@@ -91,19 +90,21 @@ new Vue({
 Múltiples checkboxes, asignados al mismo Array:
 
 ``` html
-<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
-<label for="jack">Jack</label>
-<input type="checkbox" id="john" value="John" v-model="checkedNames">
-<label for="john">John</label>
-<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-<label for="mike">Mike</label>
-<br>
-<span>Checked names: {{ checkedNames }}</span>
+<div id='example-3'>
+  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  <label for="jack">Jack</label>
+  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+  <label for="john">John</label>
+  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  <label for="mike">Mike</label>
+  <br>
+  <span>Checked names: {{ checkedNames }}</span>
+</div>
 ```
 
 ``` js
 new Vue({
-  el: '...',
+  el: '#example-3',
   data: {
     checkedNames: []
   }
@@ -132,7 +133,6 @@ new Vue({
 {% endraw %}
 
 ### Radios
-
 
 ``` html
 <input type="radio" id="one" value="One" v-model="picked">
@@ -169,15 +169,25 @@ Select único:
 
 ``` html
 <select v-model="selected">
+  <option disabled value="">Please select one</option>
   <option>A</option>
   <option>B</option>
   <option>C</option>
 </select>
 <span>Selected: {{ selected }}</span>
 ```
+``` js
+new Vue({
+  el: '...',
+  data: {
+    selected: ''
+  }
+})
+```
 {% raw %}
 <div id="example-5" class="demo">
   <select v-model="selected">
+    <option disabled value="">Please select one</option>
     <option>A</option>
     <option>B</option>
     <option>C</option>
@@ -188,11 +198,13 @@ Select único:
 new Vue({
   el: '#example-5',
   data: {
-    selected: null
+    selected: ''
   }
 })
 </script>
 {% endraw %}
+
+<p class="tip">If the initial value of your `v-model` expression does not match any of the options, the `<select>` element will render in an "unselected" state. On iOS this will cause the user not being able to select the first item because iOS does not fire a change event in this case. It is therefore recommended to provide a disabled option with an empty value, as demonstrated in the example above.</p>
 
 Múltiple selects (asignados a un Array):
 
@@ -207,7 +219,7 @@ Múltiple selects (asignados a un Array):
 ```
 {% raw %}
 <div id="example-6" class="demo">
-  <select v-model="selected" multiple style="width: 50px">
+  <select v-model="selected" multiple style="width: 50px;">
     <option>A</option>
     <option>B</option>
     <option>C</option>
@@ -333,6 +345,8 @@ vm.pick === vm.a
 // cuando se selecciona:
 typeof vm.selected // -> 'object'
 vm.selected.number // -> 123
+typeof vm.selected // => 'object'
+vm.selected.number // => 123
 ```
 
 ## Modificadores

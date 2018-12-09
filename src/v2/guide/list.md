@@ -49,7 +49,7 @@ var example1 = new Vue({
   },
   watch: {
     items: function () {
-      smoothScroll.animateScroll(null, '#example-1')
+      smoothScroll.animateScroll(document.querySelector('#example-1'))
     }
   }
 })
@@ -99,7 +99,7 @@ var example2 = new Vue({
   },
   watch: {
     items: function () {
-      smoothScroll.animateScroll(null, '#example-2')
+      smoothScroll.animateScroll(document.querySelector('#example-2'))
     }
   }
 })
@@ -130,7 +130,7 @@ Similar a usar `v-if` en un `<template>`, también se puede usar la directiva `v
 También puede usar `v-for` para iterar sobre las propiedades de un objeto.
 
 ``` html
-<ul id="repeat-object" class="demo">
+<ul id="v-for-object" class="demo">
   <li v-for="value in object">
     {{ value }}
   </li>
@@ -139,12 +139,12 @@ También puede usar `v-for` para iterar sobre las propiedades de un objeto.
 
 ``` js
 new Vue({
-  el: '#repeat-object',
+  el: '#v-for-object',
   data: {
     object: {
-      FirstName: 'John',
-      LastName: 'Doe',
-      Age: 30
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
     }
   }
 })
@@ -153,19 +153,19 @@ new Vue({
 Resulta en:
 
 {% raw %}
-<ul id="repeat-object" class="demo">
+<ul id="v-for-object" class="demo">
   <li v-for="value in object">
     {{ value }}
   </li>
 </ul>
 <script>
 new Vue({
-  el: '#repeat-object',
+  el: '#v-for-object',
   data: {
     object: {
-      FirstName: 'John',
-      LastName: 'Doe',
-      Age: 30
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
     }
   }
 })
@@ -176,7 +176,7 @@ También puede usar un segundo parámetro para la clave:
 
 ``` html
 <div v-for="(value, key) in object">
-  {{ key }} : {{ value }}
+  {{ key }}: {{ value }}
 </div>
 ```
 
@@ -196,7 +196,7 @@ Y otro para el índice
 
 ``` html
 <div>
-  <span v-for="n in 10">{{ n }}</span>
+  <span v-for="n in 10">{{ n }} </span>
 </div>
 ```
 
@@ -207,7 +207,7 @@ Resulta en:
   <span v-for="n in 10">{{ n }} </span>
 </div>
 <script>
-new Vue({ el: '#range' })
+  new Vue({ el: '#range' })
 </script>
 {% endraw %}
 
@@ -218,7 +218,7 @@ new Vue({ el: '#range' })
 Puede usar directamente `v-for` en un componente a medida, como en cualquier elemento normal:
 
 ``` html
-<my-component v-for="item in items"></my-component>
+<my-component v-for="item in items" :key="item.id"></my-component>
 ```
 
 Sin embargo, esto no pasa automáticamente datos al componente, ya que los componentes tienen ámbitos aislados propios. Para poder transferir los datos iterados al componente, debemos usar los props:
@@ -227,8 +227,9 @@ Sin embargo, esto no pasa automáticamente datos al componente, ya que los compo
 <my-component
   v-for="(item, index) in items"
   v-bind:item="item"
-  v-bind:index="index">
-</my-component>
+  v-bind:index="index"
+  v-bind:key="item.id"
+></my-component>
 ```
 
 La razón para no inyectar automáticamente `item` en el componente, es por que haría que el componente sea muy acoplado a cómo funciona `v-for`. Siendo explícito sobre de dónde vienen sus datos hace que el componente sea reusable en otras situaciones.
@@ -246,12 +247,15 @@ Aquí tenemos un ejemplo completo de una lista de tareas:
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
-      v-bind:title="todo"
+      v-bind:key="todo.id"
+      v-bind:title="todo.title"
       v-on:remove="todos.splice(index, 1)"
     ></li>
   </ul>
 </div>
 ```
+
+<p class="tip">Note the `is="todo-item"` attribute. This is necessary in DOM templates, because only an `<li>` element is valid inside a `<ul>`. It does the same thing as `<todo-item>`, but works around a potential browser parsing error. See [DOM Template Parsing Caveats](components.html#DOM-Template-Parsing-Caveats) to learn more.</p>
 
 ``` js
 Vue.component('todo-item', {
@@ -269,14 +273,27 @@ new Vue({
   data: {
     newTodoText: '',
     todos: [
-      'Do the dishes',
-      'Take out the trash',
-      'Mow the lawn'
-    ]
+      {
+        id: 1,
+        title: 'Do the dishes',
+      },
+      {
+        id: 2,
+        title: 'Take out the trash',
+      },
+      {
+        id: 3,
+        title: 'Mow the lawn'
+      }
+    ],
+    nextTodoId: 4
   },
   methods: {
     addNewTodo: function () {
-      this.todos.push(this.newTodoText)
+      this.todos.push({
+        id: this.nextTodoId++,
+        title: this.newTodoText
+      })
       this.newTodoText = ''
     }
   }
@@ -286,7 +303,7 @@ new Vue({
 {% raw %}
 <div id="todo-list-example" class="demo">
   <input
-    v-model="newTodoText" v
+    v-model="newTodoText"
     v-on:keyup.enter="addNewTodo"
     placeholder="Add a todo"
   >
@@ -294,7 +311,8 @@ new Vue({
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
-      v-bind:title="todo"
+      v-bind:key="todo.id"
+      v-bind:title="todo.title"
       v-on:remove="todos.splice(index, 1)"
     ></li>
   </ul>
@@ -309,19 +327,33 @@ Vue.component('todo-item', {
   ',
   props: ['title']
 })
+
 new Vue({
   el: '#todo-list-example',
   data: {
     newTodoText: '',
     todos: [
-      'Do the dishes',
-      'Take out the trash',
-      'Mow the lawn'
-    ]
+      {
+        id: 1,
+        title: 'Do the dishes',
+      },
+      {
+        id: 2,
+        title: 'Take out the trash',
+      },
+      {
+        id: 3,
+        title: 'Mow the lawn'
+      }
+    ],
+    nextTodoId: 4
   },
   methods: {
     addNewTodo: function () {
-      this.todos.push(this.newTodoText)
+      this.todos.push({
+        id: this.nextTodoId++,
+        title: this.newTodoText
+      })
       this.newTodoText = ''
     }
   }

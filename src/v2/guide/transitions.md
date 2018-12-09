@@ -50,7 +50,7 @@ new Vue({
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
-.fade-enter, .fade-leave-active {
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0
 }
 ```
@@ -76,7 +76,7 @@ new Vue({
 .demo-transition-enter-active, .demo-transition-leave-active {
   transition: opacity .5s
 }
-.demo-transition-enter, .demo-transition-leave-active {
+.demo-transition-enter, .demo-transition-leave-to {
   opacity: 0
 }
 </style>
@@ -139,7 +139,8 @@ new Vue({
 .slide-fade-leave-active {
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
-.slide-fade-enter, .slide-fade-leave-active {
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateX(10px);
   opacity: 0;
 }
@@ -169,7 +170,7 @@ new Vue({
 .slide-fade-leave-active {
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
-.slide-fade-enter, .slide-fade-leave-active {
+.slide-fade-enter, .slide-fade-leave-to {
   transform: translateX(10px);
   opacity: 0;
 }
@@ -205,7 +206,7 @@ new Vue({
   animation: bounce-in .5s;
 }
 .bounce-leave-active {
-  animation: bounce-out .5s;
+  animation: bounce-in .5s reverse;
 }
 @keyframes bounce-in {
   0% {
@@ -216,17 +217,6 @@ new Vue({
   }
   100% {
     transform: scale(1);
-  }
-}
-@keyframes bounce-out {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(0);
   }
 }
 ```
@@ -245,8 +235,8 @@ new Vue({
     animation: bounce-in .5s;
   }
   .bounce-leave-active {
-    -webkit-animation: bounce-out .5s;
-    animation: bounce-out .5s;
+    -webkit-animation: bounce-in .5s reverse;
+    animation: bounce-in .5s reverse;
   }
   @keyframes bounce-in {
     0% {
@@ -262,20 +252,6 @@ new Vue({
       transform: scale(1);
     }
   }
-  @keyframes bounce-out {
-    0% {
-      -webkit-transform: scale(1);
-      transform: scale(1);
-    }
-    50% {
-      -webkit-transform: scale(1.5);
-      transform: scale(1.5);
-    }
-    100% {
-      -webkit-transform: scale(0);
-      transform: scale(0);
-    }
-  }
   @-webkit-keyframes bounce-in {
     0% {
       -webkit-transform: scale(0);
@@ -288,20 +264,6 @@ new Vue({
     100% {
       -webkit-transform: scale(1);
       transform: scale(1);
-    }
-  }
-  @-webkit-keyframes bounce-out {
-    0% {
-      -webkit-transform: scale(1);
-      transform: scale(1);
-    }
-    50% {
-      -webkit-transform: scale(1.5);
-      transform: scale(1.5);
-    }
-    100% {
-      -webkit-transform: scale(0);
-      transform: scale(0);
     }
   }
 </style>
@@ -321,15 +283,17 @@ Usted también puede especificar clases de transición personalizadas cuando usa
 
 - `enter-class`
 - `enter-active-class`
+- `enter-to-class` (2.1.8+)
 - `leave-class`
 - `leave-active-class`
+- `leave-to-class` (2.1.8+)
 
 Estas van a sobreescribir los nombres convencionales de las clases. Esto es especialmente útil cuando desea combinar el sistema de transición de Vue con una librería de animaciones CSS existente, como [Animate.css](https://daneden.github.io/animate.css/).
 
 Por ejemplo:
 
 ``` html
-<link href="https://unpkg.com/animate.css@3.5.1/animate.min.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 
 <div id="example-3">
   <button @click="show = !show">
@@ -355,7 +319,7 @@ new Vue({
 ```
 
 {% raw %}
-<link href="https://unpkg.com/animate.css@3.5.1" rel="stylesheet" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 <div id="example-3" class="demo">
   <button @click="show = !show">
     Toggle render
@@ -572,6 +536,7 @@ Por defecto, esto usará la transición especificada para entrada y salida. Sin 
 <transition
   appear
   appear-class="custom-appear-class"
+  appear-to-class="custom-appear-to-class" (2.1.8+)
   appear-active-class="custom-appear-active-class"
 >
   <!-- ... -->
@@ -586,6 +551,7 @@ y hooks de JavaScript personalizados:
   v-on:before-appear="customBeforeAppearHook"
   v-on:appear="customAppearHook"
   v-on:after-appear="customAfterAppearHook"
+  v-on:appear-cancelled="customAppearCancelledHook"
 >
   <!-- ... -->
 </transition>
@@ -662,7 +628,7 @@ Que también puede ser escrito de la siguiente forma:
 // ...
 computed: {
   buttonMessage: function () {
-    switch (docState) {
+    switch (this.docState) {
       case 'saved': return 'Edit'
       case 'edited': return 'Save'
       case 'editing': return 'Cancel'
@@ -884,7 +850,6 @@ new Vue({
 {% endraw %}
 
 Se vé genial, ¿no?
-Pretty cool, right?
 
 ## Transiciones Entre Componentes
 
@@ -917,7 +882,8 @@ new Vue({
 .component-fade-enter-active, .component-fade-leave-active {
   transition: opacity .3s ease;
 }
-.component-fade-enter, .component-fade-leave-active {
+.component-fade-enter, .component-fade-leave-to
+/* .component-fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
 ```
@@ -973,7 +939,7 @@ Hasta ahora, hemos logrado realizar transiciones para:
 Ahora veamos un ejemplo sencillo, transiciones de entrada y salida usando las mismas clases CSS que hemos usado anteriormente:
 
 ``` html
-<div id="list-demo" class="demo">
+<div id="list-demo">
   <button v-on:click="add">Add</button>
   <button v-on:click="remove">Remove</button>
   <transition-group name="list" tag="p">
@@ -1013,7 +979,7 @@ new Vue({
 .list-enter-active, .list-leave-active {
   transition: all 1s;
 }
-.list-enter, .list-leave-active {
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1057,7 +1023,7 @@ new Vue({
 .list-enter-active, .list-leave-active {
   transition: all 1s;
 }
-.list-enter, .list-leave-active {
+.list-enter, .list-leave-to {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1188,7 +1154,8 @@ new Vue({
   display: inline-block;
   margin-right: 10px;
 }
-.list-complete-enter, .list-complete-leave-active {
+.list-complete-enter, .list-complete-leave-to
+/* .list-complete-leave-active below version 2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1238,7 +1205,7 @@ new Vue({
   display: inline-block;
   margin-right: 10px;
 }
-.list-complete-enter, .list-complete-leave-active {
+.list-complete-enter, .list-complete-leave-to {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1496,7 +1463,7 @@ Vue.component('my-special-transition', {
   render: function (createElement, context) {
     var data = {
       props: {
-        name: 'very-special-transition'
+        name: 'very-special-transition',
         mode: 'out-in'
       },
       on: {
@@ -1530,7 +1497,7 @@ Pero en realidad, cualquier transición puede ser asignada dinámicamente. Y no 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 
-<div id="dynamic-fade-demo">
+<div id="dynamic-fade-demo" class="demo">
   Fade In: <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration">
   Fade Out: <input type="range" v-model="fadeOutDuration" min="0" v-bind:max="maxFadeDuration">
   <transition
@@ -1541,7 +1508,14 @@ Pero en realidad, cualquier transición puede ser asignada dinámicamente. Y no 
   >
     <p v-if="show">hello</p>
   </transition>
-  <button v-on:click="stop = true">Stop it!</button>
+  <button
+    v-if="stop"
+    v-on:click="stop = false; show = false"
+  >Start animating</button>
+  <button
+    v-else
+    v-on:click="stop = true"
+  >Stop it!</button>
 </div>
 ```
 
@@ -1553,7 +1527,7 @@ new Vue({
     fadeInDuration: 1000,
     fadeOutDuration: 1000,
     maxFadeDuration: 1500,
-    stop: false
+    stop: true
   },
   mounted: function () {
     this.show = false
@@ -1605,7 +1579,14 @@ new Vue({
   >
     <p v-if="show">hello</p>
   </transition>
-  <button v-on:click="stop = true">Stop it!</button>
+  <button
+    v-if="stop"
+    v-on:click="stop = false; show = false"
+  >Start animating</button>
+  <button
+    v-else
+    v-on:click="stop = true"
+  >Stop it!</button>
 </div>
 <script>
 new Vue({
@@ -1615,7 +1596,7 @@ new Vue({
     fadeInDuration: 1000,
     fadeOutDuration: 1000,
     maxFadeDuration: 1500,
-    stop: false
+    stop: true
   },
   mounted: function () {
     this.show = false

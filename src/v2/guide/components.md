@@ -287,7 +287,7 @@ Para recordar, si está usando plantillas string, entonces esta limitación no a
 
 ### Props dinámicos
 
-Similar a cómo se asignan expresiones a atributos normales, también podemos usar `v-bind` para asignar dinámicamente props a datos en el padre. Siempre que los datos sean modificados en el padre, serán enviados también al hijo:
+Similar to binding a normal attribute to an expression, we can also use `v-bind` for dynamically binding props to data on the parent. Whenever the data is updated in the parent, it will also flow down to the child:
 
 ``` html
 <div>

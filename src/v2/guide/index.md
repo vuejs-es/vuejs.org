@@ -17,7 +17,7 @@ Si usted es un desarrollador front-end experimentado y quiere saber cómo Vue se
 La manera más sencilla de probar Vue.js es usar el [ejemplo Hola Mundo en JSFiddle](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Siéntase libre de abrirlo en otra pestaña y seguirlo a medida que explicamos algunos ejemplos básicos. O puede simplemente crear un archivo `.html` e incluir Vue con:
 
 ``` html
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue"></script>
 ```
 
 La página de [Instalación](installation.html) ofrece más opciones para instalar Vue. Tenga en cuenta que **no** recomendamos que los principiantes inicien con `vue-cli`, especialmente si no le son familiares las herramientas de compilación basadas en Node.js.
@@ -60,7 +60,8 @@ En adición a la interpolación de texto, podemos asignar atributos de elementos
 ``` html
 <div id="app-2">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds to see my dynamically bound title!
+    Hover your mouse over me for a few seconds
+    to see my dynamically bound title!
   </span>
 </div>
 ```
@@ -68,7 +69,7 @@ En adición a la interpolación de texto, podemos asignar atributos de elementos
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date()
+    message: 'You loaded this page on ' + new Date().toLocaleString()
   }
 })
 ```
@@ -82,7 +83,7 @@ var app2 = new Vue({
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date()
+    message: 'You loaded this page on ' + new Date().toLocaleString()
   }
 })
 </script>
@@ -98,7 +99,7 @@ También es bastante sencillo intercambiar la presencia de un elemento:
 
 ``` html
 <div id="app-3">
-  <p v-if="seen">Now you see me</p>
+  <span v-if="seen">Now you see me</span>
 </div>
 ```
 
@@ -295,7 +296,11 @@ Ahora podemos pasar la tarea a cada componente repetido usando `v-bind`:
   <ol>
     <!-- Ahora le proveemos a cada todo-item el objeto todo -->
     <!-- que representa, de modo que su contenido sea dinámico -->
-    <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+    <todo-item
+      v-for="item in groceryList"
+      v-bind:todo="item"
+      v-bind:key="item.id">
+    </todo-item>
   </ol>
 </div>
 ```
@@ -309,9 +314,9 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { text: 'Vegetables' },
-      { text: 'Cheese' },
-      { text: 'Whatever else humans are supposed to eat' }
+      { id: 0, text: 'Vegetables' },
+      { id: 1, text: 'Cheese' },
+      { id: 2, text: 'Whatever else humans are supposed to eat' }
     ]
   }
 })
@@ -319,7 +324,7 @@ var app7 = new Vue({
 {% raw %}
 <div id="app-7" class="demo">
   <ol>
-    <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+    <todo-item v-for="item in groceryList" v-bind:todo="item" :key="item.id"></todo-item>
   </ol>
 </div>
 <script>
@@ -331,9 +336,9 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { text: 'Vegetables' },
-      { text: 'Cheese' },
-      { text: 'Whatever else humans are supposed to eat' }
+      { id: 0, text: 'Vegetables' },
+      { id: 1, text: 'Cheese' },
+      { id: 2, text: 'Whatever else humans are supposed to eat' }
     ]
   }
 })
