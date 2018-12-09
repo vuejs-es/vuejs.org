@@ -56,3 +56,11 @@ La traducción en ruso es mantenida por Translation Gang.
 
 * Repositorio de la traducción - [/translation-gang/ru.vuejs.org](https://github.com/translation-gang/ru.vuejs.org)
 * Colaborador principal - [Grigoriy Beziuk](https://gbezyuk.github.io)
+
+### Want to help with the translation?
+
+If you feel okay with translating sorta alone, you can fork the repo, create a "work-in-progress" issue to inform others that you're doing the translation, and go for it.
+
+If you are more of a team player, Translation Gang might be for you. Let us know somehow that you're ready to join this international open-source translators community. Feel free to contact [Grigoriy Beziuk](https://gbezyuk.github.io) or anybody else from [the team](https://github.com/orgs/translation-gang/people).
+
+And thank you in advance ;)
