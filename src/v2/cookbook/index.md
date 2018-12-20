@@ -4,39 +4,39 @@ type: cookbook
 order: 0
 ---
 
-## WORK IN PROGRESS
+## TRABAJO EN PROGRESO 
 
-<p class="tip">This cookbook is still in its very early stages. At this point, we will not be linking to it from anywhere else. Pages may be removed or reorganized at any time. Even the goals and overall format are still in flux.</p>
+<p class="tip">Este recetario está todavía en sus primeras etapas. En este punto, no estaremos enlazando a él desde ningún otro lugar. Las páginas pueden ser removidas o reorganizadas en cualquier momento. Incluso los objetivos y el formato general están todavía en cambios.</p>
 
-## The Cookbook vs the Guide
+## El recetario vs la guía
 
-How is the cookbook different from the guide? Why is this necessary?
+¿En qué se diferencia el recetario de la guía? ¿Por qué es necesario?
 
-- __Greater Focus__: In the guide, we're essentially telling a story. Each section builds on and assumes knowledge from each previous section. In the cookbook, each recipe can and should stand on its own. This means recipes can focus on one specific aspect of Vue, rather than having to give a general overview.
+- __Mayor enfoque__: En la guía, esencialmente estamos contando una historia. Cada sección se basa en los conocimientos de cada sección anterior y los asume. En el recetario, cada receta puede y debe ser independiente. Esto significa que las recetas pueden centrarse en un aspecto específico de Vue, en lugar de tener que dar una visión general.
 
-- __Greater Depth__: To avoid making the guide too long, we try to include only the simplest possible examples to help you understand each feature. Then we move on. In the cookbook, we can include more complex examples, combining features in interesting ways. Each recipe can also be as long and detailed as it needs to be, in order to fully explore its niche.
+- __Mayor profundidad__: Para evitar que la guía sea demasiado larga, tratamos de incluir sólo los ejemplos más simples posibles para ayudarle a entender cada característica. Desde allí seguimos avanzando. En el recetario, podemos incluir ejemplos más complejos, combinando características de maneras interesantes. Cada receta puede ser tan larga y detallada como sea necesario, para poder explorar a fondo su nicho.
 
-- __Teaching JavaScript__: In the guide, we assume at least intermediate familiarity with ES5 JavaScript. For example, we won't explain how `Array.prototype.filter` works in a computed property that filters a list. In the cookbook however, essential JavaScript features (including ES6/2015+) can be explored and explained in the context of how they help us build better Vue applications.
+- __Enseñanza de JavaScript__: En la guía, asumimos al menos una familiaridad intermedia con ES5 JavaScript. Por ejemplo, no explicaremos cómo funciona `Array.prototype.filter` en una propiedad calculada que filtra una lista. En el recetario, sin embargo, las características esenciales de JavaScript (incluyendo ES6/2015+) pueden ser exploradas y explicadas en el contexto de cómo nos ayudan a construir mejores aplicaciones de Vue.
 
-- __Exploring the Ecosystem__: For advanced features, we assume some ecosystem knowledge. For example, if you want to use single-file components in Webpack, we don't explain how to configure the non-Vue parts of the Webpack config. In the cookbook, we have the space to explore these ecosystem libraries in more depth - at least to the extent that is universally useful for Vue developers.
+- __Explorando el ecosistema__: Para las características avanzadas, asumimos un cierto conocimiento del ecosistema. Por ejemplo, si desea utilizar componentes de un solo archivo en Webpack, no explicamos cómo configurar las partes  de menor importancia de la configuración de Webpack. En el recetario, tenemos el espacio para explorar estas librerías de ecosistemas en mayor profundidad, al menos en la medida en que sean de utilidad universal para los desarrolladores de Vue.
 
-## Guidelines for Recipes
+## Pautas para las recetas
 
-Recipes should generally:
+En general, las recetas deberían:
 
-> 1. Solve a specific, common problem
+> 1. Resolver un problema específico y común
 
-> 2. Start with the simplest possible example
+> 2. Comenzar con el ejemplo más simple posible
 
-> 3. Introduce complexities one at a time
+> 3. Introducir las complejidades de una en una
 
-> 4. Link to other docs, rather than re-explaining concepts
+> 4. Vincularse a otros documentos, en lugar de volver a explicar los conceptos
 
-> 5. Describe the problem, rather than assuming familiarity
+> 5. Describir el problema, en lugar de asumir la familiaridad
 
-> 6. Explain the process, rather than just the end result
+> 6. Explicar el proceso, y no sólo el resultado final
 
-> 7. Explain the pros and cons of your strategy, including when it is and isn't appropriate
+> 7. Explicar los pros y los contras de su estrategia, incluyendo cuándo es y cuándo no es apropiada
 
-> 8. Mention alternative solutions, if relevant, but leave in-depth explorations to a separate recipe
+> 8. Mencionar soluciones alternativas, si son pertinentes, pero dejar las exploraciones en profundidad a una receta separada
 
