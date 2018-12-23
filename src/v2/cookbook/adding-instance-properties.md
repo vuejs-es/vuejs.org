@@ -160,8 +160,8 @@ var App = Object.freeze({
   name: 'My App',
   description: '2.1.4',
   helpers: {
-     // Esta es una versión puramente funcional
-     // del método $reverseText que vimos anteriormente
+    // Esta es una versión puramente funcional
+    // del método $reverseText que vimos anteriormente
     reverseText: function (text) {
       return text.split('').reverse().join('')
     }
