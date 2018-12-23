@@ -1,18 +1,18 @@
 ---
-title: Adding Instance Properties
+title: Agregar propiedades de instancia
 type: cookbook
 order: 1.1
 ---
 
-## Simple Example
+## Ejemplo Simple
 
-There may be data/utilities you'd like to use in many components, but you don't want to [pollute the global scope](https://github.com/getify/You-Dont-Know-JS/blob/master/scope%20%26%20closures/ch3.md). In these cases, you can make them available to each Vue instance by defining them on the prototype:
+Pueden haber datos/utilidades que le gustaría usar en muchos componentes, pero no desea [contaminar el alcance global](https://github.com/getify/You-Dont-Know-JS/blob/master/scope%20%26%20closures/ch3.md). En estos casos, puede ponerlos a disposición de cada instancia de Vue definiéndolos en el prototype:
 
 ``` js
 Vue.prototype.$appName = 'My App'
 ```
 
-Now `$appName` is available on all Vue instances, even before creation. If we run:
+Ahora `$appName` está disponible en todas las instancias de Vue, incluso antes de su creación. Si ejecutamos:
 
 ``` js
 new Vue({
@@ -22,31 +22,31 @@ new Vue({
 })
 ```
 
-Then `"My App"` will be logged to the console!
+A continuación, `"My App"` se registrará en la consola.
 
-## The Importance of Scoping Instance Properties
+## La importancia de determinar el alcance de las propiedades de una instancia
 
-You may be wondering:
+Tal vez se esté preguntando:
 
-> "Why does `appName` start with `$`? Is that important? What does it do?
+> ¿Por qué `appName` comienza con `$`? ¿Es eso importante? ¿Qué es lo que hace?
 
-No magic is happening here. `$` is a convention Vue uses for properties that are available to all instances. This avoids conflicts with any defined data, computed properties, or methods.
+Aquí no hay magia. `$` es una convención que Vue utiliza para propiedades que están disponibles para todas las instancias. Esto evita conflictos con cualquier dato definido, propiedades calculadas o métodos.
 
-> "Conflicts? What do you mean?"
+> ¿Conflictos? ¿Qué quieres decir?"
 
-Another great question! If you set:
+Otra gran pregunta! Si se establece:
 
 ``` js
 Vue.prototype.appName = 'My App'
 ```
 
-Then what would you expect to be logged below?
+Entonces, ¿qué espería que se registre más abajo?
 
 ``` js
 new Vue({
   data: {
-    // Uh oh - appName is *also* the name of the
-    // instance property we defined!
+    // ¡Uh oh - appName es *además* el nombre de la
+    // propiedad de la instancia que definimos!
     appName: 'The name of some other app'
   },
   beforeCreate: function () {
@@ -58,13 +58,13 @@ new Vue({
 })
 ```
 
-It would be `"The name of some other app"`, then `"My App"`, because `this.appName` is overwritten ([sort of](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)) by `data` when the instance is created. We scope instance properties with `$` to avoid this. You can even use your own convention if you'd like, such as `$_appName` or `ΩappName`, to prevent even conflicts with plugins or future features.
+Sería `"The name of some other app"`, luego `"My App"`, porque `this.appName`  es sobreescrito ([o algo parecido](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)) por `data` cuando se crea la instancia. Las propiedades de instancia se analizan con `$` para evitarlo. Incluso puede usar su propia convención si lo desea, como `$_appName` o `ΩappName`, para evitar incluso conflictos con plugins o futuras características.
 
-## Real-World Example: Replacing Vue Resource with Axios
+## Ejemplo del mundo real: Reemplazar el recurso Vue por Axios
 
-Let's say you're replacing the [now-retired Vue Resource](https://medium.com/the-vue-point/retiring-vue-resource-871a82880af4). You really enjoyed accessing request methods through `this.$http` and you want to do the same thing with Axios instead.
+Digamos que está reemplazando el [ahora ya retirado Vue Resource](https://medium.com/the-vue-point/retiring-vue-resource-871a82880af4). Usted realmente disfrutó accediendo a los métodos de petición a través de `this.$http` y desea hacer lo mismo con Axios.
 
-All you have to do is include axios in your project:
+Todo lo que tiene que hacer es incluir Axios en su proyecto:
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
@@ -76,13 +76,13 @@ All you have to do is include axios in your project:
 </div>
 ```
 
-Alias `axios` to `Vue.prototype.$http`:
+Alias de `axios` para `Vue.prototype.$http`:
 
 ``` js
 Vue.prototype.$http = axios
 ```
 
-Then you'll be able to use methods like `this.$http.get` in any Vue instance:
+Y ahora podrá usar métodos como `this.$http.get` en cualquier instancia de Vue:
 
 ``` js
 new Vue({
@@ -100,11 +100,11 @@ new Vue({
 })
 ```
 
-## The Context of Prototype Methods
+## El contexto de los métodos en el prototype
 
-In case you're not aware, methods added to a prototype in JavaScript gain the context of the instance. That means they can use `this` to access data, computed properties, methods, or anything else defined on the instance.
+En caso de que no lo sepa, los métodos añadidos a un prototype en JavaScript ganan el contexto de la instancia. Esto significa que pueden usar `this` para acceder a datos, propiedades calculadas, métodos o cualquier otra cosa definida en la instancia.
 
-Let's take advantage of this in a `$reverseText` method:
+Aprovechemos esto en un método `$reverseText`:
 
 ``` js
 Vue.prototype.$reverseText = function (propertyName) {
@@ -123,7 +123,7 @@ new Vue({
 })
 ```
 
-Note that the context binding will __not__ work if you use an ES6/2015 arrow function, as they implicitly bind to their parent scope. That means the arrow function version:
+Tenga en cuenta que la vinculación de contexto __no funcionará__ si utiliza una función de flecha ES6/2015, ya que se vinculan implícitamente con su ámbito superior. Esto significa en la versión de la función de flecha:
 
 ``` js
 Vue.prototype.$reverseText = propertyName => {
@@ -131,37 +131,37 @@ Vue.prototype.$reverseText = propertyName => {
 }
 ```
 
-Would throw an error:
+Podría arrojar un error:
 
 ``` log
 Uncaught TypeError: Cannot read property 'split' of undefined
 ```
 
-## When To Avoid This Pattern
+## Cuándo evitar este patrón
 
-As long as you're vigilant in scoping prototype properties, using this pattern is quite safe - as in, unlikely to produce bugs.
+Siempre y cuando se esté atento a las propiedades de prototype, el uso de este patrón es bastante seguro, e improbable que produzca errores.
 
-However, it can sometimes cause confusion with other developers. They might see `this.$http`, for example, and think, "Oh, I didn't know about this Vue feature!" Then they move to a different project and are confused when `this.$http` is undefined. Or, maybe they want to Google how to do something, but can't find results because they don't realize they're actually using Axios under an alias.
+Sin embargo, a veces puede causar confusión con otros desarrolladores. Podrían ver `this.$http`, por ejemplo, y pensar, "¡Oh, yo no sabía de esta característica de Vue! Luego cambian a un proyecto diferente y se confunden al encontrar que `this.$http` devuelve un valor indefinido. O, tal vez quieran buscar en Google cómo hacer algo, pero no pueden encontrar resultados porque no se dan cuenta de que están usando Axios bajo un alias.
 
-__The convenience comes at the cost of explicitness.__ When looking at a component, it's impossible to tell where `$http` came from. Vue itself? A plugin? A coworker?
+___La conveniencia viene a costa de la claridad.___ ¿ Cuando se mira un componente, es imposible saber de dónde viene `$http` realmente? ¿Un plugin? ¿Un compañero de trabajo?
 
-So what are the alternatives?
+Entonces, ¿cuáles son las alternativas?
 
-## Alternative Patterns
+## Patrones alternativos
 
-### When Not Using a Module System
+### Cuando no se esta utilizando un sistema de módulos
 
-In applications with __no__ module system (e.g. via Webpack or Browserify), there's a pattern that's often used with _any_ JavaScript-enhanced frontend: a global `App` object.
+En aplicaciones __sin__ sistema de módulos (por ejemplo, a través de Webpack o Browserify), hay un patrón que se utiliza a menudo con cualquier frontend mejorado con JavaScript: un objeto `App` global.
 
-If what you want to add has nothing to do with Vue specifically, this may be a good alternative to reach for. Here's an example:
+Si lo que quiere añadir no tiene nada que ver con Vue específicamente, esto puede ser una buena alternativa por considerar. Aquí hay un ejemplo:
 
 ``` js
 var App = Object.freeze({
   name: 'My App',
   description: '2.1.4',
   helpers: {
-    // This is a purely functional version of
-    // the $reverseText method we saw earlier
+     // Esta es una versión puramente funcional
+     // del método $reverseText que vimos anteriormente
     reverseText: function (text) {
       return text.split('').reverse().join('')
     }
@@ -169,11 +169,11 @@ var App = Object.freeze({
 })
 ```
 
-<p class="tip">If you raised an eyebrow at `Object.freeze`, what it does is prevent the object from being changed in the future. This essentially makes all its properties constants, protecting you from future state bugs.</p>
+<p class="tip">Si ha levantado una ceja con `Object.freeze`, lo que hace es evitar que el objeto se modifique en el futuro. Esto esencialmente hace que todas sus propiedades sean constantes, protegiéndole de futuros errores de estado.</p>
 
-Now the source of these shared properties is more obvious: there's an `App` object defined somewhere in the app. To find it, developers can run a project-wide search.
+Ahora el origen de estas propiedades compartidas es más obvio: hay un objeto `App` definido en algún lugar de la aplicación. Para encontrarlo, los desarrolladores pueden realizar una búsqueda en todo el proyecto.
 
-Another advantage is that `App` can now be used _anywhere_ in your code, whether it's Vue-related or not. That includes attaching values directly to instance options, rather than having to enter a function to access properties on `this`:
+Otra ventaja es que `App` ahora puede ser usado _en cualquier lugar_ en su código, ya sea que esté relacionado con Vue o no. Esto incluye adjuntar valores directamente a las opciones de instancia, en lugar de tener que introducir una función para acceder a las propiedades en `this`:
 
 ``` js
 new Vue({
@@ -186,8 +186,8 @@ new Vue({
 })
 ```
 
-### When Using a Module System
+### Cuando se utiliza un sistema de módulos
 
-When you have access to a module system, you can easily organize shared code into modules, then `require`/`import` those modules wherever they're needed. This is the epitome of explicitness, because in each file you gain a list of dependencies. You know _exactly_ where each one came from.
+Cuando se tiene acceso a un sistema de módulos, se puede organizar fácilmente el código compartido en módulos y, a continuación, requerir o importar (`require`/`import`) esos módulos dondequiera que se necesiten. Este es el epítome de lo explícito, porque en cada archivo se obtiene una lista de dependencias. Se sabe _exactamente_ de dónde vino cada uno.
 
-While certainly more verbose, this approach is definitely the most maintainable, especially when working with other developers and/or building a large app.
+Aunque ciertamente es más verboso, este enfoque es definitivamente el más mantenible, especialmente cuando se trabaja con otros desarrolladores y/o se construye una aplicación de gran tamaño.
