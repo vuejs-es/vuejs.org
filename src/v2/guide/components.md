@@ -31,7 +31,7 @@ Vue.component('my-component', {
 
 <p class="tip">Tenga en cuenta que Vue no obliga a cumplir las [reglas del W3C](https://www.w3.org/TR/custom-elements/#concepts) para nombres de etiquetas personalizadas (todas en minúsculas, deben contener un guión), aunque seguir esta convención se considera una buena práctica.
 
-Una vez registrado, un componente puede ser usado en la plantilla de una instancia como un elemento personalizado,  `<my-component></my-component>`. Asegúrese de que el componente esté registrado **antes** de la instancia de Vue raíz.  Aquí está el ejemplo completo:
+Una vez registrado, un componente puede ser usado en la plantilla de una instancia como un elemento personalizado, `<my-component></my-component>`. Asegúrese de que el componente esté registrado **antes** de la instancia de Vue raíz. Aquí está el ejemplo completo:
 
 ``` html
 <div id="example">
@@ -93,7 +93,7 @@ El mismo tipo de encapsulamiento aplica para otras características de Vue, como
 
 ### Inconvenientes en el análisis de plantillas DOM
 
-Cuando utilice el DOM como plantilla (por ejemplo, utilizando la opción `el` para montar un elemento con contenido existente), estará sujeto a algunas restricciones inherentes al funcionamiento de HTML,  ya que Vue sólo puede recuperar el contenido de la plantilla **después** de que el navegador la haya analizado y normalizado. Más notablemente, algunos elementos como `<ul>`, `<ol>`, `<table>` y `<select>` tienen restricciones sobre qué elementos pueden aparecer dentro de ellos, y algunos elementos como `<option>` sólo pueden aparecer dentro de otros elementos.
+Cuando utilice el DOM como plantilla (por ejemplo, utilizando la opción `el` para montar un elemento con contenido existente), estará sujeto a algunas restricciones inherentes al funcionamiento de HTML, ya que Vue sólo puede recuperar el contenido de la plantilla **después** de que el navegador la haya analizado y normalizado. Más notablemente, algunos elementos como `<ul>`, `<ol>`, `<table>` y `<select>` tienen restricciones sobre qué elementos pueden aparecer dentro de ellos, y algunos elementos como `<option>` sólo pueden aparecer dentro de otros elementos.
 
 Esto dará lugar a problemas cuando se utilicen componentes personalizados con elementos que tengan tales restricciones, por ejemplo:
 
@@ -494,7 +494,7 @@ En este caso, se definen dos valores diferentes para `class`:
 - `form-control`, que es definido por el componente en su plantilla
 - `date-picker-theme-dark`, que es enviado al componente por su padre
 
-Para la mayoría de los atributos, el valor proporcionado al componente reemplazará el valor establecido por el componente. Así, por ejemplo, enviar `type="large"` reemplazará `type="date"` y probablemente lo estropee! Afortunadamente, los atributos `class` y `style` son un poco más inteligentes, así que ambos valores se fusionan, haciendo que el valor final sea: `form-control date-picker-theme-dark`.
+Para la mayoría de los atributos, el valor proporcionado al componente reemplazará el valor establecido por el componente. Así, por ejemplo, enviar `type="large"` reemplazará `type="date"` ¡y probablemente lo estropee! Afortunadamente, los atributos `class` y `style` son un poco más inteligentes, así que ambos valores se fusionan, haciendo que el valor final sea: `form-control date-picker-theme-dark`.
 
 ## Eventos personalizados
 
@@ -832,7 +832,7 @@ Antes de indagar en la API, primero aclaremos en qué ámbito se compilan los co
 </child-component>
 ```
 
-¿Debería el `message` estar vinculado a los datos del padre o a los datos del  hijo? La respuesta es el padre. Una simple regla empírica para el alcance de los componentes es:
+¿Debería el `message` estar vinculado a los datos del padre o a los datos del hijo? La respuesta es el padre. Una simple regla empírica para el alcance de los componentes es:
 
 > Todo en la plantilla padre se compila en el ámbito padre; todo en la plantilla hijo se compila en el ámbito hijo.
 
@@ -871,10 +871,10 @@ Suponga que tenemos un componente llamado `my-component` con la siguiente planti
 
 ``` html
 <div>
-  <h2>I'm the child title</h2>
+  <h2>Soy el título del hijo</h2>
   <slot>
-    This will only be displayed if there is no content
-    to be distributed.
+    Ésto será mostrado sólo si no hay contenido
+    para distribuir.
   </slot>
 </div>
 ```
@@ -883,10 +883,10 @@ Y un padre que usa el componente:
 
 ``` html
 <div>
-  <h1>I'm the parent title</h1>
+  <h1>Soy el título del padre</h1>
   <my-component>
-    <p>This is some original content</p>
-    <p>This is some more original content</p>
+    <p>Ésto es contenido original</p>
+    <p>Ésto es más contenido original</p>
   </my-component>
 </div>
 ```
@@ -895,11 +895,11 @@ The rendered result will be:
 
 ``` html
 <div>
-  <h1>I'm the parent title</h1>
+  <h1>Soy el título del padre</h1>
   <div>
-    <h2>I'm the child title</h2>
-    <p>This is some original content</p>
-    <p>This is some more original content</p>
+    <h2>Soy el título del hijo</h2>
+    <p>Ésto es contenido original</p>
+    <p>Ésto es más contenido original</p>
   </div>
 </div>
 ```
@@ -930,12 +930,12 @@ Markup del padre:
 
 ``` html
 <app-layout>
-  <h1 slot="header">Here might be a page title</h1>
+  <h1 slot="header">Aquí puede haber un título</h1>
 
-  <p>A paragraph for the main content.</p>
-  <p>And another one.</p>
+  <p>Un párrafo para el contenido principal.</p>
+  <p>Y otro más.</p>
 
-  <p slot="footer">Here's some contact info</p>
+  <p slot="footer">Aquí hay información de contacto.</p>
 </app-layout>
 ```
 
@@ -944,14 +944,14 @@ El resultado obtenido será:
 ``` html
 <div class="container">
   <header>
-    <h1>Here might be a page title</h1>
+    <h1>Aquí puede haber un título</h1>
   </header>
   <main>
-    <p>A paragraph for the main content.</p>
-    <p>And another one.</p>
+    <p>Un párrafo para el contenido principal.</p>
+    <p>Y otro más.</p>
   </main>
   <footer>
-    <p>Here's some contact info</p>
+    <p>Aquí hay información de contacto.</p>
   </footer>
 </div>
 ```
@@ -1117,7 +1117,7 @@ Con las sintaxis abreviadas dedicadas para `v-bind` y `v-on`, las intenciones pu
 
 ### Referencias a componentes hijo
 
-A pesar de la existencia de props y eventos, sometimes you might still need to directly access a child component in JavaScript. To achieve this you have to assign a reference ID to the child component using `ref`. For example:
+A pesar de la existencia de props y eventos, algunas veces usted querrá acceder a un componente hijo en JavaScript. Para lograr esto debe asignar un ID de referencia al componente hijo usando `ref`. Por ejemplo:
 
 ``` html
 <div id="parent">
@@ -1320,7 +1320,7 @@ Si observa cuidadosamente, verá que estos componentes serán al mismo tiempo de
 Sin embargo, si está requiriendo/importando componentes usando un __sistema de módulos__, p.e. usando Webpack o Browserify, obtendrá un error:
 
 ```
-Failed to mount component: template or render function not defined.
+Fallo al montar el componente: la plantilla o función de renderizado no está definida.
 ```
 
 Para explicar lo que está sucediendo, llamemos a nuestros componentes A y B. El sistema de módulos ve que necesita A, pero primero A necesita a B, pero B necesita a A, pero A necesita a B, etc, etc, etc, etc. Está atascado en un bucle, sin saber cómo resolver completamente ninguno de los dos componentes sin resolver primero el otro. Para arreglar esto, necesitamos darle al sistema de módulos un punto en el que pueda decir: "A necesita a B _eventualmente_, pero no hay necesidad de resolver a B primero".
@@ -1333,7 +1333,7 @@ beforeCreate: function () {
 }
 ```
 
-Problema resuelto!
+¡Problema resuelto!
 
 ### Plantillas en línea
 
@@ -1342,8 +1342,8 @@ Cuando el atributo especial `inline-template` está presente en un componente hi
 ``` html
 <my-component inline-template>
   <div>
-    <p>These are compiled as the component's own template.</p>
-    <p>Not parent's transclusion content.</p>
+    <p>Estos son compilados como la propia plantilla del componente.</p>
+    <p>No contenido de transclusión del padre.</p>
   </div>
 </my-component>
 ```
