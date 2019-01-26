@@ -50,7 +50,7 @@ directives: {
 }
 ```
 
-Luego, en una plantilla, puede usar el nuevo atributo`v-focus` en cualquier elemento, como este:
+Luego, en una plantilla, puede usar el nuevo atributo `v-focus` en cualquier elemento, como este:
 
 ``` html
 <input v-focus>
