@@ -6,7 +6,7 @@ order: 7
 
 ## `v-if`
 
-En plantillas de string, por ejemplo Handlebars, escribiríamos un bloque condicional de la siguiente manera:
+En plantillas de cadenas de texto, por ejemplo Handlebars, escribiríamos un bloque condicional de la siguiente manera:
 
 ``` html
 <!-- Plantilla Handlebars -->
@@ -30,7 +30,7 @@ También es posible añadir un bloque "else" con `v-else`:
 
 ### Grupos condicionales con `v-if` en `<template>`
 
-Como `v-if` es una directiva, debe ser usada en sólo un elemento a la vez. Pero, ¿y si queremos intercambiar más de un elemento a la vez? En este caso podemos usar `v-if` en un elemento `<template>`, el cual sirve como un agrupador invisible. El resultado renderizado final no incluirá el elemento `<template>`.
+Como `v-if` es una directiva, debe ser usada en sólo un elemento a la vez. Pero, ¿y si queremos intercambiar más de un elemento a la vez? En este caso podemos usar `v-if` en un elemento `<template>`, el cual sirve como un agrupador invisible. El resultado final no incluirá el elemento `<template>`.
 
 ``` html
 <template v-if="ok">
@@ -57,9 +57,9 @@ Un elemento con `v-else` debe ser usado inmediatamente después de un elemento c
 
 ### `v-else-if`
 
-> Nuevo en la versión 2.1.0+
+> Nuevo en 2.1.0+
 
-La directiva `v-else-if`, como su numbre sugiere, funciona como un "bloque else if" para un elemento con `v-if`. También puede ser encadenado múltiples veces.
+La directiva `v-else-if`, como su nombre sugiere, funciona como un "bloque else if" para un elemento con `v-if`. También puede ser encadenado múltiples veces.
 
 ```html
 <div v-if="type === 'A'">
@@ -78,9 +78,9 @@ La directiva `v-else-if`, como su numbre sugiere, funciona como un "bloque else 
 
 Similar a `v-else`, un elemento `v-else-if` debe ser usado inmediatamente después de un elemento `v-if` o `v-else-if`.
 
-### Controlando Elementos Reusables con `key`
+### Controlando elementos reusables con `key`
 
-Vue intenta renderizar elementos tan eficientemente como le sea posible, a menudo los re-utiliza en vez de renderizarlos de nuevo. Mas allá de ayudar a que Vue sea muy rápido, esto tiene ventajas muy útiles. Por ejemplo, si permite a los usuarios intercambiar entre diferentes tipos de inicio de sesión:
+Vue intenta renderizar elementos tan eficientemente como le sea posible, a menudo los re-utiliza en vez de renderizarlos de nuevo. Además de ayudar a hacer a Vue muy rápido, esto puede tener algunas ventajas útiles. Por ejemplo, si permite a los usuarios intercambiar entre diferentes tipos de inicio de sesión:
 
 ``` html
 <template v-if="loginType === 'username'">
@@ -95,7 +95,7 @@ Vue intenta renderizar elementos tan eficientemente como le sea posible, a menud
 
 Entonces cambiando el `loginType` en el código anterior no borrará lo que el usuario ya haya ingresado. Como ambas plantillas usan los mismos elementos, el elemento `<input>` no es reemplazado - sólo su `placeholder`.
 
-Prúebelo usted mismo ingresando algún texto en el el campo, luego presione el botón toggle:
+Pruébelo usted mismo ingresando algún texto en el el campo, luego presione el botón toggle:
 
 {% raw %}
 <div id="no-key-example" class="demo">
@@ -126,7 +126,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Esto no siempre es un comportamiento deseable, así que Vue ofrece una forma para que usted pueda decir, "Éstos dos elementos son completamente separados - no quiero re-usarlos." Solo añada el atributo `key` con valores únicos:
+Esto no siempre es deseable, así que Vue ofrece una forma para que usted pueda decir, "Éstos dos elementos están completamente separados - no quiero re-usarlos." Solo añada el atributo `key` con valores únicos:
 
 ``` html
 <template v-if="loginType === 'username'">
@@ -139,7 +139,7 @@ Esto no siempre es un comportamiento deseable, así que Vue ofrece una forma par
 </template>
 ```
 
-Ahora ambos campos serán traducidos completamente cada vez que los intercambie. Compruébelo usted mismo:
+Ahora ambos campos se renderizarán desde cero cada vez que los intercambie. Compruébelo usted mismo:
 
 {% raw %}
 <div id="key-example" class="demo">
@@ -186,13 +186,13 @@ La diferencia es que un elemento con `v-show` siempre será renderizado y perman
 
 ## `v-if` vs `v-show`
 
-`v-if` es un renderizado condicional "real" ya que se asegura que los eventos y componentes hijos del bloque condicional sean apropiadamente destruídos y re-creados durante intercambios.
+`v-if` es un renderizado condicional "real" ya que se asegura que los listeners de eventos y los componentes hijos del bloque condicional sean apropiadamente destruidos y re-creados durante intercambios.
 
 `v-if` también es **lazy**: si la condición es falsa en el renderizado inicial, no hará nada - el bloque condicional no será renderizado hasta que la condición sea verdadera por primera vez.
 
 En comparación, `v-show` es más sencillo - el elemento siempre es renderizado sin importar la condición inicial, sólo con un intercambio sencillo basado en CSS.
 
-Generalmente, `v-if` tiene un mayor coste de intercambio mientras que `v-show` tiene un mayor coste de renderizado inicial. Asi que, utilice `v-show` si necesita intercambiar algo muy a menudo, y use `v-if` si la condición no es propensa a cambiar durante la ejecución.
+En términos generales, `v-if` tiene un mayor coste de intercambio mientras que `v-show` tiene un mayor coste de renderizado inicial. Así que, prefiera `v-show` si necesita intercambiar algo muy a menudo, y use `v-if` si la condición no es propensa a cambiar durante la ejecución.
 
 ## `v-if` con `v-for`
 
