@@ -891,7 +891,7 @@ Y un padre que usa el componente:
 </div>
 ```
 
-The rendered result will be:
+El resultado renderizado será:
 
 ``` html
 <div>
