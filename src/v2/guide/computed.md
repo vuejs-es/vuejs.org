@@ -302,4 +302,4 @@ var watchExampleVM = new Vue({
 
 En este caso, usar la opción `watch` nos permite relizar una operación asíncrona (acceder un API), limitar qué tan a menudo realizamos dicha operación, y definir estados intermedios hasta que obtenemos una respuesta final. Nada de eso sería posible usando una propiedad calculada.
 
-Además de la opción `watch` option, también puede utilizar el imperativo [vm.$watch API](../api/#vm-watch).
+Además de la opción `watch`, también puede utilizar el imperativo [vm.$watch API](../api/#vm-watch).
