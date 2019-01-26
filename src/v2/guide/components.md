@@ -103,7 +103,7 @@ Esto dará lugar a problemas cuando se utilicen componentes personalizados con e
 </table>
 ```
 
-El componente personalizado `<my-row>` será considerado como contenido no válido, lo que causará errores en la salida de datos. Una solución es usar el atributo especial `is` :
+El componente personalizado `<my-row>` será considerado como contenido no válido, lo que causará errores en la salida de datos. Una solución es usar el atributo especial `is`:
 
 ``` html
 <table>
@@ -360,7 +360,7 @@ Un error común que los principiantes tienden a cometer es intentar enviar un n�
 <comp some-prop="1"></comp>
 ```
 
-Sin embargo, como se trata de un prop literal, su valor se transmite como una cadena de texto simple `"1"` en lugar de un número real. Si queremos enviar un número JavaScript real, necesitamos usar "v-bind" para que su valor sea evaluado como una expresión JavaScript:
+Sin embargo, como se trata de un prop literal, su valor se transmite como una cadena de texto simple `"1"` en lugar de un número real. Si queremos enviar un número JavaScript real, necesitamos usar `v-bind` para que su valor sea evaluado como una expresión JavaScript:
 
 ``` html
 <!-- esto envía un número -->
@@ -1075,7 +1075,7 @@ var vm = new Vue({
 
 ### `keep-alive`
 
-Si desea mantener los componentes desactivados en la memoria para que pueda conservar su estado o evitar volver a renderizarlos, puede envolver un componente dinámico en un elemento`<keep-alive>`:
+Si desea mantener los componentes desactivados en la memoria para que pueda conservar su estado o evitar volver a renderizarlos, puede envolver un componente dinámico en un elemento `<keep-alive>`:
 
 ``` html
 <keep-alive>
