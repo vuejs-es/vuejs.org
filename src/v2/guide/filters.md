@@ -1,5 +1,5 @@
 ---
-title: Filters
+title: Filtros
 type: guide
 order: 305
 ---
@@ -7,10 +7,10 @@ order: 305
 Vue.js le permite definir filtros que pueden ser usados para aplicar formatos de texto comunes. Los filtros se pueden utilizar en dos lugares: **en la interpolación con llaves y las expresiones `v-bind`** (estas últimas soportadas en 2.1.0+). Los filtros deben añadirse al final de la expresión JavaScript, señalados con el símbolo "pipe":
 
 ``` html
-<!-- in mustaches -->
+<!-- entre llaves -->
 {{ message | capitalize }}
 
-<!-- in v-bind -->
+<!-- en v-bind -->
 <div v-bind:id="rawId | formatId"></div>
 ```
 
@@ -35,7 +35,7 @@ Los filtros se pueden encadenar:
 {{ message | filterA | filterB }}
 ```
 
-En este caso, el `filterA`, definido con un solo argumento, recibirá el valor del mensaje, y luego se llamará a la función `filterB` con el resultado de `filterA` pasado al argumento único de `filterB`.
+En este caso, el `filterA`, definido con un solo argumento, recibirá el valor de `message`, y luego se llamará a la función `filterB` con el resultado de `filterA` pasado al argumento único de `filterB`.
 
 Los filtros son funciones JavaScript, por lo tanto pueden tomar argumentos:
 
@@ -43,4 +43,4 @@ Los filtros son funciones JavaScript, por lo tanto pueden tomar argumentos:
 {{ message | filterA('arg1', arg2) }}
 ```
 
-Aquí el `filterA` se define como una función que toma tres argumentos. El valor del mensaje se pasará al primer argumento. La cadena simple `'arg1'` pasará como segundo argumento, y el valor de la expresión `arg2` será evaluado y pasado como tercer argumento.
+Aquí el `filterA` se define como una función que toma tres argumentos. El valor de `message` se pasará al primer argumento. La cadena simple `'arg1'` pasará como segundo argumento, y el valor de la expresión `arg2` será evaluado y pasado como tercer argumento.

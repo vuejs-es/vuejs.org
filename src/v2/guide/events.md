@@ -4,9 +4,9 @@ type: guide
 order: 9
 ---
 
-## Escuchando Eventos
+## Escuchando eventos
 
-Podemos usar la directiva `v-on` para escuchar eventos de DOM y ejecutar algún código JavaScript cuando son activados.
+Podemos usar la directiva `v-on` para escuchar eventos de DOM y ejecutar código JavaScript cuando son activados.
 
 Por ejemplo:
 
@@ -42,7 +42,7 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-## Métodos Manejadores de Eventos
+## Métodos manejadores de eventos
 
 La lógica para muchos manejadores de eventos usualmente será más compleja que el ejemplo, de modo que mantener código JavaScript en el atributo `v-on` sencillamente no es buena idea. Por eso `v-on` puede también aceptar el nombre de un método que quiera llamar.
 
@@ -73,7 +73,7 @@ var example2 = new Vue({
 })
 
 // puede invocar métodos en JavaScript también
-example2.greet() // -> 'Hello Vue.js!'
+example2.greet() // => 'Hello Vue.js!'
 ```
 
 Resultado:
@@ -91,14 +91,16 @@ var example2 = new Vue({
   methods: {
     greet: function (event) {
       alert('Hello ' + this.name + '!')
-      alert(event.target.tagName)
+      if (event) {
+        alert(event.target.tagName)
+      }
     }
   }
 })
 </script>
 {% endraw %}
 
-## Métodos en Manejadores en línea
+## Métodos en manejadores en línea
 
 En vez de asignar directamente a un nombre de un método, podemos también usar métodos en una expresión JavaScript en línea: 
 
@@ -140,7 +142,9 @@ new Vue({
 Algunas veces necesitamos también acceder al evento DOM original en la expresión de manejador en línea. Puede pasarlo al método usando la variable especial `$event`:
 
 ``` html
-<button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+<button v-on:click="warn('Form cannot be submitted yet.', $event)">
+  Submit
+</button>
 ```
 
 ``` js
@@ -154,9 +158,9 @@ methods: {
 }
 ```
 
-## Modificadores de Eventos
+## Modificadores de eventos
 
-Es una necesidad muy común llamar a `event.preventDefault()` o `event.stopPropagation()` en manejadores de eventos. Aunque podemos hacer esto fácilmente dentro de los métodos, sería mejor si los métodos se encargaran únicamente de lógica de datos en vez de tratar con detalles de eventos DOM.
+Es una necesidad muy común llamar a `event.preventDefault()` o `event.stopPropagation()` en manejadores de eventos. Aunque podemos hacer esto fácilmente dentro de los métodos, sería mejor si los métodos se encargarán únicamente de lógica de datos en vez de tratar con detalles de eventos DOM.
 
 Para solucionar este problema, Vue ofrece **modificadores de eventos** para `v-on`. Recuerde que los modificadores son sufijos de directiva denotados con un punto.
 
@@ -182,21 +186,23 @@ Para solucionar este problema, Vue ofrece **modificadores de eventos** para `v-o
 <!-- use modo de captura cuando esté agregando el listener de evento -->
 <div v-on:click.capture="doThis">...</div>
 
-<!-- activa el manejador si event.target es el elemento en sí -->
+<!-- sólo activa el manejador si event.target es el propio elemento -->
 <!-- p.e. no de un elemento hijo -->
 <div v-on:click.self="doThat">...</div>
 ```
 
-> Nuevo en 2.1.4
+<p class="tip">El orden es importante cuando se utilizan modificadores porque el código correspondiente se genera en el mismo orden. Por lo tanto, usar `@click.prevent.self` evitará **todos los clics** mientras que `@click.self.prevent` sólo evitará los clics en el propio elemento.</p>
+
+> Nuevo en 2.1.4+
 
 ``` html
-<!-- el evento click será activado una vez como máximo -->
+<!-- el evento de clic se activará como máximo una vez -->
 <a v-on:click.once="doThis"></a>
 ```
 
-A diferencia de otros modificadores, los cuales son exclusivos a eventos nativos de DOM, el modificador `.once` puede ser usado también en [eventos de componente](components.html#Using-v-on-with-Custom-Events). Si no ha leído sobre componentes aún, no se preocupe por esto todavía.
+A diferencia de otros modificadores, los cuales son exclusivos a eventos nativos del DOM, el modificador `.once` puede ser usado también en [eventos de componente](components.html#Using-v-on-with-Custom-Events). Si no ha leído sobre componentes aún, no se preocupe por esto todavía.
 
-## Modificadores de Tecla
+## Modificadores de teclas
 
 Cuando se escuchan eventos de teclado, a menudo necesitamos verificar códigos de tecla comunes. Vue nos permite añadir modificadores de tecla para `v-on` cuando se escucha por eventos de tecla:
 
@@ -234,7 +240,21 @@ También puede [definir alias de modificadores de tecla personalizados](../api/#
 Vue.config.keyCodes.f1 = 112
 ```
 
-## Teclas de Modificadores
+### Modificadores automáticos de teclas
+
+> Nuevo en 2.5.0+
+
+También puede utilizar directamente cualquier nombre de tecla válido expuesto a través de [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) como modificadores convirtiéndolos a kebab-case:
+
+``` html
+<input @keyup.page-down="onPageDown">
+```
+
+En el ejemplo anterior, el manejador sólo será llamado si `$event.key === 'PageDown'`.
+
+<p class="tip">Algunas teclas (`.esc` y todas las teclas de flecha) tienen valores inconsistentes de `key` en IE9, us alias incorporados deben ser preferidos si necesita soportar IE9.</p>
+
+## Teclas de modificación del sistema
 
 > Nuevo en 2.1.0
 
@@ -257,12 +277,39 @@ Por ejemplo:
 <div @click.ctrl="doSomething">Do something</div>
 ```
 
-## ¿Por qué Listeners en HTML?
+<p class="tip">Note que las teclas modificadoras son diferentes de las teclas regulares y cuando se usan con eventos `keyup`, deben ser presionadas cuando se emite el evento. En otras palabras, `keyup.ctrl` sólo se activará si suelta una tecla mientras mantiene pulsada la tecla `ctrl`. No se activará si suelta la tecla `ctrl` sola.</p>
 
-Puede estar preocupado que toda esta estrategia de escucha de eventos rompe las viejas reglas de "separación de intereses". Puede estar tranquilo - ya que todas las funciones y expresiones manejadores están estrictamente atadas al ViewModel que controla la vista actual, no causará dificultades en el mantenimiento. De hecho, hay muchos beneficios cuando se usa `v-on`:
+### Modificador `.exact`
+
+> Nuevo en 2.5.0
+
+El modificador `.exact` debe usarse en combinación con otros modificadores del sistema para indicar que la combinación exacta de modificadores debe ser presionada para que el manipulador se active.
+
+``` html
+<!-- Esto se ejecutará incluso si se pulsa Alt o Mayúsculas -->
+<button @click.ctrl="onClick">A</button>
+
+<!-- Esto sólo se ejecutará cuando únicamente se pulse Ctrl -->
+<button @click.ctrl.exact="onCtrlClick">A</button>
+```
+
+### Modificadores de botones del ratón
+
+> Nuevo en 2.2.0+
+
+- `.left`
+- `.right`
+- `.middle`
+
+Estos modificadores restringen el manejador a eventos activados por un botón específico del ratón.
+
+## ¿Por qué listeners en HTML?
+
+Puede estar preocupado que toda esta estrategia de escucha de eventos rompe las viejas reglas de "separación de intereses". Puede estar tranquilo - ya que todas las funciones y expresiones del manejador de Vue están estrictamente vinculadas al ViewModel que controla la vista actual, no causará dificultades en el mantenimiento. De hecho, hay muchos beneficios cuando se usa `v-on`:
+
 
 1. Es más fácil de localizar la implementación de la función manejadora dentro de su código JS simplemente posando la vista sobre la plantilla HTML.
 
-2. Como no tiene que asignar manualmente listeners de eventos en JS, su códgo de ViewModel puede ser únicamente lógica y estar libre de DOM. Ésto lo hace más fácil de probar.
+2. Como no tiene que asignar manualmente listeners de eventos en JS, su código de ViewModel puede ser únicamente lógica y estar libre de DOM. Ésto lo hace más fácil de probar.
 
-3. Cuando un ViewModel es destruído, todos los listeners de eventos son automáticamente eliminados. No tiene que preocuparse de limpiarlos por su cuenta.
+3. Cuando un ViewModel es destruido, todos los listeners de eventos son automáticamente eliminados. No tiene que preocuparse de limpiarlos por su cuenta.

@@ -1,16 +1,16 @@
 ---
-title: Binding en Campos de Formulario
+title: Vinculación en campos de formulario
 type: guide
 order: 10
 ---
 
-## Uso Básico
+## Uso básico
 
-Puede usar la directiva `v-model` para crear enlaces (en inglés **Data Bindings**) de datos de doble vía en elementos de ingreso de datos de formulario y áreas de texto. `v-model` automáticamente escoge la forma correcta de actualizar el elemento basado en el tipo de campo. Aunque parezca un poco mágico, `v-model` es esencialmente un sintaxis bonito para actualizar datos cuando el usuario ingresa información, además de algunos cuidados adicionales para casos extremos.
+Puede usar la directiva `v-model` para crear enlaces (en inglés **Data Bindings**) de datos bidireccionales en elementos de ingreso de datos de formulario y áreas de texto. `v-model` automáticamente escoge la forma correcta de actualizar el elemento basado en el tipo de campo. Aunque parezca un poco mágico, `v-model` es esencialmente un sintaxis bonito para actualizar datos cuando el usuario ingresa información, además de algunos cuidados adicionales para casos extremos.
 
-<p class="tip">`v-model` no se preocupa por el valor inicial dado a un input o textarea. Siempre considera a los datos de instancia de Vue como la fuente de la verdad.</p>
+<p class="tip">`v-model` ignorará los atributos iniciales `value`, `checked` or `selected` encontrados en cualquier elemento del formulario. Siempre tratará los datos de la instancia de Vue como la fuente de la verdad. Debe declarar el valor inicial en JavaScript, dentro de la opción `data`de su componente.</p>
 
-<p class="tip" id="vmodel-ime-tip">Para lenguajes que requieren un [IME](https://en.wikipedia.org/wiki/Input_method) (Chino, Japonés, Koreano, etc), se dará cuenta que `v-model` no se actualiza durante la composición IME. Si también desea soportar estas actualizaciones, mejor use el evento `input`.</p>
+<p class="tip" id="vmodel-ime-tip">Para lenguajes que requieren un [IME](https://en.wikipedia.org/wiki/Input_method) (Chino, Japonés, Koreano, etc), notará que `v-model` no se actualiza durante la composición del IME. Si también desea soportar estas actualizaciones, mejor use el evento `input`.</p>
 
 ### Texto
 
@@ -204,9 +204,9 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">If the initial value of your `v-model` expression does not match any of the options, the `<select>` element will render in an "unselected" state. On iOS this will cause the user not being able to select the first item because iOS does not fire a change event in this case. It is therefore recommended to provide a disabled option with an empty value, as demonstrated in the example above.</p>
+<p class="tip">Si el valor inicial de su expresión `v-model`no coincide con ninguna de las opciones, el elemento `<select>` se renderizará en un estado "no seleccionado". En iOS esto causará que el usuario no pueda seleccionar el primer elemento porque iOS no dispara un evento de cambio en este caso.Por lo tanto, se recomienda proporcionar una opción desactivada con un valor vacío, como se muestra en el ejemplo anterior.</p>
 
-Múltiple selects (asignados a un Array):
+Selects múltiples (asignados a un Array):
 
 ``` html
 <select v-model="selected" multiple>
@@ -284,24 +284,24 @@ new Vue({
 </script>
 {% endraw %}
 
-## Bindings de valor
+## Vinculaciones de valor
 
 Para opciones en radios, checkboxes y selects, los valores asignados mediante `v-model` son usualmente cadenas de texto estáticas (o booleanos para checkbox):
 
 ``` html
-<!-- `picked` es un string "a" cuando es seleccionado -->
+<!-- `picked` es una cadena de texto "a" cuando es seleccionado -->
 <input type="radio" v-model="picked" value="a">
 
 <!-- `toggle` es verdadero o falso -->
 <input type="checkbox" v-model="toggle">
 
-<!-- `selected` es un string "abc" cuando es seleccionado -->
+<!-- `selected` es una cadena de texto "abc" cuando es seleccionado -->
 <select v-model="selected">
   <option value="abc">ABC</option>
 </select>
 ```
 
-Pero a veces queremos asignar el valor a una propiedad dinámica de la instancia Vue. Podemos usar `v-bind` para lograr esto. Adicionalmente, usar `v-bind` nos permite asignar el valor del input a valores que no sean strings. 
+Pero a veces queremos asignar el valor a una propiedad dinámica de la instancia Vue. Podemos usar `v-bind` para lograr esto. Adicionalmente, usar `v-bind` nos permite asignar el valor del input a valores que no sean cadenas de texto. 
 
 ### Checkbox
 
@@ -343,8 +343,6 @@ vm.pick === vm.a
 
 ``` js
 // cuando se selecciona:
-typeof vm.selected // -> 'object'
-vm.selected.number // -> 123
 typeof vm.selected // => 'object'
 vm.selected.number // => 123
 ```
@@ -380,6 +378,6 @@ Si quiere que los datos de usuario sean recortados automáticamente, puede agreg
 
 ## `v-model` con Componentes
 
-> Si los componentes de Vue no le son familiares, puede saltarse esta sección por ahora.
+> Si aún no está familiarizado con los componentes de Vue, puede saltarse esta sección por ahora.
 
 Los tipos de input nativos de HTML no siempre satisfacen sus necesidades. Afortunadamente, los componentes Vue le permiten crear inputs re-usables con comportamiento completamente personalizable. ¡Estos inputs incluso funcionan mejor con `v-model`! Para conocer más, lea sobre [inputs personalizados](components.html#Form-Input-Components-using-Custom-Events) en la guía de componentes.
