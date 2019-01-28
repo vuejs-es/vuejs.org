@@ -8,13 +8,13 @@ order: 2
 
 Vue (pronunciado viú) es un **framework progresivo** para construir interfaces de usuario. A diferencia de otros frameworks monolíticos, Vue está diseñado desde cero para ser incrementalmente adaptable. La librería núcleo está enfocada en la capa de vista únicamente, y es muy sencillo de empezar a usarla e integrarla con otras librerías o proyectos existentes. Por otro lado, Vue también es perfectamente capaz de manejar Aplicaciones de Una Página cuando se usa junto con [herramientas modernas](single-file-components.html) y [librerías de apoyo](https://github.com/vuejs/awesome-vue#libraries--plugins).
 
-Si usted es un desarrollador front-end experimentado y quiere saber cómo Vue se compara con otras librerías/frameworks, revise [Comparación con otros Frameworks](comparison.html).
+Si usted es un desarrollador front-end experimentado y quiere saber cómo Vue se compara con otras librerías/frameworks, revise la [Comparación con otros Frameworks](comparison.html).
 
-## Empezando
+## ¿Cómo empezar?
 
-<p class="tip">La guía oficial asume un conocimiento nivel intermedio de HTML, CSS y JavaScript. Si es completamente nuevo en el desarrollo front-end, probalemente no es buena idea saltar de primera vez a un framework - ¡primero aprenda los conceptos básicos y luego regrese! Conocimientos previos con otros frameworks es útil, pero no requerido.</p>
+<p class="tip">La guía oficial asume un conocimiento nivel intermedio de HTML, CSS y JavaScript. Si es completamente nuevo en el desarrollo front-end, probablemente no es buena idea saltar de primera vez a un framework - ¡primero aprenda los conceptos básicos y luego regrese! Conocimientos previos con otros frameworks son útiles, pero no requeridos.</p>
 
-La manera más sencilla de probar Vue.js es usar el [ejemplo Hola Mundo en JSFiddle](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Siéntase libre de abrirlo en otra pestaña y seguirlo a medida que explicamos algunos ejemplos básicos. O puede simplemente crear un archivo `.html` e incluir Vue con:
+La manera más sencilla de probar Vue.js es usar el [ejemplo Hola Mundo en JSFiddle](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Siéntase libre de abrirlo en otra pestaña y seguirlo a medida que explicamos algunos ejemplos básicos. O puede simplemente <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html">crear un archivo <code>index.html</code></a> e incluir Vue con:
 
 ``` html
 <script src="https://unpkg.com/vue"></script>
@@ -53,9 +53,9 @@ var app = new Vue({
 </script>
 {% endraw %}
 
-¡Ya hemos creado nuestra primera aplicación Vue! Se parece mucho a renderizar una plantilla string, pero Vue ha hecho mucho trabajo por detrás. Ahora los datos y el DOM están enlazados, y todo es **reactivo**. ¿Cómo lo sabemos? Sólo inicie la consola JavaScript de su navegador y cambie el valor de `app.message`. En seguida verá que el ejemplo renderizado anteriormente se actualiza acordemente.
+¡Ya hemos creado nuestra primera aplicación Vue! Se parece mucho a renderizar una plantilla de cadenas de texto, pero Vue ha hecho mucho trabajo por detrás. Ahora los datos y el DOM están enlazados, y todo es **reactivo**. ¿Cómo lo sabemos? Sólo inicie la consola JavaScript de su navegador (ahora mismo, en esta página) y cambie el valor de `app.message`. En seguida verá que el ejemplo renderizado anteriormente se actualiza acordemente.
 
-En adición a la interpolación de texto, podemos asignar atributos de elementos de la siguiente forma:
+Además de la interpolación de texto, podemos asignar atributos de elementos de la siguiente forma:
 
 ``` html
 <div id="app-2">
@@ -89,11 +89,11 @@ var app2 = new Vue({
 </script>
 {% endraw %}
 
-Aquí hemos encontrado algo nuevo. El atributo `v-bind` que ve es llamado **directiva**. Las directivas tienen el prefijo `v-` para indicar que son atributos especiales ofrecidos por Vue, y como ya ha adivinado, aplican comportamientos reactivos especiales al DOM. Aquí básicamente estamos diciendo "mantenga el atributo `title` del elemento, al día con el valor de la propiedad `message` en la instancia Vue".
+Aquí hemos encontrado algo nuevo. El atributo `v-bind` que está viendo se llama **directiva**. Las directivas tienen el prefijo `v-` para indicar que son atributos especiales ofrecidos por Vue, y como ya ha adivinado, aplican comportamientos reactivos especiales al DOM. Aquí básicamente estamos diciendo "mantenga el atributo `title` del elemento, al día con el valor de la propiedad `message` en la instancia Vue".
 
 Si de nuevo inicia la consola JavaScript del navegador y escribe `app2.message = 'un nuevo mensaje'`, verá una vez más que el HTML asignado - en este caso el atributo `title` - ha sido actualizado.
 
-## Condicionales y ciclos
+## Condicionales y bucles
 
 También es bastante sencillo intercambiar la presencia de un elemento:
 
@@ -128,7 +128,7 @@ var app3 = new Vue({
 
 Inténtelo usted ingresando `app3.seen = false` en la consola. Debe ver como desaparece el mensaje.
 
-Este ejemplo demuestra que podemos asignar datos no sólo a texo y atributos, sino también a la **estructura** del DOM. Más aún, Vue también nos ofrece un sistema de [efectos de transición](transitions.html) que podemos aplicar automáticamente cuando los elementos son insertados/actualizados/removidos por Vue.
+Este ejemplo demuestra que podemos asignar datos no sólo a texto y atributos, sino también a la **estructura** del DOM. Más aún, Vue también nos ofrece un sistema de [efectos de transición](transitions.html) que podemos aplicar automáticamente cuando los elementos son insertados/actualizados/removidos por Vue.
 
 Existen más directivas, cada una con su funcionalidad especial. Por ejemplo, la directiva `v-for` puede ser usada para mostrar una lista de elementos usando los datos de un Array:
 
@@ -177,7 +177,7 @@ var app4 = new Vue({
 
 En la consola, ingrese `app4.todos.push({ text: 'New item' })`. Debe ver aparecer un nuevo elemento al final de la lista.
 
-## Controlando los Datos ingresados por Usuario
+## Controlando los datos ingresados por usuario
 
 Para permitir a los usuarios interactuar con su aplicación, podemos usar la directiva `v-on` para enlazar _event listeners_ que invocan métodos en nuestra instancia Vue:
 
@@ -222,7 +222,7 @@ var app5 = new Vue({
 
 Note que en el método simplemente actualizamos el estado de nuestra aplicación sin tocar el DOM - todas las manipulaciones al DOM son controladas por Vue, y el código que usted escribe se enfoca en la lógica. 
 
-Vue también ofrece la directiva `v-model` que hace que una asignación bi-direccional entre un campo de formulario y el estado de la aplicación sea muy sencilla:
+Vue también ofrece la directiva `v-model` que hace que una vinculación bi-direccional entre un campo de formulario y el estado de la aplicación sea muy sencilla:
 
 ``` html
 <div id="app-6">
@@ -253,13 +253,13 @@ var app6 = new Vue({
 </script>
 {% endraw %}
 
-## Componiendo con Componentes
+## Componiendo con componentes
 
 El sistema de componentes es otro concepto importante en Vue, ya que es una abstracción que nos permite construir aplicaciones a gran escala compuestas por componentes pequeños, auto-contenidos, y a menudo re-usables. Si pensamos en ello, casi cualquier tipo de interfaz de aplicación puede ser abstraída en un árbol de componentes:
 
 ![Árbol de componentes](/images/components.png)
 
-En Vue, un componente es esencialmente una instancia Vue con opciones predefinidas. Regisrar un componente en Vue es muy sencillo:
+En Vue, un componente es esencialmente una instancia Vue con opciones predefinidas. Registrar un componente en Vue es muy sencillo:
 
 ``` js
 // Define un componente llamado todo-item
@@ -281,7 +281,7 @@ Pero esto renderizaría el mismo texto para cada tarea, lo cual no es nada inter
 
 ``` js
 Vue.component('todo-item', {
-  // El componene todo-item ahora acepta un 
+  // El componente todo-item ahora acepta un 
   // "prop", que es como un atributo personalizado.
   // Este prop es llamado todo.
   props: ['todo'],
@@ -294,8 +294,12 @@ Ahora podemos pasar la tarea a cada componente repetido usando `v-bind`:
 ``` html
 <div id="app-7">
   <ol>
-    <!-- Ahora le proveemos a cada todo-item el objeto todo -->
-    <!-- que representa, de modo que su contenido sea dinámico -->
+    <!--
+      Ahora le proveemos a cada todo-item el objeto todo
+      que representa, de modo que su contenido sea dinámico
+      También tenemos que dotar a cada componente de un "key",
+      que se explicará más adelante.
+    -->
     <todo-item
       v-for="item in groceryList"
       v-bind:todo="item"
@@ -345,9 +349,9 @@ var app7 = new Vue({
 </script>
 {% endraw %}
 
-Este es sólo un ejemplo inventado, pero hemos logrado separar nuestra aplicación en dos unidades más pequeñas, y el hijo está razonablemente bien desacoplado de su padre gracias a la interfaz de props. Ahora podemos mejorar aún más nuestro componente `<todo-item>` con una plantilla más compleja y lógica propia sin afectar la aplicación padre.
+Este es sólo un ejemplo inventado, pero hemos logrado separar nuestra aplicación en dos unidades más pequeñas, y el hijo está razonablemente bien desacoplado de su padre gracias a la interfaz de props. Ahora podemos mejorar aún más nuestro componente `<todo-item>` con una plantilla más compleja y lógica propia sin afectar la aplicación principal.
 
-En una aplicación grande, es necesario dividir la aplicación entera en componentes para hacer que el desarrollo sea manejable. Hablaremos mucho más sobre componentes [más adelante](components.html), pero aquí hay un ejemplo (imaginario) de lo que una plantilla de aplicación podría verse con componentes:
+En una aplicación grande, es necesario dividir la aplicación entera en componentes para hacer que el desarrollo sea manejable. Hablaremos mucho más sobre componentes [más adelante](components.html), pero aquí hay un ejemplo (imaginario) de cómo podría ser la plantilla de una aplicación con componentes:
 
 ``` html
 <div id="app">
@@ -359,9 +363,9 @@ En una aplicación grande, es necesario dividir la aplicación entera en compone
 </div>
 ```
 
-### Relación a Elementos Personalizados
+### Relación con los elementos personalizados
 
-Puede haber notado que los componentes Vue son muy similares a los **Elementos Personalizados**, los cuales son parte de la [Especificación de Componentes Web](http://www.w3.org/wiki/WebComponents/). Esto es porque la sintaxis de componentes de Vue es ligeramente modelada a partir de ésa especificación. Por ejemplo, los componentes Vue implementan el [API de Slots](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) y el atributo especial `is`. Sin embargo, hay algunas diferencias clave:
+Puede haber notado que los componentes Vue son muy similares a los **Elementos Personalizados**, los cuales son parte de la [Especificación de Componentes Web](https://www.w3.org/wiki/WebComponents/). Esto es porque la sintaxis de componentes de Vue es ligeramente modelada a partir de ésa especificación. Por ejemplo, los componentes Vue implementan el [API de Slots](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) y el atributo especial `is`. Sin embargo, hay algunas diferencias clave:
 
 1. La Especificación de Componentes Web está aún en estado de borrador, y no está implementada nativamente en todos los navegadores. En comparación, los componentes Vue no requieren polyfills y funcionan consistentemente en todos los navegadores soportados (IE9 y superior). Cuando es necesario, los componentes Vue pueden ser envueltos en un elemento nativo personalizado.
 

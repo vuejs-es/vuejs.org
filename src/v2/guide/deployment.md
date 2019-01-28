@@ -1,12 +1,12 @@
 ---
-title: Production Deployment
+title: Despliegue en Producción
 type: guide
 order: 401
 ---
 
 ## Activar modo de producción
 
-Durante el desarrollo, Vue da muchas advertencias para ayudarle con errores y dificultades que son comunes. Sin embargo, estas advertencias se vuelven inútiles en la producción e incrementan el tamaño de su aplicación. Además, algunas de estas advertencias tienen pequeños costos de tiempo de ejecución que pueden evitarse en el modo de producción.
+Durante el desarrollo, Vue da muchas advertencias para ayudarle con errores y dificultades más comunes. Sin embargo, estas advertencias se vuelven inútiles en la producción e incrementan el tamaño de su aplicación. Además, algunas de estas advertencias tienen pequeños costos de tiempo de ejecución que pueden evitarse en el modo de producción.
 
 ### Sin herramientas de compilación
 
@@ -38,12 +38,28 @@ module.exports = {
 
 #### Browserify
 
-- Ejecute el comando de compilación con la variable de entorno `NODE_ENV` real establecida en `"production"`. Esto le dice a `vueify` que no incluya _hot-reload_ ni código relacionado con el desarrollo. 
+- Ejecute el comando de compilación con la variable de entorno `NODE_ENV` establecida en `"production"`. Esto le dice a `vueify` que no incluya _hot-reload_ ni código relacionado con el desarrollo. 
 
 - Aplique una transformación global [envify](https://github.com/hughsk/envify) a su paquete. Esto permite que el minificador elimine todas las advertencias en el código fuente de Vue rodeado de bloques condicionales de las variables env. Por ejemplo:
 
   ``` bash
   NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
+  ```
+
+- O, usando [envify](https://github.com/hughsk/envify) con Gulp:
+
+  ``` js
+  // Utilice el módulo personalizado envify para especificar variables de entorno
+  var envify = require('envify/custom')
+
+  browserify(browserifyOptions)
+    .transform(vueify),
+    .transform(
+      // Requerido para procesar archivos de node_modules
+      { global: true },
+      envify({ NODE_ENV: 'production' })
+    )
+    .bundle()
   ```
 
 #### Rollup
@@ -65,15 +81,15 @@ rollup({
 
 ## Pre-compilación de plantillas
 
-Cuando se utilizan plantillas en el DOM o cadenas de plantilla en JavaScript, la compilación de _template-to-render-function_ se realiza sobre la marcha. Esto suele ser lo suficientemente rápido en la mayoría de los casos, pero es mejor evitarlo si su aplicación exige major rendimiento.
+Cuando se utilizan plantillas en el DOM o plantillas de cadena de texto en JavaScript, la compilación de _template-to-render-function_ se realiza sobre la marcha. Esto suele ser lo suficientemente rápido en la mayoría de los casos, pero es mejor evitarlo si su aplicación exige mayor rendimiento.
 
-La forma más fácil de pre compilar plantillas es usando [Single-File Components](single-file-components.html) - las configuraciones de construcción asociadas automáticamente realizan la compilación previa para que el código incorporado contenga las funciones de representación ya compiladas en lugar de cadenas de plantilla sin procesar.
+La forma más fácil de pre compilar plantillas es usando [Componentes de un solo archivo](single-file-components.html) - las configuraciones de compilación asociadas realizan automáticamente la precompilación por usted, por lo que el código generado contiene las funciones de renderización ya compiladas en lugar de las plantillas de cadena de texto sin procesar.
 
 Si usa Webpack y prefiere separar los archivos de plantilla y JavaScript, puede usar [vue-template-loader](https://github.com/ktsn/vue-template-loader), que también transforma los archivos de plantilla en funciones de renderizado de JavaScript durante el proceso de compilación.
 
 ## Extracción de componentes CSS
 
-Cuando se utilizan componentes de un único archivo, el CSS interno de los componentes es inyectado dinámicamente con las etiquetas `<style>` a través de JavaScript. Esto tiene un pequeño tiempo de ejecución, y si está utilizando la representación del lado del servidor provocará un "destello de contenido sin estilo". Extrayendo el CSS de todos los componentes en un mismo archivo evitará este tipo de problemas y también dará como resultado una mejor minimización y almacenamiento en caché del CSS.
+Cuando se utilizan componentes de un solo archivo, el CSS interno de los componentes es inyectado dinámicamente con las etiquetas `<style>` a través de JavaScript. Esto tiene un pequeño coste de tiempo de ejecución, y si está utilizando la representación del lado del servidor provocará un "destello de contenido sin estilo". Extraer el CSS de todos los componentes en un mismo archivo evitará este tipo de problemas y también dará como resultado una mejor minimización y almacenamiento en caché del CSS.
 
 Consulte los documentos de la herramienta de compilación respectiva para ver cómo se hace:
 
@@ -83,4 +99,4 @@ Consulte los documentos de la herramienta de compilación respectiva para ver c�
 
 ## Seguimiento de errores de tiempo de ejecución
 
-Si se produce un error en el tiempo de ejecución durante la renderización de un componente, se pasará a la función de configuración global `Vue.config.errorHandler` si es que asi se ha establecido. Podría ser una buena idea aprovechar este enlace junto con un servicio de seguimiento de errores como [Sentry](https://sentry.io), que proporciona [una integración oficial](https://sentry.io/for/vue/) para Vue.
+Si se produce un error en el tiempo de ejecución durante la renderización de un componente, se pasará a la función de configuración global `Vue.config.errorHandler` si es que así se ha establecido. Podría ser una buena idea aprovechar este enlace junto con un servicio de seguimiento de errores como [Sentry](https://sentry.io), que proporciona [una integración oficial](https://sentry.io/for/vue/) para Vue.
