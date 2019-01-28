@@ -1,5 +1,5 @@
 ---
-title: Vinculación en Campos de Formulario
+title: Vinculación en campos de formulario
 type: guide
 order: 10
 ---
@@ -204,9 +204,9 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">Si el valor inicial de su expresión `v-model`no coincide con ninguna de las opciones, el elemento `<select>` se renderizará en un estado "no seleccionado".En iOS esto causará que el usuario no pueda seleccionar el primer elemento porque iOS no dispara un evento de cambio en este caso.Por lo tanto, se recomienda proporcionar una opción desactivada con un valor vacío, como se muestra en el ejemplo anterior.</p>
+<p class="tip">Si el valor inicial de su expresión `v-model`no coincide con ninguna de las opciones, el elemento `<select>` se renderizará en un estado "no seleccionado". En iOS esto causará que el usuario no pueda seleccionar el primer elemento porque iOS no dispara un evento de cambio en este caso.Por lo tanto, se recomienda proporcionar una opción desactivada con un valor vacío, como se muestra en el ejemplo anterior.</p>
 
-Selects Múltiples (asignados a un Array):
+Selects múltiples (asignados a un Array):
 
 ``` html
 <select v-model="selected" multiple>
