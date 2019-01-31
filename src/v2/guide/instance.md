@@ -1,61 +1,83 @@
 ---
-title: La Instancia Vue
+title: The Vue Instance
 type: guide
 order: 3
 ---
 
-## Constructor
+## Creating a Vue Instance
 
-Cada vm de Vue es inicializado creando una **instancia Vue raíz** con la función constructora `Vue`:
+Every Vue application starts by creating a new **Vue instance** with the `Vue` function:
 
 ``` js
 var vm = new Vue({
-  // opciones
+  // options
 })
 ```
 
-Aunque estrictamente no está asociado con el [patrón MVVM](https://en.wikipedia.org/wiki/Model_View_ViewModel), el diseño de Vue ha sido sin duda inspirado por él. Como convención, a menudo usamos la variable `vm` (versión se refiere a ViewModel) para referirnos a nuestras instancias Vue.
+Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our Vue instance.
 
-Cuando crea una instancia Vue, necesita pasarle un **objeto de opciones** el cual puede contener opciones para datos, plantilla, elemento donde ser montado, métodos, callbacks de ciclo de vida y más. La lista completa de opciones puede ser hallada en la [refefencia de API](../api).
+When you create a Vue instance, you pass in an **options object**. The majority of this guide describes how you can use these options to create your desired behavior. For reference, you can also browse the full list of options in the [API reference](../api/#Options-Data).
 
-El constructor `Vue` puede ser extendido para crear **constructores de componente** con opciones predefinidas:
+A Vue application consists of a **root Vue instance** created with `new Vue`, optionally organized into a tree of nested, reusable components. For example, a todo app's component tree might look like this:
 
-``` js
-var MyComponent = Vue.extend({
-  // opciones de extensión
-})
-
-// todas las instancias de `MyComponent` serán creadas con
-// las opciones pre-definidas de extensión.
-var myComponentInstance = new MyComponent()
+```
+Root Instance
+|- TodoList
+   |- TodoItem
+      |- DeleteTodoButton
+      |- EditTodoButton
+   |- TodoListFooter
+      |- ClearTodosButton
+      |- TodoListStatistics
 ```
 
-Aunque es posible crear instancias extensivas imperativamente, la mayoría de veces es recomendado componerlas declarativamente en plantillas como elementos personalizados. Hablaremos del [sistema de componentes](components.html) en detalle más adelante. Por ahora, sólo necesita saber que todos los componentes Vue son esencialmente instancias Vue extendidas.
+We'll talk about [the component system](components.html) in detail later. For now, just know that all Vue components are also Vue instances, and so accept the same options object (except for a few root-specific options).
 
-## Propiedades y Métodos
+## Data and Methods
 
-Cada instancia Vue **expone** todas las propiedades halladas en su objeto `data`:
+When a Vue instance is created, it adds all the properties found in its `data` object to Vue's **reactivity system**. When the values of those properties change, the view will "react", updating to match the new values.
 
 ``` js
+// Our data object
 var data = { a: 1 }
+
+// The object is added to a Vue instance
 var vm = new Vue({
   data: data
 })
 
-vm.a === data.a // -> true
+// These reference the same object!
+vm.a === data.a // => true
 
-// asignando un valor a la propiedad también afecta sus datos originales
+// Setting the property on the instance
+// also affects the original data
 vm.a = 2
-data.a // -> 2
+data.a // => 2
 
-// ... y viceversa
+// ... and vice-versa
 data.a = 3
-vm.a // -> 3
+vm.a // => 3
 ```
 
-Debe ser dicho que únicamente dichas propiedades expuestas son **reactivas**. Si agrega una nueva propiedad a la instancia después de haberla creado, no activará actualizaciones de vista. Vamos a discutir el sistema de reactividad en detalle más adelante.
+When this data changes, the view will re-render. It should be noted that properties in `data` are only **reactive** if they existed when the instance was created. That means if you add a new property, like:
 
-En adición a propiedades de datos, las instancias Vue exponen un número de propiedades de instancia y métodos útiles. Estas propiedades y métodos tienen el prefijo `$` para diferenciarlos de propiedades de `data` expuestas. Por ejemplo:
+``` js
+vm.b = 'hi'
+```
+
+Then changes to `b` will not trigger any view updates. If you know you'll need a property later, but it starts out empty or non-existent, you'll need to set some initial value. For example:
+
+``` js
+data: {
+  newTodoText: '',
+  visitCount: 0,
+  hideCompletedTodos: false,
+  todos: [],
+  error: null
+}
+```
+
+In addition to data properties, Vue instances expose a number of useful instance properties and methods. These are prefixed with `$` to differentiate them from user-defined properties. For example:
 
 ``` js
 var data = { a: 1 }
@@ -64,40 +86,43 @@ var vm = new Vue({
   data: data
 })
 
-vm.$data === data // -> true
-vm.$el === document.getElementById('example') // -> true
+vm.$data === data // => true
+vm.$el === document.getElementById('example') // => true
 
-// $watch es un método de instancia
-vm.$watch('a', function (newVal, oldVal) {
-  // este callback será llamado cuando `vm.a` cambie
+// $watch is an instance method
+vm.$watch('a', function (newValue, oldValue) {
+  // This callback will be called when `vm.a` changes
 })
 ```
 
-<p class="tip">No use las [funciones flecha](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) en una propiedad de instancia o callback (p.e. `vm.$watch('a', newVal => this.myMethod())`). Como las funciones flecha están sujetas al contexto de su padre, `this` no será la instancia Vue como esperaría y `this.myMethod` será indefinido.</p>
+In the future, you can consult the [API reference](../api/#Instance-Properties) for a full list of instance properties and methods.
 
-Consulte la [referencia API](../api) para la lista completa de propiedades de instancia y métodos.
+## Instance Lifecycle Hooks
 
-## Hooks de ciclo de vida de Instancia
+Each Vue instance goes through a series of initialization steps when it's created - for example, it needs to set up data observation, compile the template, mount the instance to the DOM, and update the DOM when data changes. Along the way, it also runs functions called **lifecycle hooks**, giving users the opportunity to add their own code at specific stages.
 
-Cada instancia Vue pasa por una serie de pasos de inicialización cuando es creada - por ejemplo, necesita preparar los datos para observación, compilar la plantilla, montar la instancia en el DOM, y actualizar el DOM siempre que los datos cambien. A lo largo del camino, también irá llamando algunos **hooks de ciclo de vida**, los cuales nos dan la oportunidad de ejecutar lógica personalizada. Por ejemplo, el hook `created` es llamado después que la instancia es creada:
+For example, the [`created`](../api/#created) hook can be used to run code after an instance is created:
 
 ``` js
-var vm = new Vue({
+new Vue({
   data: {
     a: 1
   },
   created: function () {
-    // `this` apunta a la instancia vue
+    // `this` points to the vm instance
     console.log('a is: ' + this.a)
   }
 })
-// -> "a es: 1"
+// => "a is: 1"
 ```
 
-Existen también otros hooks que serán llamados en diferentes puntos del ciclo de vida de la instancia, por ejemplo `mounted`, `updated`, y `destroyed`. Todos los hooks son llamados con su contexto `this` apuntando a la instancia Vue que los invoca. Puede estar preguntándose dónde se encuentra el concepto de "controladores" en el mundo Vue y la respuesta es: no hay controladores. Su lógica personalizada para un componente estará repartida entre estos hooks de ciclo de vida.
+There are also other hooks which will be called at different stages of the instance's lifecycle, such as [`mounted`](../api/#mounted), [`updated`](../api/#updated), and [`destroyed`](../api/#destroyed). All lifecycle hooks are called with their `this` context pointing to the Vue instance invoking it.
 
-## Diagrama de ciclo de vida
+<p class="tip">Don't use [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) on an options property or callback, such as `created: () => console.log(this.a)` or `vm.$watch('a', newValue => this.myMethod())`. Since arrow functions are bound to the parent context, `this` will not be the Vue instance as you'd expect, often resulting in errors such as `Uncaught TypeError: Cannot read property of undefined` or `Uncaught TypeError: this.myMethod is not a function`.</p>
 
-El siguiente es un diagrama del ciclo de vida de la instancia. No necesita comprender ahora mismo en totalidad todo lo que está pasando, pero este diagrama puede serle útil en el futuro.
 
-![Ciclo de vida](/images/lifecycle.png)
+## Lifecycle Diagram
+
+Below is a diagram for the instance lifecycle. You don't need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference.
+
+![The Vue Instance Lifecycle](/images/lifecycle.png)
